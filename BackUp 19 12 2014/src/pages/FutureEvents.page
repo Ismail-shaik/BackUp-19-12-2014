@@ -1,0 +1,10 @@
+<apex:page showHeader="false" sidebar="false" controller="FutureEvents" doctype="html-5.0" standardStylesheets="false">
+<ul>
+   <apex:repeat value="{!events}" var="event">
+       <li>
+           <apex:outputLink value="{!event.Event_Website__c}" target="_parent" rendered="{!!ISBLANK(event.Event_Website__c)}">{!event.Name}</apex:outputLink>
+           <apex:outputText value="{!event.name}" rendered="{!ISBLANK(event.Event_Website__c)}"></apex:outputText>
+       </li>
+   </apex:repeat>
+</ul>
+</apex:page>

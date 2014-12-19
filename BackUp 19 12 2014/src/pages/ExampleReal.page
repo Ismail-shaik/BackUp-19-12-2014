@@ -1,0 +1,9 @@
+<apex:page controller="ExampleRealcntrlr">
+  <apex:form >
+    <apex:pageBlock title="dfdsfhj">
+      <apex:pageblockSection title="cdjndj">
+        <apex:inputField value="{!pos.Name}"/>
+      </apex:pageblockSection>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

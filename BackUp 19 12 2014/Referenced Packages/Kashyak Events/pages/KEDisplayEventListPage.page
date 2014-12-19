@@ -1,0 +1,192 @@
+<apex:page controller="KEvents.KEDisplayEventListCntr" showHeader="false"  sidebar="false">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <apex:composition template="{!$Site.Template}"> 
+    <apex:define name="body">
+            <!--<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/bootstrap.min.css')}" />
+            
+            <apex:includeScript value="{!URLFOR($Resource.BootStrapStyles, '/js/bootstrap.min.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/strap.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/strap.css')}"/>
+            <apex:stylesheet value="{!$Resource.StyleColors}"/>-->
+            
+              <apex:form >
+                         <br/>
+                              <!--  >>>>>>>>>>>>>>>>>>>>>>>>  ===============  Site Links =============== <<<<<<<<<<<<<<<<<<<<<<< -->
+                                     <table align="Right">
+                                         <tr >
+                                               <td>
+                                                    
+                                                        <c:KETooltipComp text="Calender View"><a href="/events/{!CalendarPage}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarView.png')}"/></a> </c:KETooltipComp>         
+                                                        <c:KETooltipComp text="Detail View"> <a href="/events/{!EventDetailPage}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconThumbNailView.png')}"/></a></c:KETooltipComp>       
+                                                   
+                                                </td>
+                                         </tr>
+                                     </table>
+                              <!--  >>>>>>>>>>>>>>>>>>>>>>>>  ===============  Site Links End =============== <<<<<<<<<<<<<<<<<<<<<<< -->    
+                                 
+                                 
+                              <!--  >>>>>>>>>>>>>>>>>>>>>>>>  ===============  Show List Lins Start =============== <<<<<<<<<<<<<<<<<<<<<<< -->   
+                                     <table align="left">
+                                            <tr>
+                                                <td>    
+                                                    
+                                                          <div align="left">
+                                                              &nbsp;&nbsp;
+                                                              <apex:outputPanel rendered="{!(supEvent && supClas && supResr && supIntrnal)}">
+                                                                  <c:KETooltipComp text="All Events">
+                                                                     <apex:commandLink action="{!alleventDisplayList}"><apex:image url="{!URLFOR($Resource.KEvents__ListViewIcons,'ListViewIcons/iconListAll.png')}" width="35" height="35"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                  </c:KETooltipComp>
+                                                              </apex:outputPanel>
+                                                              <apex:outputPanel rendered="{!supResr}">     
+                                                                  <c:KETooltipComp text="Reservations">
+                                                                     <apex:commandLink action="{!reservationDisplayList}"><apex:image url="{!URLFOR($Resource.KEvents__ListViewIcons,'ListViewIcons/iconListReservation.png')}" width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                  </c:KETooltipComp>
+                                                               </apex:outputPanel>    
+                                                              <apex:outputPanel rendered="{!supEvent}">
+                                                                  <c:KETooltipComp text="Events">
+                                                                     <apex:commandLink action="{!eventDisplayList}"><apex:image url="{!URLFOR($Resource.KEvents__ListViewIcons,'ListViewIcons/iconListEvent.png')}" width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                  </c:KETooltipComp>
+                                                               </apex:outputPanel>    
+                                                              <apex:outputPanel rendered="{!supClas}">
+                                                                  <c:KETooltipComp text="Trainings">
+                                                                     <apex:commandLink action="{!classDisplayList}"><apex:image url="{!URLFOR($Resource.KEvents__ListViewIcons,'ListViewIcons/iconListTraining.png')}" width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                  </c:KETooltipComp>
+                                                               </apex:outputPanel>    
+                                                              <apex:outputPanel rendered="{!supIntrnal}"> 
+                                                                  <c:KETooltipComp text="Internal Events">
+                                                                     <apex:commandLink action="{!volunteerDisplayList}"><apex:image url="{!URLFOR($Resource.KEvents__ListViewIcons,'ListViewIcons/iconListInternal.png')}" width="35px" height="35px"/></apex:commandLink>
+                                                                  </c:KETooltipComp>
+                                                              </apex:outputPanel>      
+                                                          </div>
+                                                      
+                                                  </td> 
+                                             </tr>
+                                     </table>
+                                  </apex:form>   
+                                     <br/><br/><br/>
+                              <!--  >>>>>>>>>>>>>>>>>>>>>>>>  ===============  Show List Lins End =============== <<<<<<<<<<<<<<<<<<<<<<< -->                                                       
+                                               
+                              <!--  >>>>>>>>>>>>>>>>>>>>>>>>  ===============  Panel  Start =============== <<<<<<<<<<<<<<<<<<<<<<< -->      
+                                    <div class="panelNew {!if(Eventlist == 'Reservation','panel-Purple', if(Eventlist == 'Event', 'panel-Orange' ,if(Eventlist == 'Training','panel-LightBlue',if(Eventlist == 'Internal','panel-Gray','panel-Green'))))}">
+                                              <div class="panel-heading">
+                                                 <span class="glyphicon glyphicon-list"/>&nbsp;&nbsp;<h3 class="panel-title">{!Eventlist} List</h3> 
+                                              </div>
+                                              <div class="panel-body">
+                                           <apex:form >      
+                                               <apex:outputPanel id="details">
+                                               
+                                                 <div class="table-responsive">
+                                                  <apex:pageMessages ></apex:pageMessages>
+                                                      <apex:outputPanel rendered="{!TableHide}">
+                                                              <apex:DataTable value="{!Events}" var="event" styleclass="table table-bordered color-black" rendered="{!NOT(ISNULL(Events))}">
+                                                                     <apex:column styleclass="color-white" headerValue="Event Names">
+                                                                       <!--  <apex:facet name="header">   
+                                                                           <apex:commandLink action="{!ViewData}" value="{!Eventlist} Names" styleClass="color-orange" id="cmdSort">
+                                                                             <apex:param value="Name__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+                                                                           </apex:commandLink>
+                                                                         </apex:facet> -->
+                                                                         <apex:outputLink value="/apex/{!DisplayEventPage}?id={!event.Id}" target="_self"><font  class="fontcolor-orange">{!event.Name__c}</font></apex:outputLink>
+                                                                     </apex:column>
+                                                                     <apex:column styleclass="color-white" headerValue="Strat Date" value="{!event.KEvents__EventStartDate__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="End Date" value="{!event.KEvents__EventEndDate__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="Start Time" value="{!event.KEvents__StartTime__c}" />
+                                                                     <apex:column styleclass="color-white" headerValue="End Time" value="{!event.KEvents__EndTime__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="Member Price" value="{!event.KEvents__MemberPrice__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="Non Member Price" value="{!event.KEvents__NonMemberPrice__c}"/>
+                                                               
+                                                              </apex:DataTable>
+                                                     </apex:outputPanel> 
+                                 
+                                 <!-- >>>>>>>>>>>>>>>>>>> ================ Reservation List ==================== <<<<<<<<<<<<<<<<<<<< -->                    
+                                                     <apex:outputPanel rendered="{!TableHide1}">
+                                                              <apex:DataTable value="{!Events}" var="event" styleclass="table table-bordered color-black" rendered="{!NOT(ISNULL(Events))}">
+                                                                    <apex:column styleclass="color-white" headerValue="Reservation Names">
+                                                                        <!-- <apex:facet name="header">   
+                                                                           <apex:commandLink action="{!ViewData}" value="{!Eventlist} Names" styleClass="color-orange" id="cmdSort">
+                                                                             <apex:param value="Name__c" name="column" assignTo="{!sortExpression}" ></apex:param>
+                                                                           </apex:commandLink>
+                                                                         </apex:facet> -->
+                                                                         <apex:outputLink value="/apex/{!DisplayEventPage}?id={!event.Id}" target="_self"><font  class="fontcolor-6">{!event.Name__c}</font></apex:outputLink>
+                                                                     </apex:column>
+                                                                     <apex:column styleclass="color-white" headerValue="Strat Date" value="{!event.KEvents__EventStartDate__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="End Date" value="{!event.KEvents__EventEndDate__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="Start Time" value="{!event.KEvents__StartTime__c}" />
+                                                                     <apex:column styleclass="color-white" headerValue="End Time" value="{!event.KEvents__EndTime__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="Reservation Fee" value="{!event.Program__r.KEvents__Fee__c}"/>
+                                                                 
+                                                              </apex:DataTable>
+                                                     </apex:outputPanel>
+                                 <!-- >>>>>>>>>>>>>>>>>>> ================ Reservation List End ==================== <<<<<<<<<<<<<<<<<<<< -->                      
+                                                     
+                                                     
+                                                     <apex:outputPanel rendered="{!TableHide2}">
+                                                              <apex:DataTable value="{!Events}" var="event" styleclass="table table-bordered color-black" rendered="{!NOT(ISNULL(Events))}">
+                                                                     <apex:column styleclass="color-white" headerValue="Training Names" >
+                                                                         <apex:outputLink value="/apex/{!DisplayEventPage}?id={!event.Id}" target="_self"><font  class="fontcolor-blue3">{!event.Name__c}</font></apex:outputLink>
+                                                                     </apex:column>
+                                                                     <apex:column styleclass="color-white" headerValue="Strat Date" value="{!event.KEvents__EventStartDate__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="End Date" value="{!event.KEvents__EventEndDate__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="Start Time" value="{!event.KEvents__StartTime__c}" />
+                                                                     <apex:column styleclass="color-white" headerValue="End Time" value="{!event.KEvents__EndTime__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="Member Price" value="{!event.KEvents__MemberPrice__c}"/>
+                                                                     <apex:column styleclass="color-white" headerValue="Non Member Price" value="{!event.KEvents__NonMemberPrice__c}"/>
+                                                               
+                                                              </apex:DataTable>
+                                                     </apex:outputPanel>
+                                                     
+                           <!-- >>>>>>>>>>>>>>>>>>> ================ Internal List Start ==================== <<<<<<<<<<<<<<<<<<<< -->                      
+                                                     <apex:outputPanel rendered="{!TableHide3}">
+                                                          <apex:DataTable value="{!Events}" var="event" styleclass="table table-bordered color-black" rendered="{!NOT(ISNULL(Events))}">
+                                                               <apex:column styleclass="color-white" headerValue="Internal Event Names">
+                                                                 <apex:outputLink value="/apex/{!DisplayEventPage}?id={!event.Id}" target="_self"><font  class="fontcolor-5">{!event.Name__c}</font></apex:outputLink>
+                                                               </apex:column>
+                                                             <apex:column styleclass="color-white" headerValue="Strat Date" value="{!event.KEvents__EventStartDate__c}"/>
+                                                             <apex:column styleclass="color-white" headerValue="End Date" value="{!event.KEvents__EventEndDate__c}"/>
+                                                             <apex:column styleclass="color-white" headerValue="Start Time" value="{!event.KEvents__StartTime__c}" />
+                                                             <apex:column styleclass="color-white" headerValue="End Time" value="{!event.KEvents__EndTime__c}"/>
+                                                             
+                                                          </apex:DataTable>
+                                                     </apex:outputPanel> 
+                           <!-- >>>>>>>>>>>>>>>>>>> ================ Internal List End ==================== <<<<<<<<<<<<<<<<<<<<<<<<< -->                        
+                                                 
+                           <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>> =================== All Events list ================= <<<<<<<<<<<<<<<<<<<< -->
+                                                    <apex:outputPanel rendered="{!TableHide4}">
+                                                                  <apex:DataTable value="{!Events}" var="event" styleclass="table table-bordered color-black" rendered="{!NOT(ISNULL(Events))}">
+                                                                       <apex:column styleclass="color-white" headerValue="All Event Names"> 
+                                                                           <apex:outputPanel rendered="{!event.RecordType.Name =='Event'}"> 
+                                                                                 <apex:outputLink value="/apex/{!DisplayEventPage}?id={!event.Id}" target="_self"><font  class="fontcolor-orange">{!event.Name__c}</font></apex:outputLink>
+                                                                           </apex:outputPanel> 
+                                                                           <apex:outputPanel rendered="{!event.RecordType.Name =='Reservation'}"> 
+                                                                                 <apex:outputLink value="/apex/{!DisplayEventPage}?id={!event.Id}" target="_self"><font  class="fontcolor-6">{!event.Name__c}</font></apex:outputLink>
+                                                                           </apex:outputPanel> 
+                                                                           <apex:outputPanel rendered="{!event.RecordType.Name =='Training'}"> 
+                                                                                 <apex:outputLink value="/apex/{!DisplayEventPage}?id={!event.Id}" target="_self"><font  class="fontcolor-blue3">{!event.Name__c}</font></apex:outputLink>
+                                                                           </apex:outputPanel> 
+                                                                           <apex:outputPanel rendered="{!event.RecordType.Name =='Internal'}"> 
+                                                                                 <apex:outputLink value="/apex/{!DisplayEventPage}?id={!event.Id}" target="_self"><font  class="fontcolor-5">{!event.Name__c}</font></apex:outputLink>
+                                                                           </apex:outputPanel>
+                                                                         </apex:column>    
+                                                                         <apex:column styleclass="color-white" headerValue="Type" value="{!event.KEvents__RecordType__c}" />
+                                                                         <apex:column styleclass="color-white" headerValue="Strat Date" value="{!event.KEvents__EventStartDate__c}"/>
+                                                                         <apex:column styleclass="color-white" headerValue="End Date" value="{!event.KEvents__EventEndDate__c}"/>
+                                                                         <apex:column styleclass="color-white" headerValue="Start Time" value="{!event.KEvents__StartTime__c}" />
+                                                                         <apex:column styleclass="color-white" headerValue="End Time" value="{!event.KEvents__EndTime__c}"/>
+                                                                      
+                                                                       
+                                                                  </apex:DataTable>
+                                                    </apex:outputPanel>
+                                                 
+                          <!-- >>>>>>>>>>>>>>>>>>>>>>>>>>>> =================== All Events list End ================= <<<<<<<<<<<<<<<<<<<< -->                
+                          
+                      </div>
+                   </apex:outputPanel>
+                   </apex:form>  
+                 </div>
+              </div>  
+            <!--  >>>>>>>>>>>>>>>>>>>>>>>>  ===============  Panel  End =============== <<<<<<<<<<<<<<<<<<<<<<< -->   
+            
+    </apex:define>
+  </apex:composition>  
+</apex:page>

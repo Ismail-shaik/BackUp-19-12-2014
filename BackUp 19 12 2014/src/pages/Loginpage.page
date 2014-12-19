@@ -1,0 +1,462 @@
+<apex:page controller="LoginpageCntrlr" showHeader="false" sidebar="false" standardStylesheets="true" id="pgid" doctype="html-5.0">
+ 
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/bootstrap.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Styles, '/js/bootstrap.min.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/strap.css')}"/>
+        <apex:stylesheet value="{!$Resource.colorcode}"/>
+       
+           <script>
+           
+            function Validate()
+            {
+               // alert('welcome');
+               var UN = document.getElementById('pgid:frmid:unid').value;
+               // alert(UN);
+               var PW = document.getElementById('pgid:frmid:pswid').value;
+               // alert(PW)
+            /*   var unregexp = \b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b;
+                 var pswexp = ^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$;
+               
+               if(unregexp.test(UN) == false && UN != null)
+                {
+                  alert('Please enter valid UserName');
+                  UN.focus();
+                  return false;
+                }
+               else if(pswexp.test(PW) == false && PS != null)
+                {
+                  alert('please enter valid password');
+                   PW.focus();
+                   return false;
+                }
+              */ 
+               if(UN == null || UN =="")
+                {
+                     alert('please enter Username');
+                     UN.focus();
+                     return false;
+                }
+               if(PW == null || PW == "")
+                {
+                      alert('please Enter Password');
+                      PW.focus();
+                      return false;
+                }
+               
+            }
+            
+            
+            function Validate1()
+              {
+                //alert('welcome');
+                Fn = document.getElementById('pgid:frmid:fnameid').value;
+                Ln = document.getElementById('pgid:frmid:lnameid').value;
+                pwd = document.getElementById('pgid:frmid:pwdid').value;
+                repwd = document.getElementById('pgid:frmid:repwdid').value;
+                Email = document.getElementById('pgid:frmid:Emailid').value;
+                phne = document.getElementById('pgid:frmid:phnid').value;
+                pin = document.getElementById('pgid:frmid:pinid').value;
+                
+                if(Fn == null || Fn == '')
+                 {
+                    alert('Please Enter Your First Name');
+                    Fn.focus();
+                    return false;
+                 }
+                 
+                else if(Ln == null || Ln == '')
+                 {
+                    alert('Please Enter Your Last Name');
+                    Ln.focus();
+                    return false;
+                 }
+                 
+                else if(pwd == null || pwd == '')
+                 {
+                    alert('Please Enter Your Password');
+                    pwd.focus();
+                    return false;
+                 }
+                 
+                else if(repwd == null || repwd == '')
+                 {
+                    alert('Please Enter Re-Password');
+                    repwd.focus();
+                    return false;
+                 }
+                 
+                else if(Email == null || Email == '')
+                 {
+                    alert('Please Enter Your Email');
+                    Email.focus();
+                    return false;
+                 }
+                 
+                else if(phne == null || phne == '')
+                 {
+                    alert('Please Enter Your Mobile Number');
+                    phne.focus();
+                    return false;
+                 }
+                 
+                else if(pin == null || pin == '')
+                 {
+                    alert('Please Enter Your Pin code');
+                    pin .focus();
+                    return false;
+                 }
+                
+                
+              }
+            
+            
+               
+           
+         </script>
+
+       <apex:messages />
+       
+               
+         
+          
+            <apex:form id="frmid"> 
+                <div class="form-group">
+                   
+                     <apex:image id="flr1" value="{!$Resource.Flower}" height="200" width="250"/> 
+                   
+                     <apex:image id="imgid" title="Site Hedder" value="{!$Resource.SiteHedder}" height="200" width="1095"/>
+                  
+                </div>
+              <br/>
+              
+              <!-- testing anything block  -->
+              
+              
+              
+              <!-- Test block closed  -->
+              
+         <div class="col-md-12">
+          <div class="color-swatches">
+             <div class="color-swatch2 brand-Reservation2" style=" margin-left: -5; margin-right: 0px; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; ">  
+             
+               <apex:outputPanel rendered="{!Op3}">
+                
+                     <div class="alert alert-dismissable alert-success">
+                         <strong> ! You are Succefully Registered </strong> <br/>     
+                            &nbsp;&nbsp;&nbsp;&nbsp;   Please go to your registered Email. <br/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;   Click on the Confirmation Link then your Registration will Completed. 
+                     </div>
+                 
+               </apex:outputPanel>
+              
+              <div class="form-group">
+             &nbsp;&nbsp;&nbsp;&nbsp; <br/>   <label> <font color="#FF4000"> Welcome To Sign In And Sign Up Pages For Registering As A Contact. </font></label><br/><br/> 
+              </div>
+              <center>
+                     <div Class="col-md-5">
+                        <div class="panel panel-info">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Sign In</h3>
+                          </div>
+                          <div class="panel-body">
+                    
+                    <apex:outputPanel rendered="{!Op1}">
+                          
+                       <font color="890CB2">    <label><br/> ! Already Registered</label><br/>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label> Please Click Here </label>   </font> <br/><br/>
+                         
+                          
+                            <apex:commandButton value="Sign In" title="Sign In" action="{!SignIn}" styleClass="btn btn-primary" style="background-image:linear-gradient(#FF0000, #FF0000 20%, #FF0000); background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solID #222222; font-family: Calibri; size : height:25px; width:120px"/><br/><br/>
+                            <label> OR </label><br/><br/>
+                            
+                          <apex:outputLink title="Login With Google" value="{!Googlelogin}">  
+                            <apex:image id="googleid" value="{!$Resource.GoogleLogin}" height="30" width="120" onmouseover="Validate()"/>&nbsp;&nbsp;
+                          </apex:outputLink>
+                          
+                          <a href="https://www.facebook.com/">
+                            <apex:image id="facebookid" value="{!$Resource.FacebookLogin}" height="30" width="120"/>&nbsp;&nbsp;
+                          </a>  
+                          
+                          <a href="https://www.twitter.com/"> 
+                            <apex:image id="twitterid" value="{!$Resource.TwitterLogin}" height="30" width="120"/>
+                          </a>  
+                    </apex:outputPanel>
+                            
+                          <apex:outputPanel rendered="{!Op2}">  
+                            <div class="form-group">
+                         
+                              <p><font size ="5"> <label class=" control-label"> LOGIN DETAILS </label> </font></p> <br/><br/>
+                               
+                                <apex:panelGrid columns="2" style="margin-bottom:1em;" id="pnlid">
+                                  <p><b>  User Name  </b> <br/>
+                                      <div class="col-lg-2">
+                                        <apex:inputText value="{!UserName}" styleClass="form-control" html-placeholder="Enter User Name" id="unid"/>
+                                      </div></p>
+                                     <p><b> Password </b> 
+                                      <div class="col-lg-2">
+                                        <apex:inputSecret value="{!Password}" styleClass="form-control" html-placeholder="Enter Password" id="pswid" />
+                                      </div> </p> 
+                                        
+                                        
+                                </apex:panelGrid>
+                                
+                                  
+                                 <apex:outputLink title="Please click here for Reset the password" value="{!forgotPassword}" id="frgpswid" >
+                                    <apex:outputText value=" ? forgot password "/>                                                
+                                 </apex:outputLink>
+                                 
+                                <br/><br/>
+                              <apex:commandButton value="Login" action="{!loginpage}" title="Login in to the page"  onmouseover="Validate()" styleClass="btn btn-success" style="background-image:linear-gradient(#FF0000, #FF0000 20%, #FF0000); background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solID #222222; font-family: Calibri; size : height:25px; width:120px" />
+                              <apex:commandButton value="Reset" action="{!Reset}" title="Reset the Details" styleClass="btn btn-danger " style="background-image:linear-gradient(#FF0000, #FF0000 20%, #FF0000); background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solID #222222; font-family: Calibri;"/>
+                              <apex:commandButton value="Cancel" action="{!Cancel}" title="Cancel The login"  styleClass="btn btn-info" style="background-image:linear-gradient(#FF0000, #FF0000 20%, #FF0000); background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solID #222222; font-family: Calibri; size : height:25px; width:90px" />
+                            
+                           </div>
+                         </apex:outputPanel> 
+                         
+                         
+                          </div>
+                        </div>
+                     </div>
+                    </center>
+                    
+                     <div Class="col-md-7">
+                         <div class="panel panel-info">
+                          <div class="panel-heading">
+                       <center>     <h3 class="panel-title"> <font color="#030EAB"> ! Sign Up </font></h3>   </center>
+                          </div>
+                          <div class="panel-body">
+                        <!--    Panel content   -->
+                          
+                          
+                         <div class="form-group">   
+                         <br/> <label><font color="890CB2"> ! New User. Register Here  </font></label>
+                         </div>    
+                              <div class="form-group">
+                              
+                                <label class="col-lg-2 control-label">First Name<font color="#FF0040">*</font></label>
+                                  <div class="col-lg-4">
+                                    <apex:inputtext value="{!Firstname}" styleclass="form-control" id="fnameid" html-placeholder="First Name" />
+                                  </div>  
+                                  
+                                <label class="col-lg-2 control-label">Last Name<font color="#FF0040">*</font></label>
+                                  <div class="col-lg-4">
+                                    <apex:inputtext value="{!Lastname}" styleclass="form-control" id="lnameid" html-placeholder="Last Name" />
+                                  </div>
+                                  
+                              </div>
+                              <br/><br/>
+                              <div class="form-group">
+                              
+                                <label class="col-lg-2 control-label">Password<font color="#FF0040">*</font></label>
+                                  <div class="col-lg-4">
+                                    <apex:inputSecret value="{!Password1}" styleclass="form-control" id="pwdid" html-placeholder="Password" />
+                                  </div>
+                                  
+                                <label class="col-lg-2 control-label">Re-Password<font color="#FF0040">*</font></label>
+                                  <div class="col-lg-4">
+                                    <apex:inputSecret value="{!RePassword}" styleclass="form-control" id="repwdid" html-placeholder="Re-Password" />
+                                  </div> 
+                                  
+                              </div> 
+                              <br/>
+                              <br/>
+                             
+                              <div class="form-group">
+                              
+                                <label class="col-lg-2 control-label">Email<font color="#FF0040">*</font></label>
+                                  <div class="col-lg-4">
+                                    <apex:inputtext value="{!Email}" styleclass="form-control" id="Emailid" html-placeholder="Email" />
+                                  </div>
+                                  
+                                <label class="col-lg-2 control-label">Phone<font color="#FF0040">*</font></label>
+                                  <div class="col-lg-4">
+                                    <apex:inputtext value="{!Phone}" styleclass="form-control" id="phnid" html-placeholder="Phone" />
+                                  </div>  
+                                 
+                              </div>
+                              
+                              <br/>
+               
+                               <div class="form-group">
+                                  
+                                    <label class="col-lg-2 control-label">Mobile</label>
+                                       <div class="col-lg-4">
+                                         <apex:inputtext value="{!Mobile}" styleclass="form-control" id="mobid" html-placeholder="Mobile" />
+                                       </div>
+                               </div>
+                                
+                              <br/>
+                                 <div class="form-group">
+                              
+                                    <label class="col-lg-2 control-label">Birth Date <font color="#FF0040">*</font></label>
+                                      <div class="col-lg-4">
+                                         <apex:input value="{!Birthdate}" styleclass="form-control" id="Brthdate" html-placeholder="Birth Date" type="date"/>
+                                      </div>
+                                        
+                                    <label class="col-lg-2 control-label">Address</label>
+                                      <div class="col-lg-4">
+                                         <apex:inputTextarea value="{!Address}" styleclass="form-control" html-placeholder="Address" id="adrssid"/>
+                                      </div>
+                                  
+                                </div>
+                                
+                                <br/>
+                                  
+                                 <div class="form-group">
+                                  
+                                    <label class="col-lg-2 control-label">City</label>
+                                      <div class="col-lg-4">
+                                         <apex:inputText value="{!City}" styleclass="form-control" html-placeholder="City" id="cityid"/>
+                                      </div>
+                                     
+                                    <label class="col-lg-2 control-label">State</label>
+                                      <div class="col-lg-4">
+                                         <apex:inputText value="{!State}" styleclass="form-control" html-placeholder="State" id="stateid"/>
+                                      </div>
+                                   
+                                 </div>
+                                  
+                                  <br/><br/>
+                                
+                                 <div class="form-group">
+                                 
+                                   <label class="col-lg-2 control-label">Cuntry</label>
+                                      <div class="col-lg-4">
+                                         <apex:inputText value="{!Cuntry}" styleclass="form-control" html-placeholder="Cuntry" id="cntryid"/>
+                                      </div>
+                                      
+                                   <label class="col-lg-2 control-label">Pin Code<font color="#FF0040">*</font></label>
+                                      <div class="col-lg-4">
+                                         <apex:inputText value="{!Pincode}" styleclass="form-control" html-placeholder="Pin Code" id="pinid"/>
+                                      </div>
+                                 
+                                 </div>
+                                 <br/>   
+                                 <div class="form-group"> 
+                                 
+                                    <label class="col-lg-2 control-label">Alternate Email</label>
+                                      <div class="col-lg-4">
+                                        <apex:inputtext value="{!AltrEmail}" styleclass="form-control" id="alemailid" html-placeholder="Alternate Email" />
+                                      </div>
+                                 
+                                 </div> 
+                                 <br/><br/><br/>
+                                 
+                                 
+                                   
+                                    &nbsp;&nbsp;&nbsp;&nbsp; <apex:inputCheckbox value="{!termsconds}" />&nbsp;&nbsp; <label >I agree to the <a href="https://www.google.co.in/intl/en/policies/terms/regional.html" target="_blank"><font color="#0101DF">Terms of Service</font></a> and <a href="https://www.google.co.in/intl/en/policies/privacy/" target="_blank"><font color="#0101DF" >Privacy Policy</font></a></label>
+                                   
+                                 
+            <br/><br/><br/>  
+                                    
+                                  <center>  
+                                  
+                                     <apex:commandButton value="Sign Up" title="Sign Up" action="{!Signup}" onmouseover="Validate1()" styleClass="btn btn-primary" style="background-image:linear-gradient(#6356C4, #4B4197 20%, #FF4000); background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solID #222222; font-family: Calibri; size : height:25px; width:120px" /><br/><br/>
+                                       <label> OR </label><br/><br/>
+                            
+                                          <apex:outputLink title="Login With Google" value="{!Googlelogin}">  
+                                            <apex:image id="google1id" value="{!$Resource.GoogleLogin}" height="30" width="120"/>&nbsp;&nbsp;
+                                          </apex:outputLink>
+                                          
+                                          <a href="https://www.facebook.com/">
+                                            <apex:image id="facebook1id" value="{!$Resource.FacebookLogin}" height="30" width="120"/>&nbsp;&nbsp;
+                                          </a>  
+                                          
+                                          <a href="https://www.twitter.com/"> 
+                                            <apex:image id="twitter1id" value="{!$Resource.TwitterLogin}" height="30" width="120"/>
+                                          </a>  
+                                  
+                                  </center>
+                                    
+                          </div>    
+                        </div>      
+                     </div>         
+            
+                                
+                                
+                                <div class="col-md-5">
+                                  <div class="color-swatches">
+                                    <div class="color-swatch4 brand-Reservation4" style="  margin-right: 0px; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; " align="center">
+                                  
+                                      <apex:image id="image2" title="mikki" value="{!$Resource.Pagebottom}" height="180" width="500" style=" margin-top: 10px; "/>
+                                  
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <div class="col-md-2">
+                                <div class="color-swatches">
+                                  <div class="color-swatch4 brand-Reservation4" style="  margin-right: 0px; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; ">
+                                  
+                                     &nbsp;&nbsp;&nbsp; <apex:image id="image3" title="mikki" value="{!$Resource.Pagebottm1}" height="180" width="180" style=" margin-top: 10px;margin-left: -10;border-left-width: 5px;margin-right: -10;padding-left: 0px;"/>
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-1">
+                                <div class="color-swatches">
+                                  <div class="color-swatch4 brand-Reservation4" style="  margin-right: 0px; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; ">
+                                  
+                                      <apex:image id="image4" title="mikki" value="{!$Resource.Pagebottm2}" height="180" width="90" style=" margin-top: 10px; "/>
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-1">
+                                <div class="color-swatches">
+                                  <div class="color-swatch4 brand-Reservation4" style="  margin-right: 0px; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; ">
+                                  
+                                     <apex:image id="image5" title="mikki" value="{!$Resource.Pagebottm2}" height="180" width="90" style=" margin-top: 10px; "/>
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-1">
+                                <div class="color-swatches">
+                                  <div class="color-swatch4 brand-Reservation4" style="  margin-right: 0px; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; ">
+                                  
+                                     <apex:image id="image6" title="mikki" value="{!$Resource.Pagebottm2}" height="180" width="90" style=" margin-top: 10px; "/>
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-1">
+                                <div class="color-swatches">
+                                  <div class="color-swatch4 brand-Reservation4" style="  margin-right: 0px; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; ">
+                                  
+                                     <apex:image id="image7" title="mikki" value="{!$Resource.Pagebottm2}" height="180" width="90" style=" margin-top: 10px; "/>
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                              
+                              <div class="col-md-1">
+                                <div class="color-swatches">
+                                  <div class="color-swatch4 brand-Reservation4" style="  margin-right: 0px; margin-left: 0px; margin-top: 0px; margin-bottom: 0px; ">
+                                  
+                                      <apex:image id="image8" title="mikki" value="{!$Resource.Pagebottm2}" height="180" width="90" style=" margin-top: 10px; "/>
+                                  
+                                  </div>
+                                </div>
+                              </div>
+                                
+                                
+            
+              </div>
+            </div>
+          </div>            
+                         
+                          
+            </apex:form>
+           
+   
+</apex:page>

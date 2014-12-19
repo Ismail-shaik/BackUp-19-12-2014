@@ -1,0 +1,60 @@
+<apex:page controller="SearchFunctionality" id="pageId" standardStylesheets="false">
+   <script>
+    function validate()
+    {
+      
+      document.getElementById('pageId:frmid:pgId:textId').value='';
+      
+    }
+    
+   </script>
+  <apex:form id="frmid">
+    
+     <apex:pageBlock title="Search Your Code" id="pgId">
+        
+          <apex:pagemessages ></apex:pagemessages>
+          <div style="background-color:violet">
+          <i><font size="3" color="Blue">Apex Class</font></i>  <apex:inputCheckbox id="clsId" value="{!cls}"/>
+          <i><font size="3" color="Blue">Apex Trigger</font></i>  <apex:inputCheckbox id="trgrId" value="{!trigr}"/>
+          <i><font size="3" color="Blue">Visualforce Page</font></i>  <apex:inputCheckbox id="pgId" value="{!page}"/>
+          <i><font size="3" color="Blue">VF Component</font></i>  <apex:inputCheckbox id="cmpntId" value="{!compnt}"/>
+          &nbsp;&nbsp;&nbsp;
+          <i><font size="3" color="Blue">Enter Your String</font></i> &nbsp;&nbsp; <apex:inputText id="textId" value="{!searchStr}"   onmousedown="validate()"  title="Enter Your String....."/>
+             &nbsp;&nbsp; <apex:commandButton value="Search" style="background:pink;font-size:18px;" action="{!search}"/> 
+           </div>    
+               <apex:outputPanel rendered="{!hideshow}">   
+                     <apex:pageBlockTable value="{!clasNameslist}" id="tableId"  var="cl">
+                          <apex:column headerValue="Name">
+                          <a href='{!cl.Id}'>{!cl.Name}</a>    
+                     <!--         <apex:commandLink value="{!cl.Name}"/>     -->
+                          </apex:column>  
+                     </apex:pageBlockTable>
+               </apex:outputPanel> 
+                   <!-- Page Table -->
+                <apex:outputPanel rendered="{!pagHide}">    
+                     <apex:pageblockTable value="{!pagelist}" var="pag">
+                         <apex:column headerValue="Name">
+                           <apex:commandLink value="{!pag.Name}"/>
+                         </apex:column> 
+                     </apex:pageblockTable>
+                  
+                </apex:outputPanel>    
+                     <!-- Component List -->
+                <apex:outputPanel rendered="{!compHide}">  
+                     <apex:pageblockTable value="{!componentList}" var="pag">
+                         <apex:column headerValue="Name" >
+                           <apex:commandLink value="{!pag.Name}"/>
+                         </apex:column> 
+                     </apex:pageblockTable>
+                </apex:outputPanel>  
+                     <!-- Trigger List -->
+                <apex:outputPanel rendered="{!trigrhide}" >      
+                     <apex:pageBlockTable value="{!trigrList}" var="trg">
+                         <apex:column headerValue="Name">
+                           <apex:commandLink value="{!trg.Name}"/>
+                         </apex:column> 
+                     </apex:pageBlockTable>
+                </apex:outputPanel>
+     </apex:pageBlock>
+  </apex:form>
+</apex:page>

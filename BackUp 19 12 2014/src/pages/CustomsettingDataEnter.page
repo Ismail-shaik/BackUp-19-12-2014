@@ -1,0 +1,27 @@
+<apex:page controller="CustomsettingDataEnterCntrlr" showHeader="false">
+  
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>    
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/bootstrap.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Styles, '/js/bootstrap.min.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/strap.css')}"/> 
+  
+  
+     <apex:form >
+     
+                <div class="form-group">
+                  <label  class="col-lg-3 control-label"> Site URL </label>
+                  <div class="col-lg-3">
+                   <apex:inputField value="{!objsettngs.SiteURL__c}" styleClass="form-control" id="siteurlid"/>  
+                  </div>
+                </div><br/><br/>
+                
+               <center> 
+                 <apex:commandButton value="Save" action="{!save}" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" />
+                  &nbsp;&nbsp;
+                 <apex:commandButton value="Cancel" action="{!cancel}" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/>
+               </center>
+     
+     </apex:form>
+  
+</apex:page>

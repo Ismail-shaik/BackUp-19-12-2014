@@ -1,0 +1,31 @@
+<apex:page showHeader="false" id="SiteTemplate">
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, 'strap.css')}"/>
+            <apex:stylesheet value="{!$Resource.KEvents__colorcode}"/>
+            <apex:stylesheet value="{!$Resource.KEvents__StyleColors}"/>
+
+          <div class="page-header" id="banner">
+             <c:KESiteHeaderComp />
+                <br/><br/>
+                <div class="container">
+                   <div class="row">
+                        <body>
+                           <apex:insert name="body"/>
+                        </body>
+                    </div>
+                </div>
+                <br/><br/><br/><br/>
+               <div >
+                  <apex:insert name="footer">
+                     <c:KESiteFooterComp />
+                  </apex:insert> 
+                  <c:KEGoToTopComp />
+               </div>
+          </div>
+   
+</apex:page>

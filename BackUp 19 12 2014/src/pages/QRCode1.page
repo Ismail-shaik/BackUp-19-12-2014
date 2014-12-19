@@ -1,0 +1,84 @@
+<apex:page >
+    <script type="text/javascript"
+      src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/init.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/camera.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/qr.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/grid.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/version.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/detector.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/formatinf.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/errorlevel.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/bitmat.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/datablock.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/bmparser.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/datamask.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/rsdecoder.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/gf256poly.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/gf256.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/decoder.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/qrcode.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/findpat.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/alignpat.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode1, 'jsqrcode-scanner-master/js/lib/jsqrcode/databr.js')}"></script>
+ 
+  <form>
+      <div style="float:right;">
+    <input type="file" onchange="previewFile()" /><br/>
+    </div>
+  <h1>Preview</h1>
+   <div style="height:200px">
+    <img src="" id="preview" height="200" alt="Image preview..." />
+   </div>  
+  </form>
+ 
+    <p>If the image above looks clear, click the decode button.  If not, try again!</p>
+    <button id="decode" onclick="decode()">Decode</button> 
+  <script>
+  
+  function read(a)
+  {
+        alert(a);
+        if( (typeof sforce != 'undefined') && (sforce != null) ) {
+            sforce.one.navigateToSObject(a);
+        }
+        else {
+            window.location="/" + a;
+        }        
+  }         
+        
+  $(document).ready(function() {
+        qrcode.callback = read;
+  });
+  
+  
+function previewFile() {
+  var preview = document.querySelector('#preview');
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+ 
+  reader.onloadend = function () {
+    preview.src = reader.result;
+  }
+ 
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = "";
+  }
+}
+ 
+function decode() {
+    try
+    {
+    var preview=document.querySelector('#preview');
+    qrcode.decode(preview.src);
+    }
+    catch (e)
+    {
+       alert('Error - ' + e);
+    }
+}
+ 
+</script>
+</apex:page>

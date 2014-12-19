@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>KE  Registration Email to Organizer for Free Event</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EventsLetterHead</letterhead>
+    <name>KE Registration on Free</name>
+    <style>formalLetter</style>
+    <subject>{!$Organization.Name} - Event Registration Notification</subject>
+    <textOnly>Dear {!Registration__c.Organizer__c},
+Thanks for your registration. Please review the information below and advise us of any questions or concerns.
+
+
+We look forward to working with you and your group!.
+
+Registration ID:{!Registration__c.Name}
+Event: {!Event__c.Name__c}
+Date: {!Registration__c.AttendingDate__c}
+Group Name : {!Registration__c.GroupName__c}
+Meeting Location: {!Registration__c.EventLocation__c}
+Program Time: {!Registration__c.EventStartTime__c}  to {!Registration__c.EventEndTime__c}
+Number of Students: {!Registration__c.00NZ0000001C5X8}
+Adult Chaperones Required: 1 per {!Registration__c.OneChaperonesPer__c} students
+
+In event of rain, the Education Coordinator will contact you in advance to reschedule.
+Please dress in layers, with good walking shoes, and bring a water bottle.
+Thank You,
+Administration Team</textOnly>
+    <type>html</type>
+</EmailTemplate>

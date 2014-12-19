@@ -1,0 +1,92 @@
+<apex:page controller="BootstrapTestingCntrlr" showHeader="false">
+
+   <apex:composition template="{!$Site.Template}"> 
+      <apex:define name="body">
+  
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Styles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/strap.css')}"/>
+    <apex:stylesheet value="{!$Resource.colorcode}"/>
+    
+      
+    <apex:form >
+   <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">BootStrap testing</h3>
+      </div>
+      <div class="panel-body">
+     
+       <apex:pageBlock >
+        
+        <div class="form-group">
+           
+          <label class="col-lg-4 control-label">First Name</label>
+           <div class="col-lg-2"> 
+            <apex:inputField value="{!pos.Name}" styleclass="form-control" id="nameid" html-placeholder="Candidate Name"/>
+           </div>
+           
+          <label class="col-lg-4 control-label">Candidate</label>
+           <div class="col-lg-2">  
+            <apex:inputField value="{!pos.Candidate__c}" />
+           </div> <br/><br/>
+           
+          <label class="col-lg-4 control-label">Close Date</label>
+           <div class="col-lg-2"> 
+            <apex:inputField value="{!pos.Close_Date__c}" styleclass="form-control"/>
+           </div>
+           
+          <label class="col-lg-4 control-label">Open Date</label>
+           <div class="col-lg-2">
+            <apex:inputField value="{!pos.Open_Date__c}" styleclass="form-control"/>
+           </div>
+           
+          <label class="col-lg-4 control-label">Location</label>
+           <div class="col-lg-2">
+            <apex:inputField value="{!pos.Location__c}" styleclass="form-control"/>
+           </div>
+           
+           
+          <label class="col-lg-4 control-label">Travel required</label>
+           <div class="col-lg-2"> 
+            <apex:inputField value="{!pos.Travel_Required__c}" />
+           </div>
+           <br/><br/><br/>
+          <label class="col-lg-4 control-label">Job level</label>
+           <div class="col-lg-2">
+            <apex:inputField value="{!pos.Job_Level__c}" styleclass="form-control"/>
+           </div> <br/><br/><br/>
+           
+          <label class="col-lg-4 control-label">Functional Area</label>
+           <div class="col-lg-2">
+            <apex:inputField value="{!pos.Functional_Area__c}" styleclass="form-control"/>
+           </div>
+           
+          <label class="col-lg-4 control-label">Max Pay</label>
+           <div class="col-lg-2">
+            <apex:inputField value="{!pos.Max_Pay__c}" styleclass="form-control"/>
+           </div>
+           <br/><br/>
+          <label class="col-lg-4 control-label">Min Pay</label>
+           <div class="col-lg-2">
+            <apex:inputField value="{!pos.Min_Pay__c}" styleclass="form-control"/>
+           </div>
+           
+          
+            <apex:commandButton value="Save" action="{!Save}" styleclass="form-control"/>
+                
+       </div>
+      
+    </apex:pageBlock>
+       
+      </div>
+    </div>
+   </div>
+   </apex:form>
+  
+   </apex:define>
+  </apex:composition>
+   
+</apex:page>

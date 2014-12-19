@@ -1,0 +1,33 @@
+<apex:page controller="CheckboxFieldHidingcntrlr" showHeader="false" sidebar="false">
+  <apex:sectionHeader title="hiding a field using custom controller when user clicks the checkbox"/>
+  <apex:form >
+    <apex:pageBlock >
+         <apex:pageblockSection title="hiding a field ">
+         <apex:inputField value="{!con.Languages__c}"/>
+         <apex:selectList value="{!Active}" size="1" label=" Select type of status"> 
+           <apex:actionSupport event="onchange" action="{!Validatelist}"/>
+          <apex:selectOptions value="{!ActiveList}"/> 
+         </apex:selectList>                  
+       </apex:pageblockSection>
+   </apex:pageBlock>
+   
+  <apex:outputpanel id="opid" rendered="{!Active1}">   
+   <apex:pageBlock >
+    <apex:pageblocksection title="Active1">
+     <apex:inputfield value="{!con.AssistantName}"/>
+    </apex:pageblocksection>
+   </apex:pageBlock>
+  </apex:outputpanel> 
+  
+  <apex:outputpanel rendered="{!Active2}">   
+   <apex:pageBlock >
+    <apex:pageblocksection title="Active2">
+     <apex:inputfield value="{!con.Level__c}"/>
+    </apex:pageblocksection>
+   </apex:pageBlock>
+  </apex:outputpanel> 
+     
+    
+          
+  </apex:form>
+</apex:page>

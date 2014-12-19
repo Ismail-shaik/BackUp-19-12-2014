@@ -1,0 +1,86 @@
+<apex:page sidebar="false" Controller="KEvents.KEScheduleHomeCntr">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+    <apex:stylesheet value="{!$Resource.KEvents__colorcode}"/>
+     
+        <style>
+            body{font-size: 14px;}
+        </style>
+        <!--  =======================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Body Start   <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================== -->
+          <apex:form > 
+            <body>
+                <div class="row">
+                       <div class="col-md-2">
+                          <c:KELeftNavigationComp />
+                       </div>
+                       
+                       <div class="col-md-10">
+            <!--  =======================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Event Status Start  <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================== -->  
+                       
+                            <div class="bs-example">
+                                <div ><image src="{!$Resource.EventsByTypeImg}"/> &nbsp;&nbsp; <label><h1> EVENTS STATUS </h1></label> </div><br/>
+                                <div class="color-swatches">
+                                    <div class="color-swatch brand-Reservation" align="center">
+                                        <div class="colorcode" align="Center">{!Rsize}</div>
+                                        <div class="decreaefont" align="Center">RESERVATIONS</div>
+                                    </div>
+                                  <div class="color-swatch brand-Event" align="center">
+                                        <div class="colorcode" align="Center">{!Esize}</div>
+                                        <div class="decreaefont" align="Center">EVENTS</div>                                  
+                                  </div>
+                                  <div class="color-swatch brand-Internal" align="center">
+                                        <div class="colorcode" align="Center">{!Csize}</div>
+                                        <div class="decreaefont" align="Center">TRAININGS</div>
+                                  </div>
+                                  <div class="color-swatch brand-classes" align="center">
+                                        <div class="colorcode" align="Center">{!Isize}</div>
+                                        <div class="decreaefont" align="Center">INTERNAL EVENTS</div>
+                                  </div>
+                                </div>
+                            
+                            </div>
+                            
+             <!--  =======================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Event Status End  <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================== -->  
+                              
+             <!--  =======================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Reservation Status Start  <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================== -->  
+                        
+                            <div class="bs-example">
+                                <div><image src="{!$Resource.ReservationsStatusImg}"/> &nbsp;&nbsp; <label> RESERVATIONS STATUS </label> </div> <br/>
+                                    <div class="color-swatches">
+                                        <div class="color-swatch brand-submitted" align="center">
+                                            <div class="colorcode" align="Center">{!Subsize}</div>
+                                            <div class="decreaefont" align="Center">SUBMITTED</div>                                        
+                                        </div>
+                                        <div class="color-swatch brand-pending" align="center">
+                                            <div class="colorcode" align="Center">{!Pensize}</div>
+                                            <div class="decreaefont" align="Center">PENDING</div>
+                                        </div>
+                                        <div class="color-swatch brand-Approved" align="center">
+                                            <div class="colorcode" align="Center">{!Appsize}</div>
+                                            <div class="decreaefont" align="Center">APPROVED</div>
+                                        </div>
+                                        <div class="color-swatch brand-completed" align="center">
+                                            <div class="colorcode" align="Center">{!comsize}</div>
+                                            <div class="decreaefont" align="Center">COMPLETED</div>
+                                        </div>
+                                </div>
+                           </div>
+                            
+             <!--  =======================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Reservation Status End  <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================== -->  
+                             
+                            <div class="bs-example">
+                                   <div><image src="{!$Resource.LinksImg}"/> &nbsp;&nbsp; <label> QUICK LINKS </label> </div> <br/>
+                                   &nbsp;&nbsp;&nbsp;&nbsp;  <image src="{!$Resource.Events}" width="26px" height="26px"/> &nbsp;
+                                   <label><a href="{!CreateEventsPage }" >Create Events</a></label> &nbsp;&nbsp;&nbsp;&nbsp;
+                                   <!--<image src="{!$Resource.Registration}" width="26px" height="26px"/> &nbsp;<label><a href="/apex/KEvents__KEReservationPage">Registrations</a></label>&nbsp;&nbsp;&nbsp;&nbsp;  -->
+                                    <image src="{!$Resource.site}" width="26px" height="26px"/> &nbsp;<label><a href="{!Siteurl}" target="_blank">Events Site Link</a></label>
+                        </div>  
+                       </div>  
+                </div> 
+            </body>
+          </apex:form>  
+     <!--  =======================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Body End  <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================== -->                        
+</apex:page>

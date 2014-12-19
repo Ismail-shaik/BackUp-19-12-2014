@@ -1,0 +1,62 @@
+<apex:page controller="HidingFieldCntrlr">
+<script>
+  function validate()
+  {
+    display();
+  }
+</script>
+   <apex:form id="frmid">
+      <apex:pageblock >
+        <apex:pageblocksection title="Name contact">
+        
+           <apex:inputField value="{!opp.CurrentGenerators__c}"/>
+           <apex:inputfield value="{!opp.Active__c}">
+            <apex:actionsupport event="onchange" status="opid" reRender="frmid"/>
+           </apex:inputfield>
+           
+           <apex:outputPanel id="opid">
+           <apex:pageBlockSection rendered="{!opp.Active__c}" >
+           <apex:inputField value="{!objEmpInf.AssistantName}" onchange="show()"/> 
+           </apex:pageBlockSection>
+           </apex:outputPanel>
+           
+        </apex:pageblocksection>
+        
+        <apex:pageBlockSection title="List hide">
+        
+        
+                  <apex:inputfield value="{!opp.Type}">
+                    <apex:actionsupport event="onchange" status="OPID" reRender="frmid"/>
+                  </apex:inputField>
+                  
+                  
+                  <apex:outputPanel id="OPID">   
+                   <apex:pageBlockSection rendered="{!opp.Type=='Existing Customer - Upgrade'}" columns="2">
+                    <apex:inputField value="{!objEmpInf.Level__c}" onchange="show1()"/>
+                   </apex:pageblockSection> 
+                    </apex:outputPanel> 
+            
+             
+        </apex:pageBlockSection>
+      </apex:pageblock>
+      
+       classes <apex:inputCheckbox >
+         <apex:actionsupport event="onchange" action="{!reference}"/>
+       </apex:inputCheckbox>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+   </apex:form>
+</apex:page>

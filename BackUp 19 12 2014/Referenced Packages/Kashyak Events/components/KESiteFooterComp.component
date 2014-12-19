@@ -1,0 +1,37 @@
+<apex:component id="footerComponent" Controller="KEvents.KESiteHeaderCntr">
+    
+   <!-- <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.BootStrapStyles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/strap.css')}"/>-->
+        
+      <center>  
+         <ol class="breadcrumb"> 
+              <li>
+                        
+                        <div id="footer" class="text-muted">
+                         
+                           <p>© 2014 All Rights Reserved By <a href="http://www.kashyak.com" target="_blank">&nbsp; Kashak LLC</a> <br> </br>
+                         
+                           </p>
+                          <p>
+                            Kashyak Events&nbsp;<apex:outputLink id="linid" value="{!siteDis}"  target="_blank">SiteDisclimar</apex:outputLink> |
+                            Kashyak Events&nbsp;<apex:outputLink value="{!privacy}" target="_blank"> Privacy Policy   </apex:outputLink> |
+                            Kashyak Events&nbsp;<apex:outputLink value="{!TermsCond}" target="_blank"> Terms and Conditions of Use</apex:outputLink> |
+                           
+                                Powered by <a href="http://kashyak.com/" target="blank"> &nbsp;&nbsp;<img src="http://thepaf.org/images/kashyak.jpg" id="kashyak_footer"/></a>
+                             
+                          </p>
+                       </div>
+              
+               </li> 
+  
+          </ol> 
+
+</center>
+
+ 
+
+
+</apex:component>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>KE  Registration Payment Email Notification</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EventsLetterHead</letterhead>
+    <name>KE Registration Payment Notification</name>
+    <style>formalLetter</style>
+    <subject>{!$Organization.Name} -Registration Payment Notification</subject>
+    <textOnly>Dear Attendee,
+
+Thank you so much for your payment of $ {!Registration__c.PaymentRecived__c} for {!Event__c.Name__c} registration.
+If you have any further query you may contact us.
+
+Name:{!Registration__c.Attendee__c}
+Registration ID:{!Registration__c.Name}
+Event: {!Event__c.Name__c}
+Date: {!Registration__c.AttendingDate__c}
+Registration Price: {!Registration__c.RegistrationPrice__c}
+
+Best Regards,
+Administration Team.</textOnly>
+    <type>html</type>
+</EmailTemplate>

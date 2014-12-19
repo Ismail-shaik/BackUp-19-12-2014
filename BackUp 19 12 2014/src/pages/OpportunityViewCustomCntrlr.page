@@ -1,0 +1,25 @@
+<apex:page controller="OpportunityViewCntrl" sidebar="false" showHeader="false">
+  <apex:sectionHeader title="Opportunity with custom controller "/>
+   <apex:form >
+   
+     <apex:pageblock title="Oppertunity Details">
+       <apex:pageBlockButtons >
+         <apex:commandButton value="SaveOppertunity" action="{!Save}" onclick="Save"/>
+       </apex:pageBlockButtons>
+       <apex:pageblocksection title="Oppertunity Information 1" collapsible="true" columns="2">
+          <apex:inputfield value="{!opp.Name}"/>
+          <apex:inputField value="{!opp.Active__c}"/>
+          <apex:inputfield value="{!opp.DeliveryInstallationStatus__c}"/>
+          <apex:inputfield value="{!opp.TrackingNumber__c}"/>
+          <apex:inputField value="{!opp.CloseDate}"/>
+       </apex:pageblocksection>
+       <apex:pageblockSection title="Oppertunity Information 1" collapsible="true" columns="2">
+          <apex:inputField value="{!opp.Description}"/>
+          <apex:inputfield value="{!opp.LeadSource}"/>
+          <apex:inputField value="{!opp.NextStep}"/>
+          <apex:inputField value="{!opp.Type}"/>
+          <apex:inputField value="{!opp.StageName}"/>
+       </apex:pageblockSection>
+     </apex:pageblock>
+   </apex:form>
+</apex:page>

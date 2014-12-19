@@ -1,0 +1,10 @@
+<apex:page >
+  
+   <script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js"></script>
+   
+   <form>
+       
+       <input id="photoFile" type="file" accept="image/*"/>
+       
+   </form>
+</apex:page>

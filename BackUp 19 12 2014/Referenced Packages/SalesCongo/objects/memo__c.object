@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>SALESCONGO/Inform:  Memos for INFORM module.  Created in the sysadmin role</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Notification_Inc_Attach__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Notification Inc Attach</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Notification_Inc_Message__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Notification Inc Message</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Notification_Inc_Subject__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Notification Inc Subject</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Notify_Manager__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Notify Manager after X days ( blank or 0 for none )</description>
+        <externalId>false</externalId>
+        <label>Notify Manager</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reminder__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Send Reminders every X days (blank or 0 for none)</description>
+        <externalId>false</externalId>
+        <label>Reminder Days</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Send_Notification__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Send a Notification of the message is checked</description>
+        <externalId>false</externalId>
+        <label>Send Notification</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Test__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>test lookup- only &quot;current tests&quot; or of type &quot;memo&quot; are allowed</description>
+        <externalId>false</externalId>
+        <label>Test</label>
+        <referenceTo>test__c</referenceTo>
+        <relationshipLabel>Memos</relationshipLabel>
+        <relationshipName>Memos</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>create_feed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Flag to indicate whether a chatter group (&amp; feed) should be created when the memo is sent.</description>
+        <externalId>false</externalId>
+        <label>Create Chatter Feed</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>date_for_archive__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Date to remove this memo from the sales rep&apos;s inform view</description>
+        <externalId>false</externalId>
+        <label>Archive on</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>date_sent__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Date and Time the Memo was sent to employees</inlineHelpText>
+        <label>Date Sent</label>
+        <required>false</required>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>date_to_send__c</fullName>
+        <defaultValue>Today()</defaultValue>
+        <deprecated>false</deprecated>
+        <description>When the memo should be sent (if in the future)</description>
+        <externalId>false</externalId>
+        <label>Send Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>due_date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Due Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>email_notification__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This will be sent to reps, with a link back to their portal to review memos</description>
+        <externalId>false</externalId>
+        <label>Email Notification</label>
+        <length>32000</length>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>feed_group_id__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This links to the CollaborationGroup object Id.</description>
+        <externalId>false</externalId>
+        <label>Chatter Group ID</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>require_compliance__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this setting if you require Employees to confirm that they have reviewed the memo.</inlineHelpText>
+        <label>Require Compliance</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>sender__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>sender_id__r.employee_name__c</formula>
+        <label>Sender</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sender_id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The employee that is sending the memo</description>
+        <externalId>false</externalId>
+        <label>Sender ID</label>
+        <referenceTo>employee__c</referenceTo>
+        <relationshipLabel>Memos</relationshipLabel>
+        <relationshipName>Memos</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>sender_title__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>sender_id__r.job_title__r.Name</formula>
+        <label>Title</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>subject__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Subject</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>test_knowledge__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Select this setting if you require recipients of the memo to take a test regarding its content.</inlineHelpText>
+        <label>Test Knowledge</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This is a picklist for now.  Most likely will become a &quot;MEMO_TYPE&quot; table</description>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Comp Plan Distribution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Event</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Satisfaction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Earnings Announcement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Press Release</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pricing Update</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Announcement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Update</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales Knowledge Proficiency Ranking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales Stack Ranking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Training Calendar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <label>Memo</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>due_date__c</columns>
+        <columns>require_compliance__c</columns>
+        <columns>test_knowledge__c</columns>
+        <columns>sender__c</columns>
+        <columns>subject__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>M-{0000}</displayFormat>
+        <label>Memo ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Memos</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>sender__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>sender_title__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>subject__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>date_sent__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>subject__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>date_sent__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>subject__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>date_sent__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>subject__c</searchFilterFields>
+        <searchFilterFields>date_sent__c</searchFilterFields>
+        <searchResultsAdditionalFields>subject__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>date_sent__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>preventComplianceAndTest</fullName>
+        <active>true</active>
+        <description>can not currently have Acceptance compliance AND Test Knowledge checked</description>
+        <errorConditionFormula>require_compliance__c &amp;&amp;  test_knowledge__c</errorConditionFormula>
+        <errorMessage>You can not require acceptance compliance and also test for knowledge</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>verifyTestSelected</fullName>
+        <active>true</active>
+        <description>when test required. make sure a test is selected</description>
+        <errorConditionFormula>ISBLANK( Test__c ) &amp;&amp;  test_knowledge__c</errorConditionFormula>
+        <errorMessage>When Test Knowledge is checked, a test must be selected</errorMessage>
+    </validationRules>
+</CustomObject>

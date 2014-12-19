@@ -1,0 +1,16 @@
+<apex:page sidebar="false" >
+  <apex:form >
+   <apex:pageBlock >
+    <apex:pageblockSection title="tabs">
+     <apex:tabPanel >
+      <apex:tab label="JNTU">
+      <apex:iframe src="http://www.jntuh.ac.in"/>
+      </apex:tab>
+      <apex:tab label="ANU">
+      <apex:iframe src="http://www.nagarjunauniversity.ac.in"/>
+      </apex:tab>
+     </apex:tabPanel>
+    </apex:pageblockSection>
+   </apex:pageBlock>
+  </apex:form>
+</apex:page>

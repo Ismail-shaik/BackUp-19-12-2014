@@ -1,0 +1,136 @@
+<apex:page controller="KEvents.KEAdminCalendarCntr" id="thePage" showHeader="true" sidebar="false" standardStylesheets="false" > 
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, 'strap.css')}"/>
+            <apex:stylesheet value="{!$Resource.KEvents__StyleColors}"/> 
+            
+            <style>
+                body
+                {
+                  font-size: 14px;
+                }
+            </style>
+            <body>
+            <div class="row">
+  <div class="col-md-2">
+      <c:KELeftNavigationComp />
+  </div>
+  <div class="col-md-10">
+ 
+      <div class="panelNew {!if(EventName == 'Reservation','panel-Purple', if(EventName == 'Event', 'panel-Orange' ,if(EventName == 'Training','panel-LightBlue','panel-Gray')))}">
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-calendar"/> &nbsp;&nbsp;<h3 class="panel-title">Admin {!EventName} Calendar</h3>
+          </div>
+          <div class="panel-body">      
+     <apex:form id="theForm1">
+     
+        <apex:outputPanel id="theCalendar">
+            
+                <div class="table-responsive">
+              <table class="table table-bordered" width="100%">        
+                          <caption>
+                         <div class="calHeader">
+                        <!-- <apex:commandLink value="Event(s)" style="font-size:17px;" action="{!eventCalender}"/>&nbsp;&nbsp;&nbsp;&nbsp;<apex:commandLink value="Class(s)" style="font-size:17px;" action="{!classCalender}"/>&nbsp;&nbsp;&nbsp;&nbsp;<apex:commandLink style="font-size:17px;" value="Reservation(s)" action="{!reservationCalender}"/>&nbsp;&nbsp;&nbsp;&nbsp;<apex:commandLink style="font-size:17px;" value="Volunteer Event(s)" action="{!volunteerCalender}"/> --> 
+                             <apex:commandLink action="{!prev}" rerender="theCalendar"> 
+                           <!--<img title="Previous Month" class="prevCalArrow" alt="Previous Month" src="/s.gif" />-->
+                                 <img title="Previous Month" alt="Previous Month" src="{!$Resource.LeftArrow}" width="18px" height="20px" />
+                             </apex:commandLink>
+                                {!month.monthname}&nbsp;&nbsp;{!month.yearname}
+                            <apex:commandLink action="{!next}" rerender="theCalendar">
+                            <!--<img title="Next Month" class="nextCalArrow" alt="Next Month" src="/s.gif" /></apex:commandLink>-->
+                            <img title="Next Month" alt="Next Month" src="{!$Resource.RightArrow}" width="18px" height="20px" /></apex:commandLink>
+                        </div>
+                    </caption>
+                    
+                    <tbody>
+                        
+                        <tr class="headerRow">
+                            <th scope="col" class="calDays">Sunday</th>
+                            <th scope="col" class="calDays">Monday</th>
+                            <th scope="col" class="calDays">Tuesday</th>
+                            <th scope="col" class="calDays">Wednesday</th>
+                            <th scope="col" class="calDays">Thursday</th>
+                            <th scope="col" class="calDays">Friday</th>
+                            <th scope="col" class="calDays">Saturday</th>
+                        </tr>
+
+                        <apex:repeat value="{!weeks}" var="wk" id="foreachWeek">
+                            <tr>
+                                <apex:repeat value="{!wk.days}" var="day" id="foreachday">
+                                    <td class="{!day.cssname} col-lg-1" height="90" valign="top">
+                                        <div class="date">
+                                           
+                                             {!day.dayofmonth}
+
+                                        </div>
+                                        <div>
+                                            <apex:repeat value="{!day.eventstoday}" var="v" id="foreachevent">
+                                              <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Reservation'}">
+                                                <label class="fontsize-small"> <a href="#" id="{!v.ev.id}" 
+                                                     onblur="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onfocus="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();" 
+                                                     onmouseout="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onmouseover="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();"
+                                                     onclick="return window.open('/{!v.ev.id}')">
+                                                 
+                                                   <font  class="fontcolor-6"> {!v.ev.Name__c} ({!v.ev.StartTime__c})</font>
+                                                     </a></label>
+                                              </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Event'}">
+                                                <label class="fontsize-small"> <a href="#" id="{!v.ev.id}" 
+                                                     onblur="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onfocus="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();" 
+                                                     onmouseout="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onmouseover="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();"
+                                                     onclick="return window.open('/{!v.ev.id}')">
+                                                 
+                                                   <font  class="fontcolor-orange"> {!v.ev.Name__c} ({!v.ev.StartTime__c})</font>
+                                                     </a></label>
+                                              </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Training'}">
+                                                <label class="fontsize-small"> <a href="#" id="{!v.ev.id}" 
+                                                     onblur="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onfocus="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();" 
+                                                     onmouseout="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onmouseover="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();"
+                                                     onclick="return window.open('/{!v.ev.id}')">
+                                                 
+                                                   <font  class="fontcolor-blue3"> {!v.ev.Name__c} ({!v.ev.StartTime__c})</font>
+                                                     </a></label>
+                                              </apex:outputPanel>
+                                              <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Internal'}">
+                                                <label class="fontsize-small"> <a href="#" id="{!v.ev.id}" 
+                                                     onblur="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onfocus="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();" 
+                                                     onmouseout="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onmouseover="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();"
+                                                     onclick="return window.open('/{!v.ev.id}')">
+                                                 
+                                                   <font  class="fontcolor-5"> {!v.ev.Name__c} ({!v.ev.StartTime__c})</font>
+                                                     </a></label>
+                                              </apex:outputPanel> 
+                                                <br />
+                                            </apex:repeat>
+                                        </div>
+                                       
+                                    </td>
+                                </apex:repeat>
+                            </tr>
+                       </apex:repeat>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </apex:outputPanel>
+    </apex:form>
+   
+ </div>
+</div> 
+</div>
+</div>
+ </body>
+</apex:page>

@@ -1,0 +1,27 @@
+<apex:page controller="InterviewFiveclass" sidebar="false" showHeader="true">
+  <apex:sectionHeader title="Interview 5"/>
+   <apex:form >
+     <apex:pageBlock tabStyle="Contract" title="Candidates with position">
+       <apex:messages />
+         <apex:repeat value="{!lstcan}" var="can">
+           <apex:pageBlockSection title="{!can.First_Name__c}" columns="1">
+             <apex:pageblocktable value="{!lstpos}" var="pos" columnsWidth="25%,25%,25%,25%">
+               <apex:column headerValue="First Name">
+               <apex:outputtext value="{!can.First_Name__c}"/>
+               </apex:column>
+               <apex:column headerValue="Last Name">
+               <apex:outputtext value="{!can.Last_Name__c}"/>
+               </apex:column>
+               <apex:column headerValue="Phone">
+               <apex:outputtext value="{!can.Phone__c}"/>
+               </apex:column>
+               <apex:column headerValue="Email">
+               <apex:outputtext value="{!can.Email__c}"/>
+               </apex:column>
+               <apex:column value="{!pos.Name}"/>
+             </apex:pageblocktable>
+           </apex:pageBlockSection>
+         </apex:repeat>
+     </apex:pageBlock>
+   </apex:form>
+</apex:page>

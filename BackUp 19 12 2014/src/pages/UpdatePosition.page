@@ -1,0 +1,16 @@
+<apex:page controller="UpdatePositionCntrlr">
+  <apex:sectionHeader title="Upadate Position Records" subtitle="Upadate Position Records"/>
+   <apex:form >
+    <apex:pageblock >
+      <apex:pageblockSection title="UpdatePosition">
+         <apex:inputField value="{!pos.Name}" required="true"/>
+         <apex:inputField value="{!pos.Status__c}"/>
+         <apex:inputField value="{!pos.Location__c}"/>
+         <apex:inputField value="{!pos.Job_Description__c}"/>
+         <apex:inputField value="{!pos.Travel_Required__c}"/>
+         <apex:inputField value="{!pos.Type__c}"/>
+      </apex:pageblockSection>
+      <apex:commandButton value="Save" action="{!Save}"/>
+    </apex:pageblock>
+   </apex:form>
+</apex:page>

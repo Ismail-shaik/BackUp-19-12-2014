@@ -1,0 +1,13 @@
+<apex:page controller="Interviewfourclass" sidebar="false">
+  <apex:form >
+    <apex:sectionHeader title="Interview Four"/>
+      <apex:pageBlock title="Accounts with Contact" tabStyle="Contract">
+        <apex:messages />
+          <apex:repeat value="{!lstacc}" var="Eacc">      
+            <apex:pageblockSection title="Accounts with contacts">
+             
+            </apex:pageblockSection>
+          </apex:repeat>    
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

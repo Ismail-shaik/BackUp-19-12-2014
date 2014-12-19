@@ -1,0 +1,47 @@
+<apex:page tabStyle="Merchandise__c" standardController="Merchandise__c" extensions="Listhideextn">
+
+<script>
+  function()
+   {
+     dispaly();
+   }
+</script>
+  <apex:form id="frmid">
+  <apex:pageBlock title="Hding List">
+  <apex:pageBlockSection title="List hiding" columns="2" collapsible="true">
+    <apex:inputField value="{!Merchandise__c.no_of_inventeries__c}"/>
+    <apex:inputField value="{!Merchandise__c.Price_of_inventary__c}"/>
+    <apex:inputField value="{!Merchandise__c.Description__c}"/>
+    <apex:inputField value="{!Merchandise__c.CompanyName__c}">
+     <apex:actionSupport event="onchange" status="opid" reRender="frmid"/>
+    </apex:inputField>
+        <apex:outputPanel id="opid">
+          <apex:pageBlockSection rendered="{!Merchandise__c.CompanyName__c=='Reebok'||Merchandise__c.CompanyName__c=='Puma'||Merchandise__c.CompanyName__c=='Adidas'||Merchandise__c.CompanyName__c=='Hilfiger'||Merchandise__c.CompanyName__c=='Nike'}" columns="2">                               
+          <apex:inputfield value="{!Merchandise__c.Companyproduct__c}" onchange="show()"/>
+          </apex:pageBlockSection>
+        </apex:outputPanel>
+  </apex:pageBlockSection>
+  
+          <apex:pageBlockSection title="NewSection" columns="2" collapsible="false">
+                <apex:inputField value="{!Merchandise__c.Status__c}">
+                <apex:actionSupport event="onchange" status="oppid" reRender="frmid"/>
+                </apex:inputField>
+                    <apex:outputPanel id="oppid">
+                      <apex:pageBlockSection rendered="{!Merchandise__c.Status__c=='Started'||Merchandise__c.Status__c=='Not Yet'||Merchandise__c.Status__c=='Denaid'||Merchandise__c.Status__c=='Failed'}" columns="2">
+                      <apex:inputfield value="{!Merchandise__c.Working__c}" onchange="show1()"/><br/>
+                      <apex:inputField value="{!Merchandise__c.Text__c}"/><br/>
+                      <apex:inputField value="{!Merchandise__c.Open_Date__c}"/><br/>
+                      <apex:inputfield value="{!Merchandise__c.Closed_Date__c}"/><br/>                                  
+                      </apex:pageBlockSection>
+                    </apex:outputPanel>
+           </apex:pageBlockSection>
+           
+                 <apex:pageBlockSection title="new 2">
+                 <apex:inputField value="{!Merchandise__c.Text__c}"/>
+                 <apex:inputField value="{!Merchandise__c.Open_Date__c}"/>
+                 <apex:inputfield value="{!Merchandise__c.Closed_Date__c}"/>
+                 </apex:pageBlockSection>
+           
+  </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,21 @@
+<apex:page >
+<script type="text/javascript">
+    function closeWin(){    
+        if(window.parent){
+            window.parent.opener.location.href = window.parent.opener.location.href;
+            window.parent.close();
+        }   
+        else{
+            window.opener.location.href = window.opener.location.href;
+            window.close();   
+        }   
+    }
+    function closeWindow_NoAction(){
+        window.close();
+    }
+</script>
+<apex:form >
+<apex:commandButton value="Save" action="{!saveRecord}" oncomplete="closeWin();" />
+<input type="button" class="btn" value="Cancel" onclick="closeWindow_NoAction();"/>
+</apex:form>
+</apex:page>

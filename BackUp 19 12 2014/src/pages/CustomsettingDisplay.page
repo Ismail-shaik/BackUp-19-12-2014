@@ -1,0 +1,20 @@
+<apex:page controller="CustomsettingDisplayCntrlr" showHeader="false">
+ 
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>    
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/bootstrap.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Styles, '/js/bootstrap.min.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/strap.css')}"/> 
+        
+        
+        <apex:form >
+                   
+                     <div class="col-lg-2">
+                       <a onclick="return window.open('{!lstsettngs.SiteURL__c}', '_top')"> help1 </a>
+                       <a href="{!lstsettngs.SiteURL__c}"> help </a>
+                         <apex:outputField value="{!lstsettngs.SiteURL__c}"   html-placeholder="Allow Subscription" />
+                       
+                     </div>
+        </apex:form>
+  
+</apex:page>

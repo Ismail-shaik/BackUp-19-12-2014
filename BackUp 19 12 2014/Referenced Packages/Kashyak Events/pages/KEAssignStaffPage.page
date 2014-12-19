@@ -1,0 +1,342 @@
+<!--
+****************************************************************************************
+Name            : KEAssignStaffPage
+Author          : Kashyak
+Created Date    : Sep 26, 2013
+Package         : Kashyak Events
+Module          : Assigning Staff
+Usage           : This VFP is used for Assigning the Staff. 
+Revision History 
+                :
+                :    
+****************************************************************************************
+-->
+
+<apex:page standardController="KEvents__Event__c" id="pageid" extensions="KEvents.KEAssignStaffCntr" standardStylesheets="false" showHeader="true" sidebar="false">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, 'strap.css')}"/>
+    <apex:stylesheet value="{!$Resource.KEvents__colorcode}"/>
+    <apex:stylesheet value="{!$Resource.KEvents__StyleColors}"/>
+ 
+    <style>
+        body
+        {
+          font-size: 14px;
+        }
+    </style>
+    <body>
+ <script>
+    function checkStaff()
+    {
+      var stfType = document.getElementById('pageid:searchForm:stfType').value;
+      var stfName = document.getElementById('pageid:searchForm:stfNane').value;
+      
+      if(stfType == '-Please Select-')
+      {
+            alert('Plese Select Your Staff Type');
+            return false;
+      }
+    
+    findStaff();
+    }
+</script> 
+
+<style type="text/css">
+h1{font-size:120%; color:#0000FF;}
+
+</style>
+ <style>
+        /* This is for the full screen DIV */
+        .popupBackground {
+            /* Background color */
+            background-color:#542D78;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+        
+            /* Dimensions */
+            width: 200%;
+            height: 200%;
+            top: 0;
+            left: 0;
+            z-index: 998;
+            position: absolute;
+            
+            /* Mouse */
+            cursor:wait;
+        }
+     
+        /* This is for the message DIV */
+        .PopupPanel {
+            /* Background color 
+            border: solid 2px gray;
+            background-color: white;*/
+     
+           /* Dimensions */
+            left: 60%;
+            width: 60px;
+            margin-left: -100px;
+            top: 70%;
+            height: 40px;
+            margin-top: -25px;
+            z-index: 999;
+            position: fixed;
+            
+            /* Mouse */
+            cursor:pointer;
+        }
+    </style>
+    <apex:actionStatus id="statusSaveTrip" stopText="">
+       <apex:facet name="start">
+            <div>
+                <div class="popupBackground" />
+                <div class="PopupPanel">
+                    <table border="0" width="100%" height="100%">
+                        
+                        <tr>
+                            <td align="center"><img src="{!$Resource.Processing}"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionStatus>
+  <apex:form id="searchForm" >
+   
+      <div class="panelNew panel-Purple">
+           <div class="panel-heading" >
+              <span class="glyphicon glyphicon-user"/> &nbsp;&nbsp;<h3 class="panel-title">Assign Staff</h3>
+           </div>
+           
+           <div class="panel-body">
+      <apex:outputPanel id="pb1" rendered="{!reRenderPB1}">  
+        
+           <apex:outputPanel rendered="{!AND(NOT(ISNULL(existedListAssigned)))}">
+           <div class="panelNew panel-LightBlue">
+           <div class="panel-heading">
+            <!--<label class="fontsize-5">Assigned Staff</label>-->
+            <h3 class="panel-title">Assigned Staff</h3>
+           </div> 
+                  <div class="table-responsive"> 
+                    <apex:DataTable value="{!existedListAssigned}" styleclass="table table-bordered color-lightblue" var="selCont2" width="100%" id="elid">         
+                            <apex:column styleclass="info"  headerValue="First Name"  value="{!selCont2.Resource__r.FirstName}"/>       
+                            <apex:column styleclass="info" headervalue="Last Name" value="{!selCont2.Resource__r.LastName}" />
+                            <apex:column styleclass="info" headervalue="Email" value="{!selCont2.Resource__r.Email}" />
+                            <apex:column styleclass="info" headervalue="Phone" value="{!selCont2.Resource__r.Phone}" />
+                            <apex:column styleclass="info" headervalue="Type" value="{!selCont2.Resource__r.RecordType.Name}" />
+                    </apex:DataTable>
+                  </div>
+              </div>    
+            </apex:outputPanel> <br/> 
+            <!--
+            <apex:outputPanel rendered="{!OR(ISNULL(existedListAssigned))}">
+             <div class="panel panel-primary">
+                 <div class="panel-heading" style="background:#329ED5;font-size:20px;color:White;">
+                   <label> No Staff Assigned yet</label> 
+                 </div>  
+             </div>
+            </apex:outputPanel>
+            -->          
+               <div class="panelNew panel-Gray">
+                <div class="panel-heading">
+                   <h3 class="panel-title"> Search for Staff</h3> 
+                 </div><br/>
+                      <div  class="form-group">  
+                         <label for="inputEmail"  class="col-lg-2 control-label">Type:</label>
+                              <div class="col-lg-2">
+                                   <!--<apex:inputField value="{!curContact.StaffType__c}" styleClass="form-control"/> -->
+                                 <apex:selectList size="1" value="{!staffType}" styleClass="form-control" id="stfType" required="true">
+                                   <apex:selectOptions value="{!staffTypes}"  />
+                                 </apex:selectList>
+                             </div><br/><br/>
+                             <label for="inputEmail" class="col-lg-2 control-label">Name:</label>
+                             <div class="col-lg-2">
+                               <apex:inputText value="{!staffName}" styleClass="form-control" html-placeholder="Name" id="stfNane"  /> 
+                             </div>
+                          
+                     </div><br/> 
+              <table>  
+                  <tr> 
+                   <div align="center">      
+                    <apex:commandButton reRender="conList,slop" value="Find Staff" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" onclick="checkStaff()">
+                                <apex:actionFunction action="{!findStaff}" name="findStaff"/>
+                    </apex:commandButton>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <apex:commandButton value="Cancel" action="/{!regId}" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" />        
+                   </div> <br/>       
+                  </tr>
+            </table>  
+         </div>  
+        
+         <apex:outputPanel id="conList"> 
+           
+      <apex:outputPanel ><br/>
+      <apex:outputPanel rendered="{!isAssign}">
+      <apex:pageMessages ></apex:pageMessages> 
+      <apex:outputPanel id="panelid">
+      <div class="panelNew color-orange1">  
+      <div class="panel-heading" >
+        <!--<font class="fontsize-5"> Note : Please check the checkbox to asign a staff member.</font> -->
+        <h3 class="panel-title">Note : Please check the checkbox to asign a staff member. </h3>
+      </div> 
+      </div> 
+             <div class="panelNew panel-Orange">
+                 <div class="panel-heading">
+                    <!--<label class="fontsize-5">Matching Staff</label> -->
+                    <h3 class="panel-title"> Matching Staff </h3>
+                  </div>  
+              <div class="table-responsive">  
+              <apex:DataTable value="{!listOfContacts}" var="recCont" styleclass="table  " id="searchResults"  >
+                    <apex:column styleclass="color-lightyellow">
+                        <apex:facet name="header">
+                            Add
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!recCont.selected}" id="checkedone1" >
+                            <apex:actionSupport event="onclick" status="statusSaveTrip" action="{!GetSelected}" rerender="slop,searchResults,SelectedContacts,selectedWrapperContacts,PageMessages"/>
+                        </apex:inputCheckbox>
+                    </apex:column>
+                    
+                    <apex:column headervalue="Firt Name" styleclass="color-lightyellow" value="{!recCont.curContact.FirstName}" />          
+                    <apex:column headervalue="Last Name" styleclass="color-lightyellow" value="{!recCont.curContact.LastName}"/>
+                    <apex:column headervalue="Email"  styleclass="color-lightyellow" value="{!recCont.curContact.Email}" />
+                    <apex:column headervalue="Phone" styleclass="color-lightyellow" value="{!recCont.curContact.Phone}" />
+                    <apex:column headervalue="Type" styleclass="color-lightyellow" value="{!recCont.curContact.RecordType.Name}" />
+                    
+                </apex:DataTable>
+            </div>
+           </div> 
+                        <apex:outputPanel >
+                            <apex:commandButton value="First" action="{!Beginning}" disabled="{!disablePrevious}" reRender="panelid"  styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" status="statusSaveTrip"/>&nbsp;&nbsp;
+                            <apex:commandButton value="Prevous" action="{!Previous}" disabled="{!disablePrevious}" reRender="panelid"  styleClass="btnNew btn-Gray" status="statusSaveTrip" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/>&nbsp;&nbsp;
+                            <apex:commandButton value="Next" action="{!Next}" disabled="{!disableNext}" reRender="panelid"  styleClass="btnNew btn-Gray" status="statusSaveTrip" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/>&nbsp;&nbsp;
+                            <apex:commandButton value="Last" action="{!End}" disabled="{!disableNext}" reRender="panelid"  styleClass="btnNew btn-Gray" status="statusSaveTrip" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/>
+                        </apex:outputPanel>
+                     
+                    </apex:outputPanel>
+                    </apex:outputPanel><br/><br/>
+                    
+                   <apex:outputPanel id="slop"> 
+                   <apex:pageMessages ></apex:pageMessages> 
+                  <apex:outputPanel rendered="{!Hide}">
+                <div class="panelNew panel-Green">
+                <div class="panel-heading">
+                    <!--<label class="fontsize-5"> Selected Staff</label> -->
+                    <h3 class="panel-title"> Selected Staff </h3>
+                  </div>  
+               
+         <div class="table-responsive">        
+            <apex:DataTable value="{!selectedContacts}" styleclass="table table-bordered color-green" var="selCont" width="100%"  id="selectedWrapperContacts" >
+                    <apex:column styleclass="success">
+                        <apex:facet name="header">
+                            Remove
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!selCont.selected}" id="checkedone1">
+                            <apex:actionSupport event="onclick" status="statusSaveTrip" action="{!GetSelected1}" rerender="slop,selectedWrapperContacts,SelectedContacts"/>
+                        </apex:inputCheckbox>
+                    </apex:column>
+                   
+                    <apex:column styleclass="success" headervalue="Firt Name"  value="{!selCont.curContact.FirstName}" />          
+                    <apex:column styleclass="success" headervalue="Last Name" value="{!selCont.curContact.LastName}" />
+                    <apex:column styleclass="success" headervalue="Email" value="{!selCont.curContact.Email}" />
+                    <apex:column styleclass="success" headervalue="Phone" value="{!selCont.curContact.Phone}" />
+                    <apex:column styleclass="success" headervalue="Type" value="{!selCont.curContact.RecordType.Name}" />
+            </apex:DataTable> 
+         </div>
+        </div>    
+            
+          <div align="center">   
+            <apex:commandButton action="{!assignStaff}" styleClass="btnNew btn-Gray"  value="Assign Staff" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/>
+          </div>
+          
+       </apex:outputPanel>
+       </apex:outputPanel>
+       </apex:outputpanel>        
+        </apex:outputPanel>   
+        
+      </apex:outputPanel> 
+        
+    <apex:outputPanel id="pb2" rendered="{!reRenderPB2}">
+     <b> <apex:commandbutton value="Assign New Staff" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"  action="{!gotoPrevPage}" /> </b>
+         <br/><br/>
+         <apex:pageMessages ></apex:pageMessages>
+          <apex:outputPanel rendered="{!NOT(ISNULL(assignListNew))}" >
+          <div class="panelNew panel-Green">
+              <div class="panel-heading">
+                 <!--<label class="fontsize-5"> Newly Assigned Staff</label> -->
+                 <h3 class="panel-title"> Newly Assigned Staff </h3>
+              </div> 
+        <div class="table-responsive"> 
+               <apex:DataTable value="{!assignListNew}" var="selCont" width="100%" styleclass="table table-bordered color-green">        
+                        <apex:column styleclass="success" headervalue="First Name"  value="{!selCont.Resource__r.FirstName}" />          
+                        <apex:column styleclass="success" headervalue="Last Name" value="{!selCont.Resource__r.LastName}" />
+                        <apex:column styleclass="success" headervalue="Email" value="{!selCont.Resource__r.Email}" />
+                        <apex:column styleclass="success" headervalue="Phone" value="{!selCont.Resource__r.Phone}" />
+                        <apex:column styleclass="success" headervalue="Type" value="{!selCont.Resource__r.RecordType.Name}" />
+                </apex:DataTable>
+           </div> 
+         </div>      
+            </apex:outputPanel><br/>
+            <apex:outputPanel rendered="{!(assignListDuplicated.size !=0)}">
+            <div class="panelNew panel-primary">
+              <div class="panel-heading">
+                 <!--<label class="fontsize-5"> Existed Records</label> -->
+                 <h3 class="panel-title">Existed Records </h3>
+              </div>
+         <div class="table-responsive"> 
+            <apex:DataTable value="{!assignListDuplicated}" var="selCont1" width="100%" styleclass="table table-bordered" >         
+                    <apex:column styleclass="info"   headervalue="First Name" value="{!selCont1.Resource__r.FirstName}" />          
+                    <apex:column styleclass="info"   headervalue="Last Name"  value="{!selCont1.Resource__r.LastName}" />
+                    <apex:column styleclass="info"   headervalue="Email"  value="{!selCont1.Resource__r.Email}" />
+                    <apex:column styleclass="info"   headervalue="Phone"  value="{!selCont1.Resource__r.Phone}" />
+                    <apex:column styleclass="info"   headervalue="Type"  value="{!selCont1.Resource__r.RecordType.Name}" />
+            </apex:DataTable>
+         </div> 
+        </div>   
+             <br/>
+     </apex:outputPanel>
+            <apex:outputPanel rendered="{!HideList}" >
+            <div class="panelNew panel-LightBlue">
+              <div class="panel-heading">
+                 <!--<label class="fontsize-5"> Assigned Staff </label> -->
+                 <h3 class="panel-title"> Assigned Staff </h3>
+              </div>
+            <div class="table-responsive">     
+            <apex:DataTable value="{!assignListNew}" var="selContNew" width="100%" styleclass="table table-bordered color-lightblue" >        
+                    <apex:column headervalue="First Name" styleclass="info" value="{!selContNew.Resource__r.FirstName}" />          
+                    <apex:column headervalue="Last Name" styleclass="info" value="{!selContNew.Resource__r.LastName}" />
+                    <apex:column headervalue="Email" styleclass="info" value="{!selContNew.Resource__r.Email}" />
+                    <apex:column headervalue="Phone" styleclass="info" value="{!selContNew.Resource__r.Phone}" />
+                    <apex:column headervalue="Type" styleclass="info" value="{!selContNew.Resource__r.RecordType.Name}" />
+            </apex:DataTable>
+           </div>
+           </div>
+            </apex:outputPanel><br/>
+            <apex:outputPanel rendered="{!HideListAll}" >
+            <div class="panelNew panel-LightBlue">
+              <div class="panel-heading">
+                 <!--<label class="fontsize-5"> Assigned Staff </label> -->
+                 <h3 class="panel-title"> Assigned Staff </h3>
+              </div>
+               <div class="table-responsive">     
+             <apex:DataTable value="{!existedListAssigned}" var="selCont3" width="100%" styleclass="table table-bordered color-lightblue">         
+                    <apex:column headervalue="First Name" styleclass="info"  value="{!selCont3.Resource__r.FirstName}" />          
+                    <apex:column headervalue="Last Name" styleclass="info" value="{!selCont3.Resource__r.LastName}" />
+                    <apex:column headervalue="Email" styleclass="info" value="{!selCont3.Resource__r.Email}" />
+                    <apex:column headervalue="Phone" styleclass="info" value="{!selCont3.Resource__r.Phone}" />
+                    <apex:column headervalue="Type" styleclass="info" value="{!selCont3.Resource__r.RecordType.Name}" />
+            </apex:DataTable>
+          </div> 
+          </div>  
+            </apex:outputPanel> <br/>
+       <b> <apex:commandbutton value="Event Page" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" action="/{!regId}"/> </b>  
+    </apex:outputPanel>
+</div>
+  </div>
+ 
+  </apex:form>
+  
+  </body>
+</apex:page>

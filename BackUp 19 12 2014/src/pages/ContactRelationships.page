@@ -1,0 +1,39 @@
+<apex:page standardController="Account" extensions="MultipleContactRelationships" showHeader="false" sidebar="false">
+  <apex:sectionHeader title="Working on contacts"/>
+  <apex:form >
+    <apex:pageblock title="Contacts">
+        <center>
+          <apex:commandButton value="Create Contact Relationship"/>
+        </center>
+       <apex:pageBlockTable value="{!Conres}" var="cr" cellpadding="40">
+             
+             <apex:column headerValue="Action" >
+             <apex:facet name="header"> Action </apex:facet>
+             <apex:inputcheckbox >
+             </apex:inputcheckbox>
+             </apex:column>
+             
+             <apex:column >
+             <apex:facet name="header"> Contact Name </apex:facet>    
+             <apex:outputText value="{!cr.Name}"/>          
+             </apex:column>
+             
+             <apex:column >
+             <apex:facet name="header"> Title </apex:facet>
+             <apex:outputText value="{!cr.Title }"/>
+             </apex:column>
+             
+             <apex:column >
+             <apex:facet name="header"> Email </apex:facet>
+             <apex:outputText value="{!cr.Email }"/>
+             </apex:column>
+             
+             <apex:column >
+             <apex:facet name="header"> Phone </apex:facet>
+             <apex:outputText value="{!cr.Phone}"/>
+             </apex:column>
+             
+       </apex:pageBlockTable>
+    </apex:pageblock>
+  </apex:form>
+</apex:page>

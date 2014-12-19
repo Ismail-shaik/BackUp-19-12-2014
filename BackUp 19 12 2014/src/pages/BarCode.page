@@ -1,0 +1,9 @@
+<apex:page standardController="Contact" extensions="BarcodeController">
+<apex:form >
+   <apex:pageBlock >
+       Last Name<apex:inputField value="{!Contact.LastName}"/>
+   </apex:pageBlock>
+<apex:commandButton value="Save" action="{!save}"/>
+<apex:commandButton value="sendEmail" action="{!sendEmail}"/>
+</apex:form>
+</apex:page>

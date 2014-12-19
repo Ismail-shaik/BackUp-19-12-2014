@@ -1,0 +1,211 @@
+<apex:page controller="Test1Cntrlr" id="pageid" sidebar="false" showHeader="false">
+ <script>
+    function validate1()
+    {
+      var Vendorid = document.getElementById('pageid:formid:pgbid:pgbsecid:pgbsecitem1id:vendoeid').value;
+      var cv = document.getElementById('pageid:formid:pgbid:pgbsecid:pgbsecitem2id:numid').value; 
+      
+      var jan = document.getElementById('pageid:formid:pgblid:pgblocksec1id').value;
+      var feb = document.getElementById('').value;
+      var mar = document.getElementById('').value;
+      var apr = document.getElementById('').value;
+      var may = document.getElementById('').value;
+      var jun = document.getElementById('').value;
+      var jul = document.getElementById('').value;
+      var aug = document.getElementById('').value;
+      var sep = document.getElementById('').value;
+      var oct = document.getElementById('').value;
+      var nov = document.getElementById('').value;
+      var dec = document.getElementById('').value;
+      
+      var mon = document.getElementById('').value;
+      var tue = document.getElementById('').value;
+      var wed = document.getElementById('').value;
+      var thu = document.getElementById('').value;
+      var fri = document.getElementById('').value;
+      var sat = document.getElementById('').value;
+      var sun = document.getElementById('').value;
+        
+     // alert(cv);  
+      var regExp = /^[a-zA-Z ]+$/;
+      var cvv = /^[0-9]+$/;
+      
+      
+      
+      if(regExp.test(Vendorid) == false && Vendorid != null)
+        {
+         alert('Please Enter Valid Vendor Name');
+         Vendorid.focus();
+         return false;
+        }
+       else if(cvv.test(cv) ==false  && cv != null)
+            {
+             alert('Please Enter Valid CVV Number');
+             cv.focus();
+             return false;
+             
+            }
+       }
+ </script>
+  <apex:form id="formid">
+      <apex:sectionHeader title="For java script validation for the regular expression and months"/>
+      
+          <apex:pageblock title="Regular Expression" id="pgbid">
+           <apex:pageblockSection title="validation" id="pgbsecid">
+             <apex:pageblockSectionItem id="pgbsecitem1id">
+               <apex:outputLabel value="Vendor"/>
+               <apex:inputText value="{!vendor}" id="vendoeid"/>
+             </apex:pageblockSectionItem>
+             <apex:pageblockSectionItem id="pgbsecitem2id">
+               <apex:outputLabel value="NUM"/>
+               <apex:inputText value="{!CVV}" id="numid"/>
+             </apex:pageblockSectionItem>
+           </apex:pageblockSection>
+          </apex:pageblock>
+          
+          
+          <!--  this is for create picklist from controller  -->
+          
+          <apex:pageBlock title="months scripting" id="pgblid">
+             <apex:pageBlockSection title="java script on custom months" id="pgblocksec1id">
+               <apex:pageBlockSectionItem >
+                 <apex:outputLabel value="Months"/>
+                  <apex:selectList value="{!ListItems}" size="1" multiselect="false" >
+                     <apex:selectOptions value="{!items}"/>
+                         <apex:actionSupport event="onchange" action="{!support}" />
+                  </apex:selectList>
+               </apex:pageBlockSectionItem> 
+               <apex:pageBlockSectionItem >
+                 <apex:outputLabel value="Days"/>
+                  <apex:selectList value="{!ListItems1}" size="1" multiselect="false">
+                     <apex:selectOptions value="{!items1}"/>
+                         <apex:actionSupport event="onchange" action="{!support1}" />
+                  </apex:selectList>
+               </apex:pageBlockSectionItem> 
+               
+           <apex:outputPanel id="op1id" rendered="{!monthrender}">     
+             <apex:pageBlockSection title="months" id="pgbsection1id">  
+              
+              <apex:pageblockSectionItem id="pgbsectionitem1id">
+                 <apex:outputLabel value="January"/>
+                 <apex:inputCheckbox value="{!January}" id="janid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem2id">
+                 <apex:outputLabel value="July"/>
+                 <apex:inputCheckbox value="{!July}" id="julyid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem3id">
+                 <apex:outputLabel value="Febrauary"/>
+                 <apex:inputCheckbox value="{!Febrauary}" id="febid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem4id">
+                 <apex:outputLabel value="August"/>
+                 <apex:inputCheckbox value="{!August}" id="augid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem5id">
+                 <apex:outputLabel value="March"/>
+                 <apex:inputCheckbox value="{!March}" id="marid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem6id">
+                 <apex:outputLabel value="September"/>
+                 <apex:inputCheckbox value="{!September}" id="sepid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem7id">
+                 <apex:outputLabel value="April"/>
+                 <apex:inputCheckbox value="{!April}" id="aprid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem8id">
+                 <apex:outputLabel value="October"/>
+                 <apex:inputCheckbox value="{!October}" id="octid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem9id">
+                 <apex:outputLabel value="May"/>
+                 <apex:inputCheckbox value="{!May}" id="mayid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem10id">
+                 <apex:outputLabel value="November"/>
+                 <apex:inputCheckbox value="{!November}" id="novid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem11id">
+                 <apex:outputLabel value="June"/>
+                 <apex:inputCheckbox value="{!June}" id="juneid"/>
+              </apex:pageblockSectionItem>
+              
+              <apex:pageblockSectionItem id="pgbsectionitem12id">
+                 <apex:outputLabel value="December"/>
+                 <apex:inputCheckbox value="{!December}" id="decid"/>
+              </apex:pageblockSectionItem>
+             </apex:pageBlockSection>    
+           </apex:outputPanel>    
+           
+           <apex:outputPanel id="op2d1" rendered="{!daysrendere}">
+              <apex:pageblockSection title="days" id="pgbsection2id">
+                
+                 <apex:pageblockSectionItem id="pgbsectionitem13id">
+                    <apex:outputlabel value="Monday"/>
+                    <apex:inputCheckbox value="{!monday}" id="monid"/>
+                 </apex:pageblockSectionItem>
+                 
+                 <apex:pageblockSectionItem id="pgbsectionitem14id">
+                    <apex:outputlabel value="Tuesday"/>
+                    <apex:inputCheckbox value="{!tuesday}" id="tueid"/>
+                 </apex:pageblockSectionItem>
+                 
+                 <apex:pageblockSectionItem id="pgbsectionitem15id">
+                    <apex:outputlabel value="Wednesday"/>
+                    <apex:inputCheckbox value="{!wednesday}" id="wedid"/>
+                 </apex:pageblockSectionItem>
+                 
+                 <apex:pageblockSectionItem id="pgbsectionitem16id">
+                    <apex:outputlabel value="Thursday"/>
+                    <apex:inputCheckbox value="{!thursday}" id="thuid"/>
+                 </apex:pageblockSectionItem>
+                 
+                 <apex:pageblockSectionItem id="pgbsectionitem17id">
+                    <apex:outputlabel value="Friday"/>
+                    <apex:inputCheckbox value="{!friday}" id="friid"/>
+                 </apex:pageblockSectionItem>
+                 
+                 <apex:pageblockSectionItem id="pgbsectionitem18id">
+                    <apex:outputlabel value="Saturday"/>
+                    <apex:inputCheckbox value="{!saturday}" id="satid"/>
+                 </apex:pageblockSectionItem>
+                 
+                 <apex:pageblockSectionItem id="pgbsectionitem19id">
+                    <apex:outputlabel value="Sunday"/>
+                    <apex:inputCheckbox value="{!sunday}" id="sunid"/>
+                 </apex:pageblockSectionItem>
+                 
+              </apex:pageblockSection>
+           </apex:outputPanel>   
+                
+             </apex:pageBlockSection>
+          </apex:pageBlock>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+         <center>    <apex:commandButton value="Save form" action="{!save}" onmouseover="validate1()"/>  </center>
+          
+  </apex:form>
+</apex:page>

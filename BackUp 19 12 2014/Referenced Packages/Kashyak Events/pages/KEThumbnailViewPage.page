@@ -1,0 +1,323 @@
+<apex:page controller="KEvents.KEThumbnailCntr" sidebar="false" showHeader="false">
+ <apex:composition template="{!$Site.Template}"> 
+   <apex:define name="body">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <!--<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/bootstrap.min.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.BootStrapStyles, '/js/bootstrap.min.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/strap.css')}"/>
+            <apex:stylesheet value="{!$Resource.StyleColors}"/>-->
+            
+           <style>
+               .sfdc_richtext img{
+               border: 0;
+               height: 200px;
+               width:  300px;
+           </style> 
+      <apex:form >
+      <br/>
+                   <table align="right">
+                        <tr>
+                           <td>
+                            <c:KETooltipComp text="Calendar View"><a  href="/events/{!CalendarPage}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarView.png')}"/></a></c:KETooltipComp>
+                              <c:KETooltipComp text="List View"> <a href="/events/{!EventsListDisplayPage}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconListView.png')}"/></a></c:KETooltipComp>
+                              
+                           </td>
+                      
+                        </tr>
+                 
+                    </table>  
+                    
+                   <!-- <table align="left">
+                        <tr>  
+                            <td>  
+                               <div class="btn-group">
+                                    <div class="col-lg-3">
+                                          <button type="button" class="btnNew btn-Gray dropdown-toggle"  data-toggle="dropdown">
+                                           <label> Show </label>&nbsp;
+                                            <span class="caret"></span>
+                                          </button>
+                                        <ul class="dropdown-menu" style="text-align: Left">
+                                            <li><apex:outputPanel rendered="{!(supEvent && supClas && supResr && supIntrnal)}">
+                                                 <apex:commandLink value="All Events" immediate="true" action="{!alleventDisplayList}"/>
+                                               </apex:outputPanel></li>
+                                            <li><apex:outputPanel rendered="{!supEvent}">
+                                                 <apex:commandLink value="Events" immediate="true" action="{!eventDisplayList}"/>
+                                               </apex:outputPanel></li>
+                                            <li><apex:outputPanel rendered="{!supClas}">  
+                                                 <apex:commandLink value="Trainings" immediate="true" action="{!classDisplayList}"/>
+                                                </apex:outputPanel></li>
+                                            <li><apex:outputPanel rendered="{!supResr}">  
+                                                 <apex:commandLink value="Reservations" immediate="true" action="{!reservationDisplayList}"/>
+                                               </apex:outputPanel></li>
+                                            <li><apex:outputPanel rendered="{!supIntrnal}">  
+                                                 <apex:commandLink value="Internal Events" immediate="true" action="{!volunteerDisplayList}"/> 
+                                               </apex:outputPanel></li>
+                                        
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                   </table>-->
+              <div class="form-group">
+      <div align="left">
+          &nbsp;&nbsp;
+          <apex:outputPanel rendered="{!(supEvent && supClas && supResr && supIntrnal)}">
+              <c:KETooltipComp text="All Events">
+                 <apex:commandLink action="{!alleventDisplayList}"><apex:image url="{!URLFOR($Resource.KEvents__DetailViewicons,'iconListnDetail/iconDetailListAll.png')}" width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+              </c:KETooltipComp>
+          </apex:outputPanel>
+          <apex:outputPanel rendered="{!supResr}">     
+              <c:KETooltipComp text="Reservations">
+                 <apex:commandLink action="{!reservationDisplayList}"><apex:image url="{!URLFOR($Resource.KEvents__DetailViewicons,'iconListnDetail/iconDetailListRegistration.png')}" width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+              </c:KETooltipComp>
+           </apex:outputPanel>    
+          <apex:outputPanel rendered="{!supEvent}">
+              <c:KETooltipComp text="Events">
+                 <apex:commandLink action="{!eventDisplayList}"><apex:image url="{!URLFOR($Resource.KEvents__DetailViewicons,'iconListnDetail/iconDetailListEvent.png')}"  width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+              </c:KETooltipComp>
+           </apex:outputPanel>    
+          <apex:outputPanel rendered="{!supClas}">
+              <c:KETooltipComp text="Trainings">
+                 <apex:commandLink action="{!classDisplayList}"><apex:image url="{!URLFOR($Resource.KEvents__DetailViewicons,'iconListnDetail/iconDetailListTraining.png')}" width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+              </c:KETooltipComp>
+           </apex:outputPanel>    
+          <apex:outputPanel rendered="{!supIntrnal}"> 
+              <c:KETooltipComp text="Internal Events">
+                 <apex:commandLink action="{!volunteerDisplayList}"><apex:image url="{!URLFOR($Resource.KEvents__DetailViewicons,'iconListnDetail/iconDetailListInternal.png')}" width="35px" height="35px"/></apex:commandLink>
+              </c:KETooltipComp>
+          </apex:outputPanel>
+      </div>
+   </div>  <br/>     
+    </apex:form>
+                              
+        <div class="panelNew {!if(Eventdetaillist == 'Reservation','panel-Purple', if(Eventdetaillist == 'Event', 'panel-Orange' ,if(Eventdetaillist == 'Training','panel-LightBlue',if(Eventdetaillist == 'Internal','panel-Gray','panel-Green'))))}">
+              <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list"/>&nbsp;&nbsp;<h3 class="panel-title">{!Eventdetaillist} Detail List</h3>
+              </div>
+            <div class="panel-body">
+            <apex:pagemessages ></apex:pagemessages>
+              
+                   <!--  Details About Reservation   *****************************   -->
+              <apex:form >       
+                <apex:outputPanel rendered="{!Reservationhide}">       
+                   <div class="table-responsive">
+                        <apex:repeat value="{!eventlist}" var="e">
+                             <nav class="navbarNew navbar-default" role="navigation">
+                                                <div class="col-lg-12">  
+                                                           <div class="row">
+                                                                  <div class="col-md-4">
+                                                                    
+                                                                 <br/><apex:outputPanel rendered="{!e.Program__r.KEvents__Image__c == null}">
+                                                                        <image src="{!$Resource.KEThumbnailCalendarIcon}" width="300px" height="200px"/> 
+                                                                      </apex:outputPanel> 
+                                                                      <apex:outputPanel rendered="{!e.Program__r.KEvents__Image__c != null}">
+                                                                              <apex:outputField value="{!e.Program__r.KEvents__Image__c}" />
+                                                                      </apex:outputPanel>
+                                                                  </div>
+                                                                  
+                                                                
+                                                         
+                                                         <div class="col-lg-8">  
+                                                         <br/>  <label class="fontsize-11"><apex:outputLink value="/events/KEvents__KEDisplayEvent?id={!e.Id}"><font  class="fontcolor-6">{!e.Name__c}</font><br/></apex:outputLink></label><br/>
+                                                             <label>
+                                                                 When &nbsp;&nbsp; : &nbsp; <apex:outputText value="{0,date,EEEE , MMMM d, yyyy}" >
+                                                                         <apex:param value="{!e.KEvents__EventStartDate__c}" />
+                                                                      </apex:outputText> &nbsp; {!e.StartTime__c} To {!e.EndTime__c}
+                                                              </label>     <br/>
+                                                             <label> Where &nbsp; : &nbsp;{!e.EventLocation__c} </label><br/>
+                                                             <label> Type &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{!e.RecordType.Name}</label> <br/>
+                                                             <label> Price &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;$ {!e.EventFees__c}</label> <br/> 
+                                                           <p align="justify">
+                                                           <apex:outputText value="{!LEFT(e.Program__r.KEvents__Description__c,250)}" />....</p>
+                                                          
+                                                           <br/>
+                                                         </div> 
+                                                    </div>
+                                               </div>
+                                         </nav>                 
+                        </apex:repeat>
+                  </div>      
+               </apex:outputPanel>
+               
+               <apex:outputPanel rendered="{!eventHide}">       
+                   <div class="table-responsive">
+                        <apex:repeat value="{!eventlist}" var="e">
+                                       <nav class="navbarNew navbar-default" role="navigation">
+                                                <div class="col-lg-12">  
+                                                           <div class="row">
+                                                                  <div class="col-md-4">
+                                                                    
+                                                                 <br/><apex:outputPanel rendered="{!e.Program__r.KEvents__Image__c == null}">
+                                                                        <image src="{!$Resource.KEThumbnailCalendarIcon}" width="300px" height="200px"/> 
+                                                                      </apex:outputPanel> 
+                                                                      <apex:outputPanel rendered="{!e.Program__r.KEvents__Image__c != null}">
+                                                                              <apex:outputField value="{!e.Program__r.KEvents__Image__c}" />
+                                                                      </apex:outputPanel>
+                                                                  </div>
+                                                                  
+                                                                
+                                                         
+                                                         <div class="col-lg-8">  
+                                                         <br/>  <label class="fontsize-11"><apex:outputLink value="/events/KEvents__KEDisplayEvent?id={!e.Id}"><font  class="fontcolor-orange">{!e.Name__c}</font><br/></apex:outputLink></label><br/>
+                                                             <label>
+                                                                 When &nbsp;&nbsp; : &nbsp;  <apex:outputText value="{0,date,EEEE , MMMM d, yyyy}" >
+                                                                         <apex:param value="{!e.KEvents__EventStartDate__c}" />
+                                                                      </apex:outputText> &nbsp; {!e.StartTime__c} To {!e.EndTime__c}
+                                                              </label>     <br/>
+                                                             <label> Where &nbsp; : &nbsp;{!e.EventLocation__c} </label><br/>
+                                                             <label> Type &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{!e.RecordType.Name}</label> <br/>
+                                                             <label> Price &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;${!e.NonMemberPrice__c}</label> <br/> 
+                                                           <p align="justify">
+                                                           <apex:outputText value="{!LEFT(e.Program__r.KEvents__Description__c,250)}" />....</p>
+                                                          
+                                                           <br/>
+                                                         </div> 
+                                               </div></div>
+                                         </nav>      
+                        </apex:repeat>
+                  </div>      
+               </apex:outputPanel>
+               
+               <apex:outputPanel rendered="{!classHide}">       
+                   <div class="table-responsive">
+                        <apex:repeat value="{!eventlist}" var="e">
+                                     <nav class="navbarNew navbar-default" role="navigation">
+                                                <div class="col-lg-12">  
+                                                           <div class="row">
+                                                                  <div class="col-md-4">
+                                                                    
+                                                                 <br/><apex:outputPanel rendered="{!e.Program__r.KEvents__Image__c == null}">
+                                                                        <image src="{!$Resource.KEThumbnailCalendarIcon}" width="300px" height="200px"/> 
+                                                                      </apex:outputPanel> 
+                                                                      <apex:outputPanel rendered="{!e.Program__r.KEvents__Image__c != null}">
+                                                                              <apex:outputField value="{!e.Program__r.KEvents__Image__c}" />
+                                                                      </apex:outputPanel>
+                                                                  </div>
+                                                                  
+                                                                
+                                                         
+                                                         <div class="col-lg-8">  
+                                                         <br/>  <label class="fontsize-11"><apex:outputLink value="/events/KEvents__KEDisplayEvent?id={!e.Id}"><font  class="fontcolor-blue3">{!e.Name__c}</font><br/></apex:outputLink></label><br/>
+                                                             <label>
+                                                                 When &nbsp;&nbsp; : &nbsp;  <apex:outputText value="{0,date,EEEE , MMMM d, yyyy}" >
+                                                                         <apex:param value="{!e.KEvents__EventStartDate__c}" />
+                                                                      </apex:outputText>  &nbsp; {!e.StartTime__c} To {!e.EndTime__c}
+                                                              </label>     <br/>
+                                                             <label> Where &nbsp; : &nbsp;{!e.EventLocation__c} </label><br/>
+                                                             <label> Type &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{!e.RecordType.Name}</label> <br/>
+                                                             <label> Price &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;${!e.NonMemberPrice__c}</label> <br/> 
+                                                           <p align="justify">
+                                                           <apex:outputText value="{!LEFT(e.Program__r.KEvents__Description__c,250)}" />....</p>
+                                                          
+                                                           <br/>
+                                                         </div> 
+                                               </div></div>
+                                         </nav>      
+                         </apex:repeat>
+                  </div>      
+               </apex:outputPanel>   
+               
+              <apex:outputPanel rendered="{!internalHide}">       
+                   <div class="table-responsive">
+                        <apex:repeat value="{!eventlist}" var="e">
+                                   <nav class="navbarNew navbar-default" role="navigation">
+                                                <div class="col-lg-12">  
+                                                           <div class="row">
+                                                                  <div class="col-md-4">
+                                                                    
+                                                                 <br/><apex:outputPanel rendered="{!e.Program__r.KEvents__Image__c == null}">
+                                                                        <image src="{!$Resource.KEThumbnailCalendarIcon}" width="300px" height="200px"/> 
+                                                                      </apex:outputPanel> 
+                                                                      <apex:outputPanel rendered="{!e.Program__r.KEvents__Image__c != null}">
+                                                                              <apex:outputField value="{!e.Program__r.KEvents__Image__c}" />
+                                                                      </apex:outputPanel>
+                                                                  </div>
+                                                                  
+                                                                
+                                                         
+                                                         <div class="col-lg-8">  
+                                                         <br/>  <label class="fontsize-11"><apex:outputLink value="/events/KEvents__KEDisplayEvent?id={!e.Id}"><font  class="fontcolor-5">{!e.Name__c}</font><br/></apex:outputLink></label><br/>
+                                                             <label>
+                                                                When &nbsp;&nbsp; : &nbsp; <apex:outputText value="{0,date,EEEE , MMMM d, yyyy}" >
+                                                                         <apex:param value="{!e.KEvents__EventStartDate__c}" />
+                                                                      </apex:outputText>  &nbsp; {!e.StartTime__c} To {!e.EndTime__c}
+                                                              </label>     <br/>
+                                                             <label> Where &nbsp; : &nbsp;{!e.EventLocation__c} </label><br/>
+                                                             <label> Type &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{!e.RecordType.Name}</label> <br/>
+                                                              
+                                                           <p align="justify">
+                                                           <apex:outputText value="{!LEFT(e.Program__r.KEvents__Description__c,250)}" />....</p>
+                                                          
+                                                           <br/>
+                                                         </div> 
+                                               </div></div>
+                                         </nav>            
+                        </apex:repeat>
+                   </div>      
+               </apex:outputPanel> 
+               
+                <apex:outputPanel rendered="{!defaultHide}">       
+                   <div class="table-responsive">
+                        <apex:repeat value="{!eventlist}" var="e">
+                                   <nav class="navbarNew navbar-default" role="navigation">
+                                                <div class="col-lg-12">
+                                                       
+                                                                <div class="row">
+                                                                  <div class="col-md-4">
+                                                                    <br/>  <apex:outputPanel rendered="{!e.Program__r.KEvents__Image__c == null}">
+                                                                        <image src="{!$Resource.KEThumbnailCalendarIcon}" width="300px" height="200px"/> 
+                                                                      </apex:outputPanel> 
+                                                                      <apex:outputPanel rendered="{!e.Program__r.KEvents__Image__c != null}">
+                                                                              <apex:outputField value="{!e.Program__r.KEvents__Image__c}" />
+                                                                      </apex:outputPanel>
+                                                                  </div>
+                                                               
+                                                       
+                                                         <div class="col-lg-8">  
+                                                         <apex:outputPanel rendered="{!e.RecordType.Name =='Event'}">
+                                                           <br/> <label class="fontsize-11"><apex:outputLink value="/events/KEvents__KEDisplayEvent?id={!e.Id}"><font  class="fontcolor-orange">{!e.Name__c}</font><br/></apex:outputLink></label><br/>
+                                                         </apex:outputpanel>
+                                                         <apex:outputPanel rendered="{!e.RecordType.Name =='Training'}">
+                                                           <br/> <label class="fontsize-11"><apex:outputLink value="/events/KEvents__KEDisplayEvent?id={!e.Id}"><font  class="fontcolor-blue3">{!e.Name__c}</font><br/></apex:outputLink></label><br/>
+                                                         </apex:outputpanel>
+                                                         <apex:outputPanel rendered="{!e.RecordType.Name =='Reservation'}">
+                                                           <br/> <label class="fontsize-11"><apex:outputLink value="/events/KEvents__KEDisplayEvent?id={!e.Id}"><font  class="fontcolor-6">{!e.Name__c}</font><br/></apex:outputLink></label><br/>
+                                                         </apex:outputpanel>
+                                                         <apex:outputPanel rendered="{!e.RecordType.Name =='Internal'}">
+                                                           <br/> <label class="fontsize-11"><apex:outputLink value="/events/KEvents__KEDisplayEvent?id={!e.Id}"><font  class="fontcolor-5">{!e.Name__c}</font><br/></apex:outputLink></label><br/>
+                                                         </apex:outputpanel>
+                                                           
+                                                             <label> 
+                                                                 When &nbsp;&nbsp; : &nbsp;
+                                                                   <apex:outputText value="{0,date,EEEE , MMMM d, yyyy}" >
+                                                                         <apex:param value="{!e.KEvents__EventStartDate__c}" />
+                                                                   </apex:outputText> &nbsp; {!e.StartTime__c} To {!e.EndTime__c}
+                                                            </label><br/>
+                                                        <label> Where &nbsp; : &nbsp;{!e.EventLocation__c} <br/>
+                                                         Type &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;{!e.RecordType.Name} <br/></label>
+                                                         <apex:outputPanel rendered="{!e.RecordType.Name =='Event' || e.RecordType.Name =='Training'}">
+                                                         <br/> <label>Price &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;${!e.NonMemberPrice__c}</label>
+                                                         </apex:outputpanel> 
+                                                         <apex:outputPanel rendered="{!e.RecordType.Name =='Reservation'}">
+                                                         <br/> <label>Price &nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;${!e.EventFees__c} <br/></label>
+                                                         </apex:outputpanel>  <br/>
+                                                         <p align="justify"><apex:outputText value="{!LEFT(e.Program__r.KEvents__Description__c,250)}" /> ....</p>
+                                                      <label>   </label>
+                                                         </div>
+                                               </div>
+                                            </div>   
+                                   </nav>            
+                        </apex:repeat>
+                   </div>      
+               </apex:outputPanel>
+               
+               </apex:form>   
+               </div> 
+            </div>
+         
+     </apex:define>
+ </apex:composition> 
+</apex:page>

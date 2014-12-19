@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Object to store Location/Site information where the events are conducted.
+Ex: Class Room, Park, Hotel, Boat</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Active</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Active</inlineHelpText>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Address__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Address</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Address</inlineHelpText>
+        <label>Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>AssemblyDistrict__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Assembly District</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Assembly District</inlineHelpText>
+        <label>Assembly District</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>BusNotes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Bus Notes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Bus Notes</inlineHelpText>
+        <label>Bus Notes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>DaysUnavailable__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Days Unavailable</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Days Unavailable</inlineHelpText>
+        <label>Days Unavailable</label>
+        <picklist>
+            <picklistValues>
+                <fullName>SUN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MON</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TUE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WED</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>THU</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>FRI</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Description</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Description</inlineHelpText>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Difficulty__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Difficulty</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Difficulty</inlineHelpText>
+        <label>Difficulty</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Easy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advanced</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Directions__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Directions</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Directions</inlineHelpText>
+        <label>Directions</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>DogsAllowed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Dogs Allowed</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Dogs Allowed</inlineHelpText>
+        <label>Dogs Allowed</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Email</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Email</inlineHelpText>
+        <label>Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fax__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Fax</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Fax</inlineHelpText>
+        <label>Fax</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>GroundCover__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Ground Cover</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Ground Cover</inlineHelpText>
+        <label>Ground Cover</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Paved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bumpy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uneven</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Steps</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incline</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hard/Dirt</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rocks/Gravel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Grassy/Patches</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>GroupAccessibility__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Group Accessibility</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Group Accessibility</inlineHelpText>
+        <label>Group Accessibility</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Trails 40-60 Kids</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Picnic Area 40-60 People</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Large Parking Area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bus Parking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>LocationType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Location Type</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Location Type</inlineHelpText>
+        <label>Location Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Garden</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Park</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restaurent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>River</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Geo Location</description>
+        <displayLocationInDecimal>true</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <inlineHelpText>Example : 40.142536,-74.940601</inlineHelpText>
+        <label>Location</label>
+        <required>false</required>
+        <scale>6</scale>
+        <trackHistory>false</trackHistory>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>MailingCity__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Mailing City</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mailing City</inlineHelpText>
+        <label>Mailing City</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MailingCountry__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Mailing Country</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mailing Country</inlineHelpText>
+        <label>Mailing Country</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MailingOrganization__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Mailing Organization</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mailing Organization</inlineHelpText>
+        <label>Mailing Organization</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MailingState__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Mailing State</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mailing State</inlineHelpText>
+        <label>Mailing State</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MailingStreet__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Mailing Street</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mailing Street</inlineHelpText>
+        <label>Mailing Street</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>MailingZip__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Mailing Zip</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Mailing Zip</inlineHelpText>
+        <label>Mailing Zip</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Manger for this Resourse</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Manager for this Resource</inlineHelpText>
+        <label>Manager</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Locations (Manager)</relationshipLabel>
+        <relationshipName>Resources</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MapURL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Map URL</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Map URL</inlineHelpText>
+        <label>Map URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Notes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Notes</inlineHelpText>
+        <label>Notes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>ParkOwnership__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Park Ownership</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Park Ownership</inlineHelpText>
+        <label>Park Ownership</label>
+        <picklist>
+            <picklistValues>
+                <fullName>National</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>State</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>City</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>ParkingFeeAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Parking Fee Amount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Parking Fee Amount</inlineHelpText>
+        <label>Parking Fee Amount</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>ParkingNotes__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Parking Notes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Parking Notes</inlineHelpText>
+        <label>Parking Notes</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Phone__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Phone</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Phone</inlineHelpText>
+        <label>Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>PicnicFacilities__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Picnic Facilities</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Picnic Facilities</inlineHelpText>
+        <label>Picnic Facilities</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>RestRooms__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Rest Rooms</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Rest Rooms</inlineHelpText>
+        <label>Rest Rooms</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SiteContact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Site Contact</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Site Contact</inlineHelpText>
+        <label>Site Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Locations (Site Contact)</relationshipLabel>
+        <relationshipName>Locations_Sites</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SummerRestrictions__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Summer Restrictions</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Summer Restrictions</inlineHelpText>
+        <label>Summer Restrictions</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AM/PM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Water__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Water</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Water</inlineHelpText>
+        <label>Water</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <label>Location</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Manager__c</columns>
+        <columns>Phone__c</columns>
+        <columns>Fax__c</columns>
+        <columns>Email__c</columns>
+        <columns>Address__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Location Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Locations</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Manager__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Phone__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Address__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>MailingCity__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Manager__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Email__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Phone__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Address__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MailingCity__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Manager__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Email__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Phone__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Address__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>MailingCity__c</searchFilterFields>
+        <searchFilterFields>Manager__c</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchFilterFields>Email__c</searchFilterFields>
+        <searchFilterFields>Phone__c</searchFilterFields>
+        <searchFilterFields>Address__c</searchFilterFields>
+        <searchResultsAdditionalFields>MailingCity__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Manager__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Email__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Phone__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Address__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

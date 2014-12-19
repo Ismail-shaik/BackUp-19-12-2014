@@ -1,0 +1,220 @@
+<!--
+****************************************************************************************
+Name            : KEReservationPaymentsPage
+Author          : Hari Prasad Jella
+Created Date    : June 03, 2013
+Package         : Kashyak Events
+Module          : Payments
+Usage           : This VFP is used to process payments. 
+Revision History 
+                :
+                :    
+****************************************************************************************
+-->
+<apex:page standardController="KEvents__Event__c" 
+    extensions="KEvents.KERegistrationCntr"
+    showHeader="false"
+    sidebar="false"
+    cache="false"
+    standardStylesheets="false"
+    > 
+    
+    <apex:composition template="{!$Site.Template}"> 
+    <apex:define name="body">
+    
+<!--<apex:page controller="KERegistrationController">
+  <apex:sectionHeader title="Kashyak Payments" subtitle="Proess Payments"/>-->
+  <div class="sub_full">
+  <h1 class="title">Payment Deatails</h1>
+  <apex:form id="paymentForm" >
+   <table align="Center" width="100%">
+     <tr >
+           <td>
+             <!--
+             <table align="Right">
+                 <tr >
+                       <td>
+                            <apex:outputLink value="/apex/EMDisplayEventListPage" id="listeLink">Event List</apex:outputLink>
+                       </td>
+                 </tr>
+             </table>   
+             -->
+      <apex:pageBlock mode="edit" >
+          <apex:pagemessages ></apex:pagemessages>
+           <table>
+                 <tr >
+                       <!-- Start :: Payment section -->
+                       <td width="50%">
+                       
+                  <apex:pageBlockSection columns="1" rendered="{!NOT(isSuccess)}">
+                     <!--<apex:pageBlockSectionItem >
+                         <apex:outputLabel value="Amount"></apex:outputLabel>
+                         <apex:inputText value="{!amount}" id="amount"/>
+                     </apex:pageBlockSectionItem>-->
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="First Name"></apex:outputLabel>
+                         <apex:inputText value="{!firstName}"/>
+                     </apex:pageBlockSectionItem>
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="Last Name"></apex:outputLabel>
+                         <apex:inputText value="{!lastName}"/>
+                     </apex:pageBlockSectionItem>
+                     <!--
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="Email"></apex:outputLabel>
+                         <apex:inputText value="{!email}"/>
+                     </apex:pageBlockSectionItem>
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="Address"></apex:outputLabel>
+                         <apex:inputText value="{!address}"/>
+                     </apex:pageBlockSectionItem>
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="City"></apex:outputLabel>
+                         <apex:inputText value="{!city}"/>
+                     </apex:pageBlockSectionItem>
+                     
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="State/Zip"></apex:outputLabel>
+                         <apex:outputPanel >
+                             <apex:inputText value="{!state}" style="width:40px"/>
+                              <apex:inputText value="{!zip}" style="width:100px"/>
+                          </apex:outputPanel>
+                     </apex:pageBlockSectionItem>
+                     -->
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="Provider"></apex:outputLabel>
+                         <apex:inputText value="{!provider}"/>
+                     </apex:pageBlockSectionItem>
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="Card Type"></apex:outputLabel>
+                          <apex:selectList value="{!selectedCardType}" size="1">
+                              <apex:selectOptions value="{!cardTypes}" />
+                           </apex:selectList>
+                     </apex:pageBlockSectionItem>
+                     <!--
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="Cardholder Name"></apex:outputLabel>
+                         <apex:inputText value="{!cardHolder}"/>
+                     </apex:pageBlockSectionItem>
+                     -->
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="Card Number"></apex:outputLabel>
+                         <apex:inputText value="{!cardNumber}"/>
+                     </apex:pageBlockSectionItem>
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="Expiration Date"></apex:outputLabel>
+                         <apex:outputPanel >
+                             <apex:selectList value="{!cardMonth}" size="1">
+                              <apex:selectOptions value="{!months}" />
+                             </apex:selectList>
+                             <apex:selectList value="{!cardYear}" size="1">
+                                  <apex:selectOptions value="{!years}" />
+                             </apex:selectList>
+                          </apex:outputPanel>
+                     </apex:pageBlockSectionItem>
+                     <apex:pageBlockSectionItem >
+                         <apex:outputLabel value="Security Code (CVV)"></apex:outputLabel>
+                         <apex:inputText value="{!cardcvv}"/>
+                     </apex:pageBlockSectionItem>
+                     <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Amount"/>
+                        <apex:outputLabel value="{!totalAmount}"  />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                         <apex:outputLabel value=""></apex:outputLabel>
+                         <apex:commandButton value="Pay Now" action="{!process}" styleClass="bton btn_green btn_small float_center"/>
+                     </apex:pageBlockSectionItem>
+                     <br />
+                     <apex:image url="{!$Resource.KEvents__CardTypes}" />             
+                   </apex:pageBlockSection>
+                   <br />
+                   <apex:commandButton action="{!goToReserRegiPage}" value="Modify Registration" styleClass="bton btn_yellow btn_small float_left"/>
+              </td>
+              <!-- End :: Payment section -->
+                       
+               <!-- Start :: Registration info section -->
+               <td width="50%" valign="Top">
+               <apex:pageBlockSection columns="1" >
+                   <!--<apex:outputPanel id="namePanel" >
+                     <b> Please double check your registration details before payment.
+                      If you need any changes in the registration please click on "Modify Registration" button below.</b>
+                    </apex:outputPanel>-->
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Event Name"/>
+                        <apex:outputLabel value="{!curEvent.KEvents__Name__c}" />
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <!--<apex:outputLabel value="{!$ObjectType.Registration__c.Fields.AttendingDate__c.Label}"/>-->
+                        <apex:outputLabel value="Reserved On"/>
+                        <apex:outputText value="{0,date, MM'-'dd'-'yyyy}">
+                            <apex:param value="{!curRegistration.KEvents__AttendingDate__c}" /> 
+                        </apex:outputText>
+                    </apex:pageBlockSectionItem>
+                    
+                     <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Time"/>
+                        <apex:outputLabel value="{!curEvent.KEvents__EventTime__c}" />
+                    </apex:pageBlockSectionItem>
+                    
+                   <!-- <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Date Note"/>
+                        <apex:outputLabel value="{!curEvent.EventDateNote__c}" />
+                    </apex:pageBlockSectionItem> -->
+                    <!--
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.Event__c.Fields.StartDate__c.Label}"/>
+                        <apex:outputText value="{0,date, MM'-'dd'-'yyyy}">
+                            <apex:param value="{!curEvent.StartDateTime__c}" /> 
+                        </apex:outputText>
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.Event__c.Fields.EndDate__c.Label}"/>
+                        <apex:outputText value="{0,date, MM'-'dd'-'yyyy}">
+                            <apex:param value="{!curEvent.EndDateTime__c}" /> 
+                        </apex:outputText>
+                    </apex:pageBlockSectionItem>
+                    -->
+                   <!-- <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.Event__c.Fields.Location__c.Label}"/>
+                        <apex:outputLabel value="{!curEvent.Location__c}" />
+                    </apex:pageBlockSectionItem> -->
+                    <!--
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.Event__c.Fields.MemberPrice__c.Label}"/>
+                        <apex:outputLabel value="{!curEvent.MemberPrice__c}" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.Event__c.Fields.NonMemberPrice__c.Label}"/>
+                        <apex:outputLabel value="{!curEvent.NonMemberPrice__c}" />
+                    </apex:pageBlockSectionItem>
+                    -->
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.KEvents__Registration__c.Fields.KEvents__NumberOfAttendees__c.Label}"/>
+                        <apex:outputLabel value="{!noOfSelectedContacts}"  />
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="{!$ObjectType.KEvents__Registration__c.Fields.KEvents__RegistrationPrice__c.Label}"/>
+                        <apex:outputLabel value="{!totalAmount}"  />
+                    </apex:pageBlockSectionItem>
+                    
+                 </apex:pageBlockSection>    
+               </td>
+               <!-- End :: Registration info section -->
+             </tr>
+         </table> 
+              </apex:pageBlock>
+              
+              
+        </td>
+                 </tr>
+             </table>  
+    </apex:form>
+    </div>
+     <!--<apex:pageMessages ></apex:pageMessages> -->
+     </apex:define> 
+</apex:composition>
+</apex:page>

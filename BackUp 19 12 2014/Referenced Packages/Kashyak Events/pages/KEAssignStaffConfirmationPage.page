@@ -1,0 +1,42 @@
+<apex:page standardController="KEvents__Assignment__c" showHeader="false"
+    sidebar="false"
+    cache="false"
+    standardStylesheets="false"
+    > 
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, 'strap.css')}"/>
+    <apex:stylesheet value="{!$Resource.KEvents__colorcode}"/>
+ 
+    <style>
+        body
+        {
+          font-size: 14px;
+        }
+    </style>
+    <body>
+    <apex:composition template="{!$Site.Template}">
+        <apex:define name="body">
+        <apex:form >
+       <br/><br/>
+        
+    <div class="panelNew panel-Green">
+              <div class="panel-heading">
+                <span class="glyphicon glyphicon-ok"/>&nbsp;&nbsp;<h3 class="panel-title">Assign Staff Confirmation</h3>
+              </div>
+            <div class="panel-body">  
+                <label>
+                    <font color="Green" size="3">Thank you for your confirmation.<br/> 
+                      Your response is successfully updated in our system.
+                    </font>
+                </label> 
+            </div>
+        </div>      
+    </apex:form>
+    </apex:define>
+  </apex:composition> 
+  </body>    
+</apex:page>

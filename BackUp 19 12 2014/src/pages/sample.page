@@ -1,0 +1,18 @@
+<apex:page >
+ <apex:form >
+  <apex:pageblock >
+   <apex:pageBlockSection title="Sample page">
+   <apex:outputLabel >
+      User Name:
+   </apex:outputLabel>
+   <apex:inputtext />
+   <apex:outputLabel >
+      password:
+   </apex:outputLabel>
+   <apex:inputsecret />
+   <apex:commandButton value="Login"/ >
+   <apex:commandButton value="Register" action="https://www.facebook.com/"/>
+  </apex:pageBlockSection>
+  </apex:pageblock>
+ </apex:form>
+</apex:page>

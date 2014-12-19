@@ -1,0 +1,16 @@
+<apex:page controller="InterviewSevenClass" showHeader="false" sidebar="false">
+  <apex:sectionHeader title="Desplaying contact records as a Links"/>
+   <apex:form >
+     <apex:pageBlock title="All Contacts">
+      <apex:messages />
+       <apex:pageblockTable value="{!lstcon}" var="con">
+         <apex:column headerValue="Contact Name">
+           <apex:commandlink value="{!con.Name}" action="{!Click}"/>
+         </apex:column>
+         <apex:column headerValue="Contact Number" value="{!con.MobilePhone}"/>
+         <apex:column headerValue="E-Mail" value="{!con.Email}"/>
+         <apex:column headerValue="Fax" value="{!con.Fax }"/>
+       </apex:pageblockTable>
+     </apex:pageBlock>
+   </apex:form>
+</apex:page>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>20.0</apiVersion>
+    <availableInTouch>false</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>Coaching Detail Report - repeating PDF pages. 40 lines first page, 50 lines rest</description>
+    <label>Coaching Detail Report</label>
+</ApexPage>

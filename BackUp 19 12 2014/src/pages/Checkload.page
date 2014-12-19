@@ -1,0 +1,19 @@
+<apex:page StandardController="checking_Load__c" extensions="checkingLoadCntrlr">
+  <apex:sectionHeader title="Checking load" subtitle="Checking load"/>  
+   <script>
+     function Display()
+      {
+        calculate();
+      }
+   
+   </script>
+    <apex:form >
+      <apex:pageBlock >
+        <apex:pageblocksection title="Checking load" columns="1">
+          <apex:inputfield value="{!objcheq.Load__c}" Onchange="Display()"/>         
+          Free Time  <apex:outputText value="{!FreeTime}"/>
+            <apex:commandButton value="Save" action="{!Save}"/>
+        </apex:pageblocksection>
+      </apex:pageBlock>
+    </apex:form> 
+</apex:page>

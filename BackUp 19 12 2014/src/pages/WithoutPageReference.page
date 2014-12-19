@@ -1,0 +1,22 @@
+<apex:page controller="WPRController" tabStyle="Opportunity" >
+<script>
+ function save()
+  {
+    display();
+   }
+</script>
+<apex:sectionHeader title="Displaying Fields by using a custom controller" subtitle="This is custom controller"/>
+  <apex:form >
+   <apex:pageBlock title="Controller Detail">
+   <apex:pageBlockButtons >
+    <apex:commandButton action="{!SaveMethod}" value="Save The Opportunity" onclick="save"/>
+   </apex:pageBlockButtons>
+   <apex:pageBlockSection title="Opportunity Information" COLumns="2" collapsible="false">
+    <apex:inputField value="{!opp.Name}"/> 
+    <apex:inputField value="{!opp.DeliveryInstallationStatus__c}"/>
+    <apex:inputField value="{!opp.TrackingNumber__c}"/> 
+    <apex:inputField value="{!opp.CloseDate}"/> 
+   </apex:pageBlockSection>
+   </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <links>CreateEvents</links>
+    <links>EventCalendar</links>
+    <links>ClassCalendar</links>
+    <links>ReservationCalendar</links>
+    <links>VolunteerCalendar</links>
+    <pageComponentType>links</pageComponentType>
+</HomePageComponent>

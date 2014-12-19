@@ -1,0 +1,82 @@
+<apex:page standardController="codebackup__SVN__c" extensions="codebackup.CompareVersionExtension" standardStylesheets="false" sidebar="false">
+<apex:includeScript value="{!URLFOR($Resource.codebackup__ComapareVersions, 'ComapareVersions/dojo.xd.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.codebackup__ComapareVersions, 'ComapareVersions/diffview.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.codebackup__ComapareVersions, 'ComapareVersions/difflib.js')}"/>
+<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.ComapareVersions, 'ComapareVersions/diffview.css')}"/>
+<script type="text/javascript" language="javascript">
+        var $ = dojo.byId;
+        //var url = window.location.toString().split("#")[0];
+        function diffUsingJS() {
+            var base = difflib.stringAsLines($("baseText").value);
+            var newtxt = difflib.stringAsLines($("newText").value);
+            var sm = new difflib.SequenceMatcher(base, newtxt);
+            var opcodes = sm.get_opcodes();
+            var diffoutputdiv = $("diffoutput");
+            while (diffoutputdiv.firstChild) diffoutputdiv.removeChild(diffoutputdiv.firstChild);
+            diffoutputdiv.appendChild(diffview.buildView({ baseTextLines: base,
+                newTextLines: newtxt,
+                opcodes: opcodes,
+                baseTextName: "",
+                newTextName: "",
+                contextSize: null,
+                viewType: 0
+            }));
+            //window.location = url + "#diff";
+        }
+        window.onload = diffUsingJS;
+</script>
+<apex:sectionHeader title="Compare different versions" subtitle="{!codebackup__SVN__c.Name}"/>
+<apex:form >
+<apex:actionFunction action="{!changeVersion}" name="changeVersion">   
+</apex:actionFunction>
+    <apex:inputHidden id="typeId" value="{!type}"/>
+    <apex:pageBlock title="Select different versions of {!codebackup__SVN__c.Name} to compare">
+    <apex:pageBlockButtons >
+        <apex:commandButton value="Back" action="{!back}"/>
+    </apex:pageBlockButtons>
+    
+  <div class="compare_region">
+        <table width="100%">
+            <tr><td>
+            <apex:selectList value="{!selectedVersion}" size="1" onchange="assignType(0)"><apex:selectOptions value="{!options}"/>
+                
+            </apex:selectList>
+            </td><td>
+             <apex:selectList value="{!versionToCompare}" size="1" onchange="assignType(1)"><apex:selectOptions value="{!options}"/>
+                 
+             </apex:selectList>
+            </td></tr>
+            <tr><td>
+                <textarea id="baseText" rows="25" cols="120" readonly="true" style="display:none;">
+                    {!baseString}
+                </textarea>
+            </td><td>
+                <textarea id="newText" rows="25" cols="120" readonly="true" style="display:none;">
+                    {!newString}
+                </textarea>
+            </td></tr>
+            <tr><td>
+            
+            </td></tr>
+        </table>
+        
+        
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        
+
+    </div>
+    <!--<input type="button" value="Compare" onclick="diffUsingJS()"/>-->
+
+    <!--<div id="o1" style="height:400px; width:418px; overflow:auto; margin-right:40px; float:left;"></div>
+    <div id="o2" style="  float:left; height:400px; width:418px; overflow:auto;"></div>-->
+    <div id="diffoutput"></div>
+    </apex:pageBlock>
+    <script type="text/javascript">
+    function assignType(type){ 
+        document.getElementById('{!$Component.typeId}').value=type;
+        changeVersion();
+    }
+</script>
+</apex:form>
+</apex:page>

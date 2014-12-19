@@ -1,0 +1,646 @@
+<apex:page standardController="KEvents__Event__c" Extensions="KEvents.KEDisplayEventCntr" showHeader="false" id="pageid" sidebar="false" cache="false" standardStylesheets="false">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <head>
+            <style>
+                div #map_canvas { height: 300px; width: 300Px; }
+            </style>
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        </head>
+        <script>
+        function validate2()
+        {
+           var fname1=document.getElementById('pageid:SiteTemplate:FormId:fid2').value;
+           var lname1=document.getElementById('pageid:SiteTemplate:FormId:lid2').value;
+           var email1=document.getElementById('pageid:SiteTemplate:FormId:eid2').value;
+           var phone1=document.getElementById('pageid:SiteTemplate:FormId:pid2').value;
+           var desc1=document.getElementById('pageid:SiteTemplate:FormId:hid2').value;
+           
+           if(fname1 ==null ||fname1 =='')
+           {
+              alert('Please Enter Your First Name');
+              fname1.focus();
+              return false;
+           }
+           else if(lname1 ==null || lname1 =='')
+           {
+               alert('Please Enter Your Last Name');
+               lname1.focus();
+               return false;
+           }
+            else if(email1 ==null || email1 =='')
+           {
+               alert('Please Enter Your Email');
+               email1.focus();
+               return false;
+           }
+            else if(phone1==null || phone1=='')
+           {
+               alert('Please Enter Your Phone Number');
+               phone1.focus();
+               return false;
+           }
+           else if(desc1==null || desc1=='')
+           {
+               alert('Please Enter your Question');
+               desc1.focus();
+               return false;
+           }
+        } 
+        
+    </script>  
+    <style type="text/css">
+            .custPopup{
+                background-color: white;
+                border-width: 2px;
+                border-style: solid; 
+                z-index: 9999;
+                left: 50%;
+                padding:10px;
+                position: absolute;
+                /* These are the 3 css properties you will need to change so the popup 
+                displays in the center of the screen. First set the width. Then set 
+                margin-left to negative half of what the width is. You can add 
+                the height property for a fixed size pop up if you want.*/
+                width: 770px;
+                margin-left: -380px;
+                top:100px;
+            }
+            .popupBackground{
+                background-color:black;
+                opacity: 0.20;
+                filter: alpha(opacity = 20);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 9998;
+            }
+            
+            .closeButton {
+                float: right;
+            }
+        
+            .custPopup1{
+                background-color: white;
+                border-width: 2px;
+                border-style: solid; 
+                z-index: 9999;
+                left: 50%;
+                padding:10px;
+                position: absolute;
+                /* These are the 3 css properties you will need to change so the popup 
+                displays in the center of the screen. First set the width. Then set 
+                margin-left to negative half of what the width is. You can add 
+                the height property for a fixed size pop up if you want.*/
+                width: 770px;
+                margin-left: -380px;
+                top:100px;
+            }
+            .popupBackground1{
+                background-color:black;
+                opacity: 0.20;
+                filter: alpha(opacity = 20);
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 9998;
+            }
+            
+            .closeButton1 {
+                float: right;
+            }
+        
+            .sfdc_richtext img{
+                border: 0;
+                height: 250px;
+                width: 300px;
+                
+            }
+  
+    </style>
+ 
+    <apex:composition template="{!$Site.Template}">
+        <apex:define name="body">
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, 'strap.css')}"/>
+            <apex:stylesheet value="{!$Resource.KEvents__colorcode}"/>
+            <apex:stylesheet value="{!$Resource.KEvents__StyleColors}"/>
+                     
+            <apex:form id="FormId">
+            <br/>
+                           
+                        <!--  ========================= >>>>>>>>>>>>>>>>  Site Links Start <<<<<<<<<<<<<<<<<<<<<<< ====================  -->         
+            <table align="Right"> 
+               <tr>
+                    <td>
+                       <c:KETooltipComp text="Calendar View"><a href="/events/{!CalenderPage}" ><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarView.png')}"/></a></c:KETooltipComp> 
+                       <c:KETooltipComp text="List View"><a href="/events/{!EventsListDisplayPage}" ><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconListView.png')}"/></a></c:KETooltipComp> 
+                       <c:KETooltipComp text="Detail View"><a href="/events/{!EventDetailPage}" ><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconThumbNailView.png')}"/></a></c:KETooltipComp> 
+                                                   
+                     </td>
+                </tr>    
+            </table><br/>
+                        <!--  ========================= >>>>>>>>>>>>>>>>  Site Links End <<<<<<<<<<<<<<<<<<<<<<< ====================  -->    
+                            
+            <div class="form-group">
+                <div class="col-lg-10" align="Right">
+                    <apex:outputPanel rendered="{!Sponcerhide}">
+                      <apex:commandLink value="Sponcer Info"  action="{!SponcerPopup}" reRender="newform1"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </apex:outputPanel>    
+                    <apex:outputPanel rendered="{!Faqhide}">
+                        <apex:commandLink value="FAQ" action="{!displayPopup}" reRender="newform"/>
+                    </apex:outputPanel>    
+                </div><br/>
+            </div>  
+            <div>       
+              &nbsp;&nbsp;<h2 class="title"><apex:outputfield value="{!curEvent.KEvents__Name__c}"/></h2>
+            </div><br/>
+            <div Class="col-md-8">
+              <div class="panelNew panel-Purple">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-time"/>&nbsp;&nbsp;<h3 class="panel-title">Event Information</h3>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <apex:outputPanel rendered="{!Googlehide}">
+                            <a href="#" onclick="return window.open('{!curEvent.Google__c}')">
+                                    <image src="{!$Resource.GooglePlusIcon}" width="25px" height="25px"/>
+                            </a>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!Facebookhide}">
+                            <a href="#" onclick="return window.open('{!curEvent.Facebook__c}') ">
+                                <image src="{!$Resource.FacebookIcon}" width="25px" height="25px" />
+                            </a>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!Twitterhide}">
+                            <a href="#" onclick="return window.open('{!curEvent.Twitter__c}')">
+                                <image src="{!$Resource.TwitterIcon}" width="25px" height="25px"/ >
+                            </a>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!Linkedinhide}">
+                            <a href="#" onclick="return window.open('{!curEvent.Linkedin__c}')">
+                                <image src="{!$Resource.LinkedInIcon}" width="25px" height="25px"/ >
+                            </a>
+                        </apex:outputPanel>
+                </div>
+                <div class="panel-body">
+                                     <!--  ===================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Event Details Start <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ================================ -->             
+                    <apex:outputPanel rendered="{!recordType=='Event'}">
+                        <div class="table-cell">
+                            <apex:outputPanel layout="block" >
+                                <apex:outputfield value="{!KEvents__Event__c.Program__r.KEvents__Image__c}" styleClass="img-rounded"/><br/>
+                                    <apex:outputPanel rendered="{!IsfreeHide1}">
+                                        <div class="form-group">    
+                                            <label for="inputEmail" class="col-lg-5 control-label">Price :</label>
+                                                <div class="col-lg-6">
+                                                    <apex:outputText value="$ {!KEvents__Event__c.KEvents__NonMemberPrice__c}" />
+                                                </div><br/>
+                                        </div> 
+                                        <apex:outputPanel rendered="{!ismemhide}">
+                                            <apex:outputPanel rendered="{!ismemberHide}">
+                                                <div class="form-group">    
+                                                    <label for="inputEmail" class="col-lg-5 control-label">Member Price :</label>
+                                                    <div class="col-lg-6">
+                                                       <apex:outputText value="$ {!KEvents__Event__c.KEvents__MemberPrice__c}" />
+                                                    </div><br/>
+                                                </div>
+                                            </apex:outputPanel>
+                                       </apex:outputPanel>
+                                   </apex:outputPanel>  
+                                   <apex:outputPanel rendered="{!(curEvent.Program__r.KEvents__AllowPayAtDoorPrice__c==true)}">  
+                                        <div class="form-group">    
+                                            <label for="inputEmail" class="col-lg-5 control-label">Pay at Door Additional Price :</label>
+                                                <div class="col-lg-6">
+                                                    <apex:outputText value="$ {!KEvents__Event__c.Program__r.KEvents__ExtraAmountPayAtDoor__c}" />
+                                                </div>
+                                        </div><br/>
+                                   </apex:outputPanel>
+                                                       
+                                   <apex:outputPanel rendered="{!(curEvent.Program__r.KEvents__AllowGroupDiscount__c == true)}">  
+                                       <div class="form-group">    
+                                           <label for="inputEmail" class="col-lg-5 control-label">Group Discount Eligability :</label>
+                                           <div class="col-lg-6">
+                                              Minimum&nbsp;<apex:outputText value="{!KEvents__Event__c.Program__r.KEvents__GroupDiscountAligability__c}" /> attendees
+                                           </div>
+                                      </div><br/>
+                                   </apex:outputPanel>
+                                   <apex:outputPanel rendered="{!(curEvent.Program__r.KEvents__AllowGroupDiscount__c == true)}">        
+                                        <div class="form-group">    
+                                            <label for="inputEmail" class="col-lg-5 control-label">Group Discount Price :</label>
+                                            <div class="col-lg-6">
+                                                <apex:outputText value="$ {!KEvents__Event__c.Program__r.KEvents__GroupDiscountAmount__c}" />
+                                            </div>
+                                        </div><br/><br/> 
+                                   </apex:outputPanel>
+                                   <apex:outputPanel rendered="{!Descriptionhide}">
+                                        &nbsp;&nbsp;&nbsp; <label>Description :</label><br/>
+                                            <div class="col-md-12">
+                                               <p align="justify"><apex:outputText value="{!KEvents__Event__c.Program__r.KEvents__Description__c}"/></p>
+                                            </div>
+                                   </apex:outputpanel>
+                                  <apex:outputPanel rendered="{!Notehide}">
+                                         <div class="form-group">
+                                          <label class="col-lg-5 control-label">Instructions/Note :</label><br/>
+                                              <div class="col-md-12">
+                                                    <apex:outputField value="{!KEvents__Event__c.Program__r.KEvents__InstructionsNote__c}"/>
+                                              </div>
+                                         </div> 
+                                   </apex:outputPanel>
+                                   <div class="col-md-12"> 
+                                        <p class="text-center"><a href="/events/{!RegistrationPage}?id={!Event__c.Id}" class="btnNew btn-Gray" ><label>Register</label></a> &nbsp; &nbsp;
+                                        </p> 
+                                    </div>
+                               </apex:outputPanel>   
+                            </div> 
+                        </apex:outputPanel>
+    <!--  =========================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Event Details End  <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================================= -->         
+    <!--  =========================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Reservation Details Start <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================================= -->         
+                       <apex:outputPanel rendered="{!recordType=='Reservation'}">
+                           <div class="table-cell">
+                                <apex:outputPanel layout="block" >
+                                    <apex:outputfield value="{!KEvents__Event__c.Program__r.KEvents__Image__c}" styleClass="img-rounded"/> 
+                                      <br/>
+                                       <apex:outputPanel rendered="{!IsfreeHide}">
+                                           <div class="form-group">    
+                                                <label for="inputEmail" class="col-lg-5 control-label">Reservation Fee :</label>
+                                                    <div class="col-lg-6">
+                                                      <apex:outputText value="$ {!KEvents__Event__c.Program__r.KEvents__Fee__c}" />
+                                                    </div><br/>
+                                           </div> 
+                                           <apex:outputPanel >  
+                                                <div class="form-group">    
+                                                   <label for="inputEmail" class="col-lg-5 control-label"> # Attendees Allowed with Reservation Fee :</label>
+                                                       <div class="col-lg-6">
+                                                            <apex:outputText value=" {!KEvents__Event__c.Program__r.KEvents__StudentsAllowedwithEventFees__c}" />
+                                                       </div>
+                                                </div><br/><br/>
+                                           </apex:outputPanel> 
+                                            <apex:outputPanel >        
+                                                <div class="form-group">    
+                                                   <label for="inputEmail" class="col-lg-5 control-label">Additional Fee per Attendee :</label>
+                                                    <div class="col-lg-6">
+                                                        <apex:outputText value="$ {!KEvents__Event__c.Program__r.KEvents__AdditionalFee__c}" />
+                                                   </div>
+                                                </div> <br/><br/>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!SchShip}">
+                                                <div class="form-group">    
+                                                  <label for="inputEmail" class="col-lg-5 control-label">Scholarship :</label>
+                                                    <div class="col-lg-6">
+                                                        <apex:outputText value=" {!KEvents__Event__c.Program__r.KEvents__Scholarship__c}" />
+                                                    </div><br/>
+                                                </div>
+                                           </apex:outputPanel>  
+                                            </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!Descriptionhide}">
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;<label>Description :</label><br/>
+                                                          <div class="col-md-12">
+                                                                <p align="justify"><apex:outputfield value="{!KEvents__Event__c.Program__r.KEvents__Description__c}"/></p>
+                                                          </div>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!Notehide}">
+                                                <div class="form-group">
+                                                  <label class="col-lg-5 control-label">Instructions/Note :</label><br/>
+                                                       <div class="col-md-12">
+                                                            <p align="justify"><apex:outputfield value="{!KEvents__Event__c.Program__r.KEvents__InstructionsNote__c}"/></p>
+                                                        </div><br/><br/>
+                                                </div> 
+                                            </apex:outputPanel><br/><br/>
+                                               <div class="col-md-12"> 
+                                                    <p class="text-center"><a href="/events/{!RegistrationPage}?id={!Event__c.Id}" class="btnNew btn-Gray" ><label>Register</label></a> &nbsp; &nbsp;
+                                                    </p> 
+                                                </div>
+                                            </apex:outputPanel> 
+                                        </div>
+                                    </apex:outputPanel>
+     <!--  =========================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Reservation Details END  <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================================= -->         
+    
+     <!--  =========================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Training Details Start <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================================= -->         
+      
+                            
+                                    <apex:outputPanel rendered="{!recordType=='Training'}">
+                                        <div class="table-cell">
+                                            <apex:outputPanel layout="block" >
+                                                <apex:outputfield value="{!KEvents__Event__c.Program__r.KEvents__Image__c}" styleClass="img-rounded"/> 
+                                                <br/>
+                                               <apex:outputPanel rendered="{!IsfreeHide1}">
+                                                    <div class="form-group">    
+                                                       <label for="inputEmail" class="col-lg-5 control-label">Price :</label>
+                                                       <div class="col-lg-6">
+                                                            <apex:outputText value="$ {!KEvents__Event__c.KEvents__NonMemberPrice__c}" />
+                                                       </div><br/>
+                                                    </div> 
+                                                    <div class="form-group">    
+                                                        <label for="inputEmail" class="col-lg-5 control-label">Member Price :</label>
+                                                            <div class="col-lg-6">
+                                                                <apex:outputText value="$ {!KEvents__Event__c.KEvents__MemberPrice__c}" />
+                                                            </div><br/>
+                                                    </div>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!Descriptionhide}">
+                                                    &nbsp;&nbsp;&nbsp;<label>Description :</label><br/>
+                                                    <div class="col-md-12">
+                                                        <p align="justify"><apex:outputText value="{!KEvents__Event__c.Program__r.KEvents__Description__c}"/></p>
+                                                    </div>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!Notehide}">
+                                                    <div class="form-group">
+                                                        <label class="col-lg-5 control-label">Instructions/Note :</label><br/>
+                                                        <div class="col-md-12">
+                                                            <apex:outputField value="{!KEvents__Event__c.Program__r.KEvents__InstructionsNote__c}"/>
+                                                        </div>
+                                                    </div> 
+                                                </apex:outputPanel>
+                                                <div class="col-md-12"> 
+                                                    <p class="text-center"><a href="/events/{!RegistrationPage}?id={!Event__c.Id}" class="btnNew btn-Gray" ><label>Register</label></a> &nbsp; &nbsp;
+                                                    </p> 
+                                                </div>
+                                            </apex:outputPanel>  
+                                        </div>                                          
+                                    </apex:outputpanel>
+      <!--  =========================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Training Details End  <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================================= -->         
+              
+      <!--  =========================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Internal Details Start <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================================= -->         
+                 
+           
+                                    <apex:outputPanel rendered="{!recordType=='Internal'}">
+                                        <div class="table-cell">
+                                            <apex:outputPanel layout="block" >
+                                                <apex:outputfield value="{!KEvents__Event__c.Program__r.KEvents__Image__c}" styleClass="img-rounded"/> 
+                                                <br/>
+                                                <apex:outputPanel rendered="{!Descriptionhide}">
+                                                    &nbsp;&nbsp;&nbsp;<label>Description :</label><br/>
+                                                    <div class="col-md-12">
+                                                        <p align="justify"><apex:outputText value="{!KEvents__Event__c.Program__r.KEvents__Description__c}"/></p>
+                                                    </div><br/>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!Notehide}">
+                                                    <div class="form-group">
+                                                        <label class="col-lg-5 control-label">Instructions/Note :</label><br/>
+                                                        <div class="col-md-12">
+                                                            <apex:outputField value="{!KEvents__Event__c.Program__r.KEvents__InstructionsNote__c}"/>
+                                                        </div>
+                                                    </div> 
+                                                </apex:outputPanel>
+                                                <div class="col-md-12"> 
+                                                    <p class="text-center"><a href="/events/{!RegistrationPage}?id={!Event__c.Id}" class="btnNew btn-Gray" ><label>Register</label></a> &nbsp; &nbsp;
+                                                    </p> 
+                                                </div>
+                                            </apex:outputPanel>
+                                        </div> 
+                                    </apex:outputPanel> 
+      <!--  =========================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Internal Details End  <<<<<<<<<<<<<<<<<<<<<<<<<<<<============================================= -->         
+                                    
+                                </div>
+                            </div>
+                        </div>
+                                                     
+                        <div class="col-md-4">
+                            <div class="panelNew panel-Orange">
+                                <div class="panel-heading">
+                                    <span class="glyphicon glyphicon-road"/> &nbsp;<h3 class="panel-title">When and Where</h3>
+                                </div>
+                            <div class="panel-body">
+                                <apex:outputPanel layout="block" rendered="{!NOT(ISNULL(Contacts)) && Contacts.size > 0}" id="resultsBlock2">            
+                                    <apex:outputPanel layout="block" id="mapSection2">
+                                        <apex:outputPanel rendered="{!curEvent.KEvents__EventStartDate__c != curEvent.KEvents__EventEndDate__c}"> 
+                                            <span class="glyphicon glyphicon-time"/> &nbsp;&nbsp;
+                                                <b class="fontsize-1">
+                                                    <apex:outputText value="{0,date,EEEE , MMMM d, yyyy}" >
+                                                        <apex:param value="{!curEvent.KEvents__EventStartDate__c}" />
+                                                    </apex:outputText>&nbsp;&nbsp;
+                                                    <apex:outputText value="{!curEvent.KEvents__StartTime__c}" /> <br/>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   
+                                                         To  <br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <apex:outputText value="{0,date,EEEE , MMMM d, yyyy}" >
+                                                        <apex:param value="{!curEvent.KEvents__EventEndDate__c}" />
+                                                    </apex:outputText>&nbsp;&nbsp;
+                                                    <apex:outputText value="{!curEvent.KEvents__EndTime__c}" />&nbsp;&nbsp;({!TimeZone})</b>
+                                        </apex:outputpanel>   
+                                        <apex:outputPanel rendered="{!curEvent.KEvents__EventStartDate__c == curEvent.KEvents__EventEndDate__c}"> 
+                                          <span class="glyphicon glyphicon-time"/> &nbsp;&nbsp;
+                                                <b class="fontsize-1"><apex:outputText value="{0,date,EEEE , MMMM d, yyyy}" >
+                                                                            <apex:param value="{!curEvent.KEvents__EventStartDate__c}" />
+                                                                       </apex:outputText> </b><br/>
+                                                                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                                                      <apex:outputText value="{!curEvent.KEvents__StartTime__c}" /> &nbsp; To
+                                                                      &nbsp;<apex:outputText value="{!curEvent.KEvents__EndTime__c}" />&nbsp;&nbsp;({!TimeZone})
+                                        </apex:outputpanel>  <br/><br/>
+                                            <span class="glyphicon glyphicon-map-marker"/> &nbsp;&nbsp;
+                                                <a href="#" class="fontsize-1" onclick="return window.open('https://www.google.com/maps/preview?f=q&hl=en&q={!KEvents__Event__c.KEvents__EventLocation__c}');"><apex:outputText value="{!curEvent.program__r.Site__r.Name}" /></a><br/>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                                    <apex:outputText value="{!KEvents__Event__c.KEvents__EventLocation__c}" /><br/><br/>                                                                    <div class="table-responsive">
+                                                       <p class="text-center">
+                                                           <a href="/events/{!RegistrationPage}?id={!Event__c.Id}" class="btnNew btn-Gray" ><label>Register</label></a> <br/>&nbsp; &nbsp;
+                                                        </p>
+                                                        <div class="table-responsive">
+                                                            <div id="map_canvas"/><br/>
+                                                            </div>
+                                                        </div>
+                                                        <p class="text-center"><a href="#" onclick="return window.open('https://www.google.com/maps/preview?f=q&hl=en&q={!KEvents__Event__c.KEvents__EventLocation__c}');">Get Directions</a></p>
+                                   </apex:outputPanel>
+                                </apex:outputpanel>
+                                   </div>
+                                   
+            
+                                </div>
+                             
+                            <apex:commandLink action="{!displayCalender}" reRender="calenderEvent">Add to my Calendar</apex:commandLink><br/>
+                                    <apex:outputPanel id="calenderEvent">
+                                         <apex:outputPanel rendered="{!calenderShow}" >
+                                            <apex:commandLink target="_blank" action="{!googleConnectCall}">
+                                                <c:KETooltipComp text="Add to Google Calendar"><apex:image url="{!$Resource.KEvents__Google}" width="35" height="35"/></c:KETooltipComp>
+                                            </apex:commandLink>&nbsp;&nbsp;&nbsp;
+                                            <apex:commandLink target="_blank" action="{!doYahooconnectCall}">
+                                                <c:KETooltipComp text="Add to Yahoo Calendar"><apex:image url="{!$Resource.KEvents__Yahoo}" width="35" height="35"/></c:KETooltipComp>
+                                            </apex:commandLink>&nbsp;&nbsp;&nbsp;
+                                            <apex:commandLink target="_blank" action="/events/KEvents__KEOutlookCalenderPage">
+                                                <c:KETooltipComp text="Download Outlook Calendar File"><apex:image url="{!$Resource.KEvents__Outlook}" width="35" height="35"/></c:KETooltipComp>
+                                            </apex:commandLink>&nbsp;&nbsp;&nbsp;          
+                                            <br/>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><apex:image url="{!$Resource.KEvents__Outlook}" width="20" height="20"/></span>
+                                                    <apex:inputtext value="{!EmailValue}" html-placeholder="My Email ID" styleClass="form-control"/>
+                                                        <span class="input-group-btn">
+                                                            <apex:commandLink action="{!outlookConnect}" styleClass="btnNew btn-Gray" reRender="calenderEvent">
+                                                                <c:KETooltipComp text="Email Outlook Calendar File"><label>Email Me</label></c:KETooltipComp>
+                                                            </apex:commandLink>
+                                                        </span>
+                                            </div> 
+                                            <apex:outputPanel rendered="{!sentmail}">
+                                                <label class="text-success"> Sucessfully sent.</label><br/>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel><br/>
+                                    <apex:commandLink action="{!question}" reRender="displaycontdetails">Have a Question?</apex:commandLink>
+                                        <apex:outputPanel id="displaycontdetails">
+                                            <apex:outputPanel rendered="{!QuestionId}" >
+                                                <div class="panelNew panel-Orange">
+                                                    <div class="panel-heading">
+                                                        <span class="glyphicon glyphicon-question-sign"/>&nbsp;&nbsp;<h3 class="panel-title">My Details and Question</h3>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                       <apex:pageMessages ></apex:pageMessages>
+                                                       <apex:outputPanel rendered="{!SucessMessage}">
+                                                            <label class="text-success"> Thank you for your inquiry.</label><br/>
+                                                            <label class="text-success">     Our representative will contact you as soon as possible.</label>
+                                                        </apex:outputPanel>
+                                                        <apex:outputpanel rendered="{!HideForm}">
+                                                            <div class="col-lg-12">
+                                                                <apex:inputtext value="{!FirstName}" id="fid2"  styleClass="form-control" html-placeholder="First Name *"/>
+                                                            </div><br/><br/><br/>
+                                                            <div class="col-lg-12">
+                                                                <apex:inputtext value="{!LastName}" id="lid2" styleClass="form-control" html-placeholder="Last Name *"/>
+                                                            </div><br/><br/><br/>
+                                                            <div class="col-lg-12">
+                                                               <apex:inputText value="{!Email}" id="eid2"  styleClass="form-control" html-placeholder="Email *"/>
+                                                            </div><br/><br/><br/>
+                                                            <div class="col-lg-12">
+                                                                <apex:inputText value="{!Phone}" id="pid2" styleClass="form-control" html-placeholder="Phone *"/>
+                                                            </div><br/><br/><br/>
+                                                            <div class="col-lg-12">
+                                                                <apex:inputTextArea value="{!Haveaquestion}" id="hid2" style="height:100px;"  styleClass="form-control" html-placeholder="My Question*"/>
+                                                            </div><br/><br/><br/><br/><br/><br/>
+                                                               <p class="text-center"><apex:commandButton value="Submit Enquiry" action="{!submit}" onmouseover="validate2()" reRender="displaycontdetails"  styleClass="btnNew btn-Gray" style="   background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 4px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/></p>                                                                          
+                                                        </apex:outputPanel>
+                                                    </div> 
+                                                </div>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        </div>
+                        </apex:form>
+            
+                 
+                   
+                   <apex:form id="newform">
+                   <apex:outputPanel id="popupBlock">
+                        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!showPopUp}"  />
+                          <apex:outputPanel styleClass="custPopup" layout="block" rendered="{!showPopUp}">
+                          <apex:commandlink action="{!closePopup}" rerender="popupBlock">
+                              <apex:image value="{!$Resource.KEvents__Closebutton}" title="Close the popup" styleClass="closeButton" width="20px" height="20px"/>
+                              <!--<image src="{!$Resource.KEvents__Closebutton}" title="Close the popup" width="20px" height="20px" />-->
+                          </apex:commandlink> 
+                          <div class="form-group">    
+                                <div class="col-lg-12">
+                                 <apex:outputField value="{!KEvents__Event__c.Program__r.KEvents__FAQ__c}"/>
+                              </div>
+                         </div>
+                         <div> 
+                           <center> <apex:commandButton value="Close" action="{!closePopup}" reRender="popupBlock" styleClass="btnNew btn-Gray" style=" background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 4px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/></center>
+                         </div> 
+                     </apex:outputPanel>
+              </apex:outputPanel> 
+                       
+                  </apex:form>
+              <apex:form id="newform1">
+               <apex:outputPanel id="popupBlock1">
+                    <apex:outputPanel styleClass="popupBackground1" layout="block" rendered="{!showPopUp1}"  />
+                         <apex:outputPanel styleClass="custPopup1" layout="block" rendered="{!showPopUp1}">
+                                  <apex:commandlink action="{!closePopup}" rerender="popupBlock1">
+                                     <apex:image value="{!$Resource.KEvents__Closebutton}" title="Close the popup" styleClass="closeButton1" width="20px" height="20px"/>
+                                  </apex:commandlink>  
+                                    <div class="form-group">    
+                                        <div class="col-lg-12">
+                                         <apex:outputField value="{!KEvents__Event__c.Program__r.KEvents__Sponcer__c}"/>
+                                      </div>
+                                 </div>
+                             <div> 
+                           <center> <apex:commandButton value="Close" action="{!closePopup}" reRender="popupBlock1" styleClass="btnNew btn-Gray" style=" background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 4px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/></center>
+                            </div>
+                         </apex:outputPanel>
+                   </apex:outputPanel> 
+                    
+              </apex:form>
+<script type="text/javascript">
+                                   
+                                        var contacts = {!contactsJson};    // Array of contact data, some of them might have lat/long info, some we'll have to geocode client side
+                                        var coords = [];                   // Just the latitude/longitude for each contact
+                                        var requestCounter = 0;
+                                    
+                                        var markers = [];                  // Red things we pin to the map.
+                                        var balloon = new google.maps.InfoWindow(); // Comic-like baloon that floats over markers.
+                                    
+                                        function geocodeClientSide() {
+                                            for(var i = 0; i < contacts.length; i++) {
+                                                if(contacts[i].KEvents__Program__r.KEvents__Site__r.KEvents__Location__Latitude__s != null && contacts[i].KEvents__Program__r.KEvents__Site__r.KEvents__Location__Longitude__s != null) {
+                                                    coords.push(new google.maps.LatLng(contacts[i].KEvents__Program__r.KEvents__Site__r.KEvents__Location__Latitude__s, contacts[i].KEvents__Program__r.KEvents__Site__r.KEvents__Location__Longitude__s));
+                                                } else {
+                                                    ++requestCounter;
+                                                    var address = contacts[i].KEvents__EventLocation__c;
+                                                    var geocoder = new google.maps.Geocoder();
+                                                    if (geocoder) {
+                                                        geocoder.geocode({'address':address}, function (results, status) {
+                                                            if (status == google.maps.GeocoderStatus.OK) {
+                                                                coords.push(results[0].geometry.location);
+                                                            } else {
+                                                                var pTag = document.createElement("p");
+                                                                pTag.innerHTML = status;
+                                                                document.getElementById('log').appendChild(pTag);
+                                                            }
+                                                            if(--requestCounter == 0) {
+                                                                drawMap();
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            }
+                                            // It could be the case that all was geocoded on server side (or simply retrieved from database).
+                                            // So if we're lucky - just proceed to drawing the map.
+                                            if(requestCounter == 0) {
+                                                drawMap();
+                                            }
+                                        }
+                                    
+                                        function drawMap(){
+                                         
+                                            var mapOptions = {
+                                                center: coords[0],
+                                                zoom: 16,
+                                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                                            };
+                                        
+                                            var map = new google.maps.Map(document.getElementById("map_canvas"),  mapOptions);
+                                           
+                                            for(var i = 0; i < coords.length; ++i){
+                                                var marker = new google.maps.Marker({map: map, position: coords[i], title:contacts[i].name, zIndex:i});
+                                    
+                                                google.maps.event.addListener(marker, 'click', function() {
+                                                    var index = this.zIndex;
+                                                    balloon.content = '<b>'+contacts[index].KEvents__Program__r.KEvents__Site__r.KEvents__name + '</b><br/>'+contacts[index].KEvents__Program__r.KEvents__Site__r.KEvents__name +  '<br/>' + contacts[index].Program__r.Site__r.KEvents__name;
+                                                   // balloon.content :"abc";
+                                                    balloon.open(map,this);
+                                                });
+                                                
+                                                markers.push(marker);
+                                            }
+                                           
+                                        }
+                                        function calcRoute() {
+                                                var start = document.getElementById('start').value;
+                                                var end = document.getElementById('end').value;
+                                                var mode=google.maps.DirectionsTravelMode.DRIVING;
+                                                
+                                                var request = {
+                                                    origin:start,
+                                                    destination:end,
+                                                    travelMode: mode
+                                                };
+                                                directionsService.route(request, function(response, status) {
+                                                  if (status == google.maps.DirectionsStatus.OK) {
+                                                    directionsDisplay.setDirections(response);
+                                                  }
+                                                });
+                                      }
+                                    
+                                        geocodeClientSide();
+                </script>
+               
+         </apex:define>
+</apex:composition> 
+</apex:page>

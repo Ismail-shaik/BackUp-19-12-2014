@@ -1,0 +1,162 @@
+<apex:page renderAs="pdf" showHeader="false" standardController="scongo__employee__c" 
+           extensions="scongo.PDFcoachSummary" cache="false">
+ <head>
+  <style type="text/css" media="print">
+   @page {
+    @top-center {
+       content: element(header);
+    }
+    @bottom-center {
+       content: element(footer);
+    }
+   }
+
+   div.header {
+       padding: 10px;
+       position: running(header);
+   }
+
+   div.footer {
+       display: block;
+       padding: 5px;
+       position: running(footer);
+    }
+
+   .pagenumber:before {
+       content: counter(page);
+    }
+
+   .pagecount:before {
+       content: counter(pages);
+     }
+   
+   .mytableheader { 
+       background-color: #EEEEFF;
+       color: #000099;
+   }
+   
+    .headerFont {
+        font-size:14.0pt;
+        font-family:"Arial","sans-serif";
+   }
+ </style>
+</head>
+
+<div class="header">
+    <div>
+       <table width="100%">
+         <apex:variable var="logo" value="{!CompanyLogo}" />
+         <tr><td align="left">
+             <img src="{!logo}" alt="Company Logo"/>
+         </td></tr>
+         <tr><td align="center" class="headerFont">Coaching Summary Report</td></tr>
+       </table>
+    </div>
+</div>  
+<div class="footer">
+ <div>
+<table width="100%">
+<tr>
+<td align="left" width="35%">Coaching Summary Report</td>
+<td align="center" width="30%">{!CASE(MONTH(TODAY()),1, "January",2, "February",3, "March",4, "April",5, "May",6, "June",7, "July",8, "August",9, "September",10, "October",11, "November",12, "December","None")} {!DAY(TODAY())}, {!YEAR(TODAY())}</td>
+<td align="right" width="35%">Page <span class="pagenumber"/>/<span class="pagecount"/></td>
+</tr>
+</table>
+ </div>
+</div>
+ <br/><br/>
+ <br/><br/>
+ <apex:variable var="startDate" value="{!DisplayStartDate}" />
+ <apex:variable var="endDate" value="{!DisplayEndDate}" />
+ <apex:variable var="rating" value="{!AverageRating}" />
+ <apex:variable var="empName" value="{!EmpName}" />
+ <apex:variable var="empJob" value="{!EmpJobTitle}" />
+ <apex:variable var="modeCoach" value="{!ModeCoach}" />
+
+<apex:outputPanel rendered="{!case(modeCoach,'1','true','false')}"> 
+<table width="100%" style="border-width: 1; border: solid; border-color: #CCCCCC; border-spacing: 5; font-size: 75%;">
+ <tr><td width="50%"><b>Employee:</b> {!empName}</td>
+    <td width="50%"><b>Title:</b> {!empJob}</td>
+ </tr>    
+ <tr><td width="50%"><b>Coaching Period:</b> {!startDate} - {!endDate}</td>
+    <td width="50%"></td>
+ </tr>
+</table>
+</apex:outputPanel>
+<apex:outputPanel rendered="{!case(modeCoach,'1','false','true')}"> 
+<table width="100%" style="border-width: 1; border: solid; border-color: #CCCCCC; border-spacing: 5; font-size: 75%;">
+ <tr><td width="50%"><b>Employee:</b> {!empName}</td>
+    <td width="50%"><b>Title:</b> {!empJob}</td>
+ </tr>    
+ <tr><td width="50%"><b>Coaching Period:</b> {!startDate} - {!endDate}</td>
+    <td width="50%"><b>Average Coach Rating:</b> {!ROUND(rating,0)}%</td>
+ </tr>
+</table>
+</apex:outputPanel>
+
+<apex:repeat value="{!pagePDFLines}" var="aPageOfRecords">
+ <div style="page-break-after:always;">
+ <br/><br/>
+ <br/><br/>
+    <apex:dataTable value="{!aPageOfRecords}" var="s" id="histSet" border="0" rowClasses="odd,even" cellPadding="4" width="100%" 
+                    style="border-width: 1; border: solid; border-color: #CCCCCC; border-spacing: 0; font-size: 75%;"
+                   headerClass="mytableheader" captionStyle="text-align: left; font-weight: strong;">
+        <apex:column style="background-color: white;">
+            <apex:facet name="header">Coach</apex:facet>
+            <apex:outputText value="{!s.coach_appointment__r.scongo__coach_name__c}"/>
+        </apex:column>
+        <apex:column style="background-color: white;">
+            <apex:facet name="header">Date</apex:facet>
+            <apex:outputText value="{!s.coach_appointment__r.scongo__appt_date__c}"/>
+        </apex:column>
+        <apex:column style="background-color: white;" rendered="{!case(modeCoach,'1','false','true')}">
+            <apex:facet name="header">Account</apex:facet>
+            <apex:outputText value="{!s.coach_appointment__r.account_name__c }"/>
+        </apex:column>
+        <apex:column style="background-color: white; text-align: right; width: 1%;" rendered="{!case(modeCoach,'1','false','true')}">
+            <apex:facet name="header">Rating</apex:facet>
+            <apex:outputText value="{!ROUND(s.scongo__Scoring_Percent__c,0)}%"/>
+        </apex:column> 
+        <apex:column style="background-color: white; text-align: center; vertical-align: text-top;" rendered="{!case(modeCoach,'1','false','true')}">
+            <apex:facet name="header"></apex:facet>
+            <apex:outputText value="{!s.scongo__Description__c}" escape="false"/> 
+        </apex:column> 
+        <apex:column style="background-color: white;" rendered="{!case(modeCoach,'1','true','false')}">
+            <apex:facet name="header">Observed Calls</apex:facet>
+            <apex:outputText value="{!ROUND(s.scongo__Max_Score__c,0)}"/>
+        </apex:column>
+    </apex:dataTable>
+ </div> 
+ </apex:repeat>
+ <br/><br/>
+ <br/><br/>
+<apex:dataTable value="{!lastPagePDFLines}" var="s" border="0" rowClasses="odd,even" cellPadding="4" width="100%" 
+                    style="border-width: 1; border: solid; border-color: #CCCCCC; border-spacing: 0; font-size: 75%;"
+                   headerClass="mytableheader">        
+        <apex:column style="background-color: white;">
+            <apex:facet name="header">Coach</apex:facet>
+            <apex:outputText value="{!s.coach_appointment__r.scongo__coach_name__c}"/>
+        </apex:column>
+        <apex:column style="background-color: white;">
+            <apex:facet name="header">Date</apex:facet>
+            <apex:outputText value="{!s.coach_appointment__r.scongo__appt_date__c}"/>
+        </apex:column>
+        <apex:column style="background-color: white;" rendered="{!case(modeCoach,'1','false','true')}">
+            <apex:facet name="header">Account</apex:facet>
+            <apex:outputText value="{!s.coach_appointment__r.account_name__c }"/>
+        </apex:column>
+        <apex:column style="background-color: white; text-align: right; width: 1%;" rendered="{!case(modeCoach,'1','false','true')}">
+            <apex:facet name="header">Rating</apex:facet>
+            <apex:outputText value="{!ROUND(s.scongo__Scoring_Percent__c,0)}%"/>
+        </apex:column> 
+        <apex:column style="background-color: white; text-align: center; vertical-align: text-top;" rendered="{!case(modeCoach,'1','false','true')}">
+            <apex:facet name="header"></apex:facet>
+            <apex:outputText value="{!s.scongo__Description__c}" escape="false"/> 
+        </apex:column>       
+        <apex:column style="background-color: white;" rendered="{!case(modeCoach,'1','true','false')}">
+            <apex:facet name="header">Observed Calls</apex:facet>
+            <apex:outputText value="{!ROUND(s.scongo__Max_Score__c,0)}"/>
+        </apex:column>
+</apex:dataTable>
+
+</apex:page>

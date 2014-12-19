@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>KERegistration Check  Email Notification For Status Pending</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EventsLetterHead</letterhead>
+    <name>KE Registration Check  Notification For Pending</name>
+    <style>formalLetter</style>
+    <subject>{!$Organization.Name} - Registration Notification</subject>
+    <textOnly>Dear {!Registration__c.Organizer__c} ,
+Thank you for your registration. Your registration is currently pending. The education staff will notify you once your request is approved.
+
+We look forward to working with you and your group!
+
+Registration ID : {!Registration__c.Name}
+Event : {!Event__c.Name__c}
+Date : {!Registration__c.AttendingDate__c}
+Group Name: {!Registration__c.GroupName__c}
+Meeting Location : {!Registration__c.EventLocation__c}
+Program Time : {!Registration__c.EventStartTime__c} to  {!Registration__c.EventEndTime__c}
+Number of Students : {!Registration__c.00NZ0000001C5X8}
+Adult Chaperones Required : 1 per {!Registration__c.OneChaperonesPer__c}  students
+Total Cost : {!Registration__c.PaymentRecived__c}
+Payment Information : Make checks payable to Guadalupe River Park Conservancy. Please Pay by : {!Registration__c.PayByDate__c} prior to event
+
+In event of rain, the Education Coordinator will contact you in advance to reschedule.
+Please dress in layers, with good walking shoes, and bring a water bottle.
+Sincerely,
+Administration Team.</textOnly>
+    <type>html</type>
+</EmailTemplate>

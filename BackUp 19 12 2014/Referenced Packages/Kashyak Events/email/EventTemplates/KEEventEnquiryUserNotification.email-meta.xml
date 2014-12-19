@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email Notification sent to User on Event Enquirey</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EventsLetterHead</letterhead>
+    <name>KE Event Enquiry User Notification</name>
+    <style>formalLetter</style>
+    <subject>Event Enquiry Confirmation</subject>
+    <textOnly>Hi {!Contact.FirstName},
+Thank you for your enquiry  about the event.
+
+Our representative will contact you as soon as possible.
+Thank You,
+Administration Team.</textOnly>
+    <type>html</type>
+</EmailTemplate>

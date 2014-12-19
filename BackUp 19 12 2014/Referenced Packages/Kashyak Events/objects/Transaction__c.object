@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Object to store the Transactions for a Registration. 
+A transaction may be a Credit Card/Cash/Check payment</description>
+    <enableActivities>true</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>AVSResponse__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The Address Verification Service (AVS) response code</description>
+        <externalId>false</externalId>
+        <inlineHelpText>A = Address (Street) matches, ZIP does not
+B = Address information not provided for AVS check
+E = AVS error
+G = Non-U.S. Card Issuing Bank
+N = No Match on Address (Street) or ZIP</inlineHelpText>
+        <label>AVS Response</label>
+        <length>1</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Amount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Amount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Amount</inlineHelpText>
+        <label>Amount</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>AuthenticationVerificationResponse__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The cardholder authentication verification response code</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Blank or not present = CAVV not validated
+0 = CAVV not validated because erroneous data was submitted
+1 = CAVV failed validation
+2 = CAVV passed validation</inlineHelpText>
+        <label>Authentication Verification Response</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>AuthorizationCode__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The authorization or approval code</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The authorization or approval code</inlineHelpText>
+        <label>Authorization Code</label>
+        <length>6</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CardCodeResponse__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The card code verification (CCV) response code</description>
+        <externalId>false</externalId>
+        <inlineHelpText>M = Match
+N = No Match
+P = Not Processed
+S = Should have been present
+U = Issuer unable to process request</inlineHelpText>
+        <label>Card Code Response</label>
+        <length>1</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Customer</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer</inlineHelpText>
+        <label>Customer</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The transaction description</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The transaction description</inlineHelpText>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Duty__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The duty amount charged</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The duty amount charged</inlineHelpText>
+        <label>Duty</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Freight__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The freight amount charged</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The freight amount charged</inlineHelpText>
+        <label>Freight</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Gateway__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Gateway</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Gateway</inlineHelpText>
+        <label>Gateway</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Authorize.net</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PayPal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>InvoiceNumber__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The merchant assigned invoice number for the transaction</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The merchant assigned invoice number for the transaction</inlineHelpText>
+        <label>Invoice Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MD5HASH__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The payment gateway generated MD5 hash value that may be used to authenticate the transaction response.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The payment gateway generated MD5 hash value that may be used to authenticate the transaction response.</inlineHelpText>
+        <label>MD5 HASH#</label>
+        <length>20</length>
+        <maskChar>asterisk</maskChar>
+        <maskType>all</maskType>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>EncryptedText</type>
+    </fields>
+    <fields>
+        <fullName>Method__c</fullName>
+        <deprecated>false</deprecated>
+        <description>CC
+ECHECK</description>
+        <externalId>false</externalId>
+        <inlineHelpText>CC
+ECHECK</inlineHelpText>
+        <label>Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>CC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ECHECK</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>PayWay__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Pay Way</label>
+        <referenceTo>PayWay__c</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PurchaseOrderNumber__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Purchase Order Number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Purchase Order Number</inlineHelpText>
+        <label>Purchase Order Number</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReasonCode__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A code that represents more details about the result of the transaction</description>
+        <externalId>false</externalId>
+        <label>Reason Code</label>
+        <length>2</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReasonMessage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A brief description of the result, which corresponds with the response reason code</description>
+        <externalId>false</externalId>
+        <label>Reason Message</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReasonText__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Reason Text</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Registration__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Registration</label>
+        <referenceTo>Registration__c</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ResponseCode__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The overall status of the transaction</description>
+        <externalId>false</externalId>
+        <inlineHelpText>1 = Approved
+2 = Declined
+3 = Error
+4 = Held for Review</inlineHelpText>
+        <label>Response Code</label>
+        <length>2</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ResponseStatus__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Response Status</label>
+        <length>240</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ResponseSubCode__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A code used by the payment gateway for internal transaction tracking</description>
+        <externalId>false</externalId>
+        <label>Response Sub Code</label>
+        <length>2</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Response__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Response</label>
+        <length>240</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TaxExempt__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Tax Exempt</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Tax Exempt</inlineHelpText>
+        <label>Tax Exempt</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Tax__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The tax amount charged</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The tax amount charged</inlineHelpText>
+        <label>Tax</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TransactionID__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The payment gateway assigned identification number for the transaction</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The payment gateway assigned identification number for the transaction</inlineHelpText>
+        <label>Gateway Transaction ID</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Authorization</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Authorize &amp; Charge</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Charge</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Refund</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Void</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <label>Transaction</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>TRN{00000000}</displayFormat>
+        <label>Transaction ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Transactions</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Amount__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>TransactionID__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>PayWay__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Registration__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>ReasonText__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Amount__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>TransactionID__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>ReasonText__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Registration__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Amount__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>TransactionID__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>PayWay__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>ReasonText__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Registration__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>OBJECT_ID</searchFilterFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Amount__c</searchFilterFields>
+        <searchFilterFields>TransactionID__c</searchFilterFields>
+        <searchFilterFields>ReasonText__c</searchFilterFields>
+        <searchFilterFields>Registration__c</searchFilterFields>
+        <searchResultsAdditionalFields>Amount__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>TransactionID__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PayWay__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Registration__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>ReasonText__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Refund</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Refund</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/21.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/21.0/apex.js&quot;)}
+if({!ISPICKVAL(Transaction__c.Gateway__c,&apos;PayPal&apos;)}) {
+var result = sforce.apex.execute(&quot;KPPaypalProcessor&quot;,&quot;doRefundPayment&quot;,{transactionId: &quot;{!Transaction__c.TransactionID__c}&quot; });
+alert(result);
+}else{
+var result = sforce.apex.execute(&quot;KERegistrationController&quot;,&quot;KPRefund&quot;,{transactionId: &quot;{!Transaction__c.Id}&quot; });
+alert(result);
+}
+window.location.reload();</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Void</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Void</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/21.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/21.0/apex.js&quot;)}
+if({!ISPICKVAL(Transaction__c.Gateway__c,&apos;PayPal&apos;)}) {
+var result = sforce.apex.execute(&quot;KPPaypalProcessor&quot;,&quot;dovoid&quot;,{transactionId: &quot;{!Transaction__c.TransactionID__c}&quot; });
+alert(result );
+}else{
+var result = sforce.apex.execute(&quot;KERegistrationController&quot;,&quot;KPVoid&quot;,{transactionId: &quot;{!Transaction__c.Id}&quot; });
+alert{result};
+}
+window.location.reload();</url>
+    </webLinks>
+</CustomObject>

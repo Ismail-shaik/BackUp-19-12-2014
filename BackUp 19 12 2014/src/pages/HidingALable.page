@@ -1,0 +1,9 @@
+<apex:page controller="HideAlableCntrlr" showHeader="true" sidebar="true">
+  <apex:form >
+    <apex:pageblock >
+      <apex:pageblockSection title="hiding a section">
+        
+      </apex:pageblockSection>
+    </apex:pageblock>
+  </apex:form>
+</apex:page>

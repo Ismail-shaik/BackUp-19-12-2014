@@ -1,0 +1,13 @@
+<apex:page controller="Getrecords" >
+  <apex:form >
+    <apex:pageBlock title="Contact Records">
+       <apex:pageBlockTable value="{!lstcon}" var="lst">
+         <apex:column value="{!lst.FirstName }"/>
+         <apex:column value="{!lst.Birthdate}"/>
+         <apex:column value="{!lst.Email}"/>
+         <apex:column value="{!lst.HomePhone}"/>
+         <apex:column value="{!lst.MobilePhone}"/>
+       </apex:pageBlockTable>   
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

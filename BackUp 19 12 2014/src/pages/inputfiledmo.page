@@ -1,0 +1,10 @@
+<apex:page controller="documentextdemo2">
+  <apex:form >
+ select file  <apex:inputCheckbox value="{!cls}">
+                  <apex:actionSupport event="onchange" action="{!nextpage}"/>
+              </apex:inputCheckbox><br/>
+                
+                
+                
+  </apex:form>
+</apex:page>

@@ -1,0 +1,148 @@
+.color-lightblue
+   {
+    background:#329ED5;
+	color:White;
+   }
+   
+.color-hash
+   {
+    background:#666666;
+	color:White;
+   }   
+   
+.color-orange
+   {
+    background:#FF9900;
+	color:White;  
+   }
+.color-orange1
+   {
+    background:#ffb84d;
+	color:White;
+   }
+.color-green
+   {
+    background:#669900;
+	color:White;
+   }
+.color-black
+   {
+    background:#191919;
+	color:White;
+   }   
+
+.color-purple
+   {
+    background:#542D78;
+	color:White;
+   }
+   
+.color-white
+   {
+    background:#FFF;
+	color:black;
+   }
+.color-lightyellow
+   {
+    background:#FFFFDA;
+	
+   }   
+   
+.fontcolor-green
+   {
+    color:#669900;
+  }
+   .fontcolor-blue
+   {
+    color:#4682B4;
+  } 
+   
+.fontcolor-blue1
+   {
+    color:#325092;
+  } 
+   
+.fontcolor-blue2
+   {
+    color:#4D4DC3;
+  } 
+.fontcolor-blue3
+   {
+    color:#329ED5;
+  }
+.fontcolor-blue4
+   {
+    color:#3399f3;
+  } 
+.fontcolor-orange
+   {
+    color:#FF9900;
+  }
+.fontcolor-4
+   {
+    color:#FF6600;
+  } 
+.fontcolor-5
+   {
+    color:#666666;
+  }
+.fontcolor-6
+   {
+    color:#542D78;
+  }  
+.fontsize-small
+   {
+    font-size:10px;
+  }
+.fontsize-small1
+   {
+    font-size:11px;
+  }
+ .fontsize-small2
+   {
+    font-size:12px;
+  } 
+.fontsize-1
+   {
+    font-size:16px;
+  }    
+.fontsize-2
+   {
+    font-size:17px;
+  } 
+.fontsize-3
+   {
+    font-size:18px;
+  } 
+.fontsize-4
+   {
+    font-size:19px;
+  } 
+.fontsize-5
+   {
+    font-size:20px;
+  }
+.fontsize-6
+   {
+    font-size:21px;
+  }
+.fontsize-7
+   {
+    font-size:22px;
+  } 
+.fontsize-8
+   {
+    font-size:23px;
+  } 
+.fontsize-9
+   {
+    font-size:24px;
+  }  
+.fontsize-10
+   {
+    font-size:25px;
+  }  
+.fontsize-11
+   {
+    font-size:27px;
+  }    

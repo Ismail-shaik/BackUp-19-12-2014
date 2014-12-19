@@ -1,0 +1,167 @@
+<apex:page renderAs="pdf" showHeader="false" standardController="scongo__Training__c" 
+           extensions="scongo.PDFcoachDetail" cache="false">
+ <head>
+  <style type="text/css" media="print">
+   @page {
+    @top-center {
+       content: element(header);
+    }
+    @bottom-center {
+       content: element(footer);
+    }
+   }
+
+   div.header {
+       padding: 10px;
+       position: running(header);
+   }
+
+   div.footer {
+       display: block;
+       padding: 5px;
+       position: running(footer);
+    }
+
+   .pagenumber:before {
+       content: counter(page);
+    }
+
+   .pagecount:before {
+       content: counter(pages);
+     }
+   
+   .mytableheader { 
+       background-color: #EEEEFF;
+       color: #000099;
+   }
+   
+    .headerFont {
+        font-size:14.0pt;
+        font-family:"Arial","sans-serif";
+   }           
+ </style>
+</head>
+
+<div class="header">
+    <div>
+       <table width="100%">
+         <apex:variable var="logo" value="{!CompanyLogo}" />
+         <tr><td align="left">
+             <img src="{!logo}" alt="Company Logo"/>
+         </td></tr>   
+         <tr><td align="center" class="headerFont">Coaching Detail Report</td></tr>
+       </table>
+    </div>
+</div> 
+
+<div class="footer">
+    <div>
+        <table width="100%">
+        <tr>
+        <td align="left" width="35%">Coaching Detail Report</td>
+        <td align="center" width="30%">{!CASE(MONTH(TODAY()),1, "January",2, "February",3, "March",4, "April",5, "May",6, "June",7, "July",8, "August",9, "September",10, "October",11, "November",12, "December","None")} {!DAY(TODAY())}, {!YEAR(TODAY())}</td>
+        <td align="right" width="35%">Page <span class="pagenumber"/>/<span class="pagecount"/></td>
+        </tr>
+        </table>
+    </div>
+</div>
+<br/><br/>
+<br/><br/>
+<apex:variable var="repName" value="{!RepName}" />
+<apex:variable var="coachName" value="{!CoachName}" />
+<apex:variable var="accountName" value="{!AccountName}" />
+<apex:variable var="apptDate" value="{!ApptDate}" />
+<apex:variable var="testName" value="{!TestName}" />
+<apex:variable var="scoring" value="{!Scoring}" />
+<apex:variable var="calls" value="{!ObsCalls}" />
+<apex:variable var="modeCoach" value="{!ModeCoach}" />
+
+<apex:outputPanel rendered="{!case(modeCoach,'1','true','false')}">
+<table width="100%" style="border-width: 1; border: solid; border-color: #CCCCCC; border-spacing: 5; font-size: 75%;">
+ <tr><td width="50%"><b>Employee:</b> {!repName}</td>
+    <td width="50%"><b>Coach:</b> {!coachName}</td>
+ </tr>    
+ <tr><td width="50%"><b>Appointment:</b> {!apptDate}</td>
+    <td width="50%"><b>Observed Calls:</b> {!ROUND(calls,0)}</td>
+ </tr>
+ <tr><td width="50%"><b>Coaching Form:</b> {!testName}</td>
+    <td width="50%"></td>
+ </tr>
+</table>
+</apex:outputPanel>
+<apex:outputPanel rendered="{!case(modeCoach,'1','false','true')}">
+<table width="100%" style="border-width: 1; border: solid; border-color: #CCCCCC; border-spacing: 5; font-size: 75%;">
+ <tr><td width="50%"><b>Employee:</b> {!repName}</td>
+    <td width="50%"><b>Coach:</b> {!coachName}</td>
+ </tr>    
+ <tr><td width="50%"><b>Appointment:</b> {!apptDate}</td>
+    <td width="50%"><b>Account:</b> {!accountName}</td>
+ </tr>
+ <tr><td width="50%"><b>Coaching Form:</b> {!testName}</td>
+    <td width="50%"><b>Score:</b> {!ROUND(scoring,0)}%</td>
+ </tr>
+</table>
+</apex:outputPanel>
+
+<apex:repeat value="{!pagePDFLines}" var="aPageOfRecords">
+ <div style="page-break-after:always;">
+ <br/><br/>
+ <br/><br/>
+    <apex:dataTable value="{!aPageOfRecords}" var="s" id="histSet" border="0" rowClasses="odd,even" cellPadding="4" width="100%" 
+                    style="border-width: 1; border: solid; border-color: #CCCCCC; border-spacing: 0; font-size: 75%;"
+                   headerClass="mytableheader" captionStyle="text-align: left; font-weight: strong;">
+        <apex:column style="background-color: white; border: 0;">
+            <apex:facet name="header">Section</apex:facet>
+            <apex:outputText value="{!case(s.name,'**USE SECTION**',s.scongo__section__c,null)}"/>
+        </apex:column>
+        <apex:column style="background-color: white; border: 0;">
+            <apex:facet name="header">Question</apex:facet>
+            <apex:outputText value="{!NULLVALUE(s.Course_Test_Question__r.scongo__Question_Full_Text__c,s.scongo__question_text__c)}"/>
+        </apex:column>
+        <apex:column style="background-color: white; border: 0;">
+            <apex:facet name="header">Rating</apex:facet>
+            <apex:outputText value="{!s.scongo__answer_text__c}"/>
+        </apex:column>
+        <apex:column style="background-color: white; text-align: center; vertical-align: text-top; border: 0;">
+            <apex:facet name="header"></apex:facet>
+            <apex:outputText value="{!case(s.RYG__c,"Green", "<img src=\"/resource/scongo__green_square\" border=0 />",
+"Yellow","<img src=\"/resource/scongo__yellow_square\" border=0 />",
+"Red", "<img src=\"/resource/scongo__red_square\" border=0 />","")}" escape="false"/>  
+        </apex:column> 
+        <apex:column style="background-color: white; border: 0;">
+            <apex:facet name="header">Comments</apex:facet>
+            <apex:outputText value="{!s.scongo__Essay_Answer__c}"/>
+        </apex:column> 
+    </apex:dataTable>
+ </div> 
+ </apex:repeat>
+ <br/><br/>
+ <br/><br/>
+<apex:dataTable value="{!lastPagePDFLines}" var="s" border="0" rowClasses="odd,even" cellPadding="4" width="100%" 
+                    style="border-width: 1; border: solid; border-color: #CCCCCC; border-spacing: 0; font-size: 75%;"
+                   headerClass="mytableheader">        
+        <apex:column style="background-color: white; border: 0;">
+            <apex:facet name="header">Section</apex:facet>
+            <apex:outputText value="{!case(s.name,'**USE SECTION**',s.scongo__section__c,null)}"/>
+        </apex:column>
+        <apex:column style="background-color: white; border: 0;">
+            <apex:facet name="header">Question</apex:facet>
+            <apex:outputText value="{!NULLVALUE(s.Course_Test_Question__r.scongo__Question_Full_Text__c,s.scongo__question_text__c)}"/>
+        </apex:column>
+        <apex:column style="background-color: white; border: 0;">
+            <apex:facet name="header">Rating</apex:facet>
+            <apex:outputText value="{!s.scongo__answer_text__c}"/>
+        </apex:column>
+        <apex:column style="background-color: white; text-align: center; vertical-align: text-top; border: 0;">
+            <apex:facet name="header"></apex:facet>
+            <apex:outputText value="{!case(s.RYG__c,"Green", "<img src=\"/resource/scongo__green_square\" border=0 />",
+"Yellow","<img src=\"/resource/scongo__yellow_square\" border=0 />",
+"Red", "<img src=\"/resource/scongo__red_square\" border=0 />","")}" escape="false"/>  
+        </apex:column> 
+        <apex:column style="background-color: white; border: 0;">
+            <apex:facet name="header">Comments</apex:facet>
+            <apex:outputText value="{!s.scongo__Essay_Answer__c}"/>
+        </apex:column>       
+</apex:dataTable>
+
+</apex:page>

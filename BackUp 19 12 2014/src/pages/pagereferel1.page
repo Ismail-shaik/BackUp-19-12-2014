@@ -1,0 +1,11 @@
+<apex:page controller="pagereferelCntrlr1">
+  <apex:form >
+ Classes &nbsp; <apex:inputCheckbox value="{!cls}">
+                  <apex:actionSupport event="onchange" action="{!nextpage}"/>
+                </apex:inputCheckbox>
+                
+                <apex:outputLink value="/apex/pagereferel"> pagereferel
+                </apex:outputLink>
+                
+  </apex:form>
+</apex:page>

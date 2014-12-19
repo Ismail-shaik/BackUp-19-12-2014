@@ -1,0 +1,166 @@
+<!--
+****************************************************************************************
+Name            : volunteersignup
+Author          : Vanaja Ch
+Created Date    : Nov 10, 2013
+Package         : Kashyak Events
+Module          : Contact
+Usage           : This VFP is used to create sinup page. 
+Revision History 
+                    
+****************************************************************************************
+-->
+<apex:page standardController="Contact"  extensions="KEvents.KEVolunteerSignupCntr"  
+    showHeader="false"
+    sidebar="false"
+    cache="false"
+    standardStylesheets="false"
+    id="pageid"
+    > 
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <style>
+        body
+        {
+          font-size: 14px;
+        }
+        </style>
+        <script>
+         function validate()
+         {
+            var fname= document.getElementById('pageid:SiteTemplate:FormId:fid').value;
+            var lname= document.getElementById('pageid:SiteTemplate:FormId:lid').value;
+            var email =document.getElementById('pageid:SiteTemplate:FormId:eid').value;
+            var phone =document.getElementById('pageid:SiteTemplate:FormId:pid').value;
+           if(fname ==null || fname =='')
+            {
+               alert('Please Enter Your First Name');
+               fname.focus();
+               return false;
+            }
+            else if(lname ==null || lname =='')
+            {
+               alert('Please Enter Your Last Name');
+               lname.focus();
+               return false;
+            }
+            else if(email ==null ||email =='')
+            {
+               alert('Please Enter Your Email');
+               email.focus();
+               return false;
+            }
+            else if(phone ==null || phone =='')
+            {
+               alert('Please Enter Your Phone Number');
+               phone.focus();
+               return false;
+            }
+        }
+        </script>
+                 <!-- <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+                        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+                        <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/bootstrap.min.css')}" />
+                        <apex:includeScript value="{!URLFOR($Resource.BootStrapStyles, '/js/bootstrap.min.js')}"/>
+                        <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/strap.css')}"/>-->
+        <apex:composition template="{!$Site.Template}"> 
+            <apex:define name="body">
+                <body>
+                <br/><br/>    
+                    <apex:form id="FormId">
+                    <div class="panelNew panel-Purple">
+                      <div class="panel-heading">
+                         <span class="glyphicon glyphicon-pencil"/> &nbsp;<h3 class="panel-title">Volunteer Signup</h3>
+                     </div>
+                     <div class="panel-body">
+
+                        <label class="text-info">
+                        All individuals age 15 and below must be accompanied by their parent/guardian.<br/>
+                         If you're signing up a group, please account for all group members.</label>
+                           <br/><br/> 
+                           <div class="panelNew panel-Orange">
+                              <div class="panel-heading">
+                                 <span class="glyphicon glyphicon-info-sign"/> &nbsp;<h3 class="panel-title">My Information</h3>
+                             </div>
+                             <div class="panel-body"> 
+                              <div class="form-group">
+                                  <label  class="col-lg-4 control-label">First Name&nbsp;&nbsp;<font color="red">*</font></label>
+                                  <div class="col-lg-2">
+                                       <apex:inputField value="{!contact.firstName}" styleClass="form-control input-sm" id="fid" html-placeholder="First Name"/>
+                                  </div>
+                              </div>
+                              <br/>
+                              <div class="form-group">
+                                  <label  class="col-lg-4 control-label">Last Name&nbsp;&nbsp;<font color="red">*</font></label>
+                                  <div class="col-lg-2">
+                                       <apex:inputField value="{!contact.LastName}" styleClass="form-control input-sm" id="lid" html-placeholder="Last Name"/>
+                                  </div>
+                              </div>
+                              <br/>
+                              <div class="form-group">
+                                  <label  class="col-lg-4 control-label">Email&nbsp;&nbsp;<font color="red">*</font></label>
+                                  <div class="col-lg-2">
+                                       <apex:inputField value="{!contact.Email}" styleClass="form-control input-sm" id="eid" html-placeholder="Email"/>
+                                  </div>
+                              </div>
+                              <br/>
+                              <div class="form-group">
+                                  <label  class="col-lg-4 control-label">phone&nbsp;&nbsp;<font color="red">*</font></label>
+                                  <div class="col-lg-2">
+                                       <apex:inputField value="{!contact.phone}" styleClass="form-control input-sm" id="pid" html-placeholder="Phone"/>
+                                  </div>
+                              </div>
+                 
+                        </div>
+                    </div>
+                    <div class="panelNew panel-Orange">
+                              <div class="panel-heading">
+                                 <span class="glyphicon glyphicon-home"/> &nbsp;<h3 class="panel-title">Address Information</h3>
+                             </div>
+                             <div class="panel-body">
+                                 <div class="form-group">
+                                      <label  class="col-lg-4 control-label">Street</label>
+                                      <div class="col-lg-8">
+                                           <apex:inputField value="{!contact.MailingStreet}" styleClass="form-control input-sm" html-placeholder="Street"/>
+                                      </div>
+                                 </div>
+                                 <br/><br/>
+                                 <div class="form-group">
+                                      <label  class="col-lg-4 control-label">City</label>
+                                      <div class="col-lg-2">
+                                           <apex:inputField value="{!contact.MailingCity}" styleClass="form-control input-sm" html-placeholder="City"/>
+                                      </div>
+                                 </div>
+                                 <br/>
+                                 <div class="form-group">
+                                      <label  class="col-lg-4 control-label">State</label>
+                                      <div class="col-lg-2">
+                                           <apex:inputField value="{!contact.MailingState}" styleClass="form-control input-sm" html-placeholder="State"/>
+                                      </div>
+                                 </div>
+                                 <br/>
+                                 <div class="form-group">
+                                      <label  class="col-lg-4 control-label">Country</label>
+                                      <div class="col-lg-2">
+                                           <apex:inputField value="{!contact.MailingCountry}" styleClass="form-control input-sm" html-placeholder="Country"/>
+                                      </div>
+                                 </div>
+                                 <br/>
+                                 <div class="form-group">
+                                      <label  class="col-lg-4 control-label">Postal code</label>
+                                      <div class="col-lg-2">
+                                           <apex:inputField value="{!contact.MailingPostalCode}" styleClass="form-control input-sm" html-placeholder="Postal Code"/>
+                                      </div>
+                                 </div>
+                            </div>
+                        </div>
+                        <br/><br/>
+                        
+                           <p class="text-center" >    <apex:commandButton value="Submit" action="{!SubmitVolunteer}" styleClass="btnNew btn-Gray"  style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" onmouseover="validate()"/>  </p>        
+                              
+                   </div>
+               </div>
+              </apex:form>
+             </body> 
+            </apex:define> 
+       </apex:composition>
+</apex:page>

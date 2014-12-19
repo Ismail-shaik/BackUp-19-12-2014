@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>SALSESCONGO: Setup table for all thresholds and weightings</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>External_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>External ID used for upserts</description>
+        <externalId>true</externalId>
+        <inlineHelpText>External ID used for upserts</inlineHelpText>
+        <label>External ID</label>
+        <length>100</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>From_Range__c</fullName>
+        <deprecated>false</deprecated>
+        <description>lower end of any type of range to be reported on</description>
+        <externalId>false</externalId>
+        <label>From Range</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Icon_Color__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Icon Color</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yellow</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Icon__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IMAGE(case(Icon_Color__c,&quot;Green&quot;, &quot;/resource/scongo__green_square&quot;,
+&quot;Yellow&quot;, &quot;/resource/scongo__yellow_square&quot;,
+&quot;Red&quot;, &quot;/resource/scongo__red_square&quot;,&quot;N/A&quot;),&quot;Threshold&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Icon</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Threshold_Group__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Group/Section  for the threshold like training / catalog</description>
+        <externalId>false</externalId>
+        <label>Threshold Group</label>
+        <length>80</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Threshold_Label__c</fullName>
+        <deprecated>false</deprecated>
+        <description>name/label of the threshold</description>
+        <externalId>false</externalId>
+        <label>Threshold Label</label>
+        <length>80</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>To_Range__c</fullName>
+        <deprecated>false</deprecated>
+        <description>higher end of whatever is being reported on</description>
+        <externalId>false</externalId>
+        <label>To Range</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Weighting__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Weightings - specific for the catalog</description>
+        <externalId>false</externalId>
+        <label>Weighting</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Percent</type>
+    </fields>
+    <label>Threshold</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Threshold_Group__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Threshold Name</label>
+        <type>Text</type>
+    </nameField>
+    <namedFilters>
+        <fullName>nf_01I50000000ErgQEAS_00N500000020HzgEAE</fullName>
+        <active>true</active>
+        <field>Employee_Memo__c.Status__c</field>
+        <filterItems>
+            <field>Threshold__c.Threshold_Group__c</field>
+            <operation>equals</operation>
+            <value>Inform Status</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Employee Memo_Threshold</name>
+    </namedFilters>
+    <pluralLabel>Thresholds</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>External_ID__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>Schedule1 Preferences</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AcceptedPaymentLimit__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Accepted Payment Limit</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Accepted Payment Limit</inlineHelpText>
+        <label>Accepted Payment Limit</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AdminSalesforceUserName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Admin Salesforce User Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Admin Salesforce User Name</inlineHelpText>
+        <label>Admin Salesforce User Name</label>
+        <length>90</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AllEventsCalendarPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>AllEventsCalendarPage</description>
+        <externalId>false</externalId>
+        <inlineHelpText>AllEventsCalendarPage</inlineHelpText>
+        <label>AllEventsCalendarPage</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AllowMembership__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Allow Membership</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Allow Membership</inlineHelpText>
+        <label>Allow Membership</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AsmtConfirmURL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Assignment Confirmation URL</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Assignment Confirmation URL</inlineHelpText>
+        <label>Assignment Confirmation URL</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>CalendarPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Calendar Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calendar Page</inlineHelpText>
+        <label>Calendar Page</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CreateScheduleEventsPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>CreateScheduleEventsPage</description>
+        <externalId>false</externalId>
+        <inlineHelpText>CreateScheduleEventsPage</inlineHelpText>
+        <label>CreateScheduleEventsPage</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DefaultEventType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Default Event Type</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Default Event Type</inlineHelpText>
+        <label>Default Event Type</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DisplayEventPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Display Event Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Display Event Page</inlineHelpText>
+        <label>Display Event Page</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DonationAmount__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Donation Amount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Donation Amount</inlineHelpText>
+        <label>Donation Amount</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>EventCalendarPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>EventCalendarPage</description>
+        <externalId>false</externalId>
+        <inlineHelpText>EventCalendarPage</inlineHelpText>
+        <label>EventCalendarPage</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EventDetailPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Event Detail Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Event Detail Page</inlineHelpText>
+        <label>Event Detail Page</label>
+        <length>252</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EventListPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Event List Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Event List Page</inlineHelpText>
+        <label>Event List Page</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EventPreferencePage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>EventPreferencePage</description>
+        <externalId>false</externalId>
+        <inlineHelpText>EventPreferencePage</inlineHelpText>
+        <label>EventPreferencePage</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GatewayPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>GatewayPage</description>
+        <externalId>false</externalId>
+        <inlineHelpText>GatewayPage</inlineHelpText>
+        <label>GatewayPage</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>InternalCalendarPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>InternalCalendarPage</description>
+        <externalId>false</externalId>
+        <inlineHelpText>InternalCalendarPage</inlineHelpText>
+        <label>InternalCalendarPage</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>KEVolunteerSignupPage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>KE Volunteer Signup Page</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OrganizationWebUrl__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Organization Web Url</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Organization Web Url</inlineHelpText>
+        <label>Organization Web Url</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>PaymentPrivacyPolicy__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Payment Privacy Policy</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Payment Privacy Policy</inlineHelpText>
+        <label>Payment Privacy Policy</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PaymentRefundPolicy__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Payment Refund Policy</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Payment Refund Policy</inlineHelpText>
+        <label>Payment Refund Policy</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProcessPaymentsPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Process Payments Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Process Payments Page</inlineHelpText>
+        <label>Process Payments Page</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RegistrationConfirmationPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Registration Confirmation Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Registration Confirmation Page</inlineHelpText>
+        <label>Registration Confirmation Page</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RegistrationPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Registration Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Registration Page</inlineHelpText>
+        <label>Registration Page</label>
+        <length>100</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReservationCalendarPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ReservationCalendarPage</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ReservationCalendarPage</inlineHelpText>
+        <label>ReservationCalendarPage</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SiteDisclimar__c</fullName>
+        <deprecated>false</deprecated>
+        <description>SiteDisclimar</description>
+        <externalId>false</externalId>
+        <inlineHelpText>SiteDisclimar</inlineHelpText>
+        <label>SiteDisclimar</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SitePrivacyPolicy__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Site Privacy Policy</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Site Privacy Policy</inlineHelpText>
+        <label>Site Privacy Policy</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SiteTermsandConditions__c</fullName>
+        <deprecated>false</deprecated>
+        <description>SiteTerms and Conditions</description>
+        <externalId>false</externalId>
+        <inlineHelpText>SiteTerms and Conditions</inlineHelpText>
+        <label>SiteTerms and Conditions</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SiteURL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Site URL</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Site URL</inlineHelpText>
+        <label>Site URL</label>
+        <required>false</required>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>SupportClasses__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Support Training?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Support Training?</inlineHelpText>
+        <label>Support Training?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SupportInternal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Support Internal ?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Support Internal ?</inlineHelpText>
+        <label>Support Internal?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SupportMultipleEvents__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Support Multiple Events ?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Support Multiple Events ?</inlineHelpText>
+        <label>Support Multiple Events?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SupportReservations__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Support Reservations?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Support Reservations?</inlineHelpText>
+        <label>Support Reservations?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>SupportTrainings__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Support Events?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Support Events?</inlineHelpText>
+        <label>Support Events?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TimeZone__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Time Zone</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Time Zone</inlineHelpText>
+        <label>Time Zone</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title1__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Title 1</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Title 1</inlineHelpText>
+        <label>Title 1</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>TrainingCalendarPage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>TrainingCalendarPage</description>
+        <externalId>false</externalId>
+        <inlineHelpText>TrainingCalendarPage</inlineHelpText>
+        <label>TrainingCalendarPage</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Schedule1 Preferences</label>
+</CustomObject>

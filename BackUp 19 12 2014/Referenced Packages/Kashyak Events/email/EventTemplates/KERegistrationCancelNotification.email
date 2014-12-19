@@ -1,0 +1,14 @@
+<table height="400" width="600" cellpadding="5" border="0" cellspacing="5" >
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r1" locked="0" aEditID="c1r1" >
+<![CDATA[<font face="Verdana, Helvetica, sans-serif">Dear {!Event__c.Organizer__c},</font>]]></td>
+</tr>
+<tr height="300" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r2" locked="0" aEditID="c1r2" >
+<![CDATA[<font style="font-size: 12pt; font-family: arial;" face="Verdana, Helvetica, sans-serif">We are inform to say that the your reservation request for {!Event__c.Name__c} has been declined.</font><div style="font-size: 12pt; font-family: arial;"><font face="Verdana, Helvetica, sans-serif">We will refund the amount in 48 hours.</font></div><div style="font-size: 12pt; font-family: arial;"><font face="Verdana, Helvetica, sans-serif"><br></font></div><div style="font-size: 12pt; font-family: arial;"><font face="Verdana, Helvetica, sans-serif"><b>Event Name :&nbsp;</b>{!Event__c.Name__c}&nbsp;.</font></div><div style="font-size: 12pt; font-family: arial;"><font face="Verdana, Helvetica, sans-serif"><b>Registration ID :&nbsp;</b><span style="background-color: rgb(255, 255, 255);">{!Registration__c.Name}</span></font></div><div style="font-size: 12pt; font-family: arial;"><div style="background-color: rgb(255, 255, 255);"><font face="Verdana, Helvetica, sans-serif"><b>Event Date :&nbsp;</b>{!Registration__c.AttendingDate__c}</font></div></div><div style="font-size: 12pt; font-family: arial; background-color: rgb(255, 255, 255);"><font face="Verdana, Helvetica, sans-serif"><br></font></div><div style="font-size: 12pt; font-family: arial; background-color: rgb(255, 255, 255);"><font face="Verdana, Helvetica, sans-serif"><br></font></div>]]></td>
+</tr>
+<tr height="50" valign="top" >
+<td style=" color:#000000; font-size:12pt; background-color:#FFFFFF; font-family:arial; bLabel:main; bEditID:r3st1;" tEditID="c1r3" locked="0" aEditID="c1r3" >
+<![CDATA[<span style="font-family: Verdana, Helvetica, sans-serif; white-space: pre-wrap; background-color: rgb(255, 255, 255);">Sincerely,</span><div><font face="Verdana, Helvetica, sans-serif"><span style="white-space: pre-wrap;"><br></span></font><div style="font-family: arial;"><span style="line-height: 10.909090995788574px; white-space: pre-wrap; background-color: rgb(255, 255, 255);"><font face="Verdana, Helvetica, sans-serif">Administration Team.</font></span></div></div>]]></td>
+</tr>
+</table>

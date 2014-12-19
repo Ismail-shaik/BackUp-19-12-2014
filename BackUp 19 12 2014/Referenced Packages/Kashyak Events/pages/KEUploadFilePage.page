@@ -1,0 +1,56 @@
+<apex:page controller="KEvents.KERegistrationCntr" id="pageid" showHeader="false" sidebar="false" standardStylesheets="false">
+ 
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+        <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.KEvents__BSStyles, '/css/bootstrap.min.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.KEvents__BSStyles, '/css/bootstrap.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.KEvents__BSStyles, '/css/Strap.css')}"/>
+   <script>
+   function showError()
+   {
+       var fName=document.getElementById('pageid:formid:fileName').value;
+       
+       if(fName == null || fName == "")
+        {
+         alert('Please Enter Your File Name');
+         fName.focus();
+         return false;
+        }
+   }
+   </script>
+  <apex:form id="formid">
+  <div class="panelNew panel-Purple">
+    <div class="panel-heading">
+     <h3 class="panel-title">Upload File</h3>
+    </div>
+    <div class="panel-body">
+    <apex:pageMessages ></apex:pageMessages>
+       <apex:outputPanel rendered="{!hideUpload}">
+                  <div class="form-group">
+                      <label  class="col-lg-4 control-label">File Name :</label>
+                      <div class="col-lg-2">
+                        <apex:inputText value="{!filename}" id="fileName" styleClass="form-control"/><br/>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-lg-4">
+                        <apex:inputFile value="{!Body}"  id="file"/><br/>
+                      </div>
+                  </div>
+        </apex:outputPanel>  
+     </div> 
+   </div>  
+      
+      <apex:outputPanel rendered="{!upshowmsg}">
+          <h4 class="text-success"> Your file is Successfully Uploaded.</h4><br/>
+      </apex:outputPanel>
+      
+      <center>
+          <apex:commandButton value="Attach"  action="{!uploadfile}" rendered="{!hideattach}" onmouseover="showError()" styleClass="btnNew  btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/>
+         &nbsp;&nbsp; <apex:commandButton value="Close" onclick="top.window.close()" styleClass=" btnNew  btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/>   
+      </center>
+       
+  </apex:form>
+</apex:page>

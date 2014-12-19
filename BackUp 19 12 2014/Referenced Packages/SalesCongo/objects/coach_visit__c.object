@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>SALESCONGO/COACH:  Coaching visit, linked to 2 employees (coach and salesrep)</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Appointment_Count__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Appointment Count</label>
+        <summaryForeignKey>coach_appt__c.coach_visit__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Planned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>coach__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Coach</label>
+        <referenceTo>employee__c</referenceTo>
+        <relationshipLabel>Coach Visit (Employee)</relationshipLabel>
+        <relationshipName>Coach_Visit_coach</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>coach_name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>coach__r.employee_name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Coach Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>days_in_field__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Number of days a coach has spent in the field</description>
+        <externalId>false</externalId>
+        <label>Days in Field</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>observed_calls__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Observed Calls</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>sales_rep__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Sales Rep</label>
+        <referenceTo>employee__c</referenceTo>
+        <relationshipLabel>Coach Visit (Sales Rep)</relationshipLabel>
+        <relationshipName>Coach_Visit_rep</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>sales_rep_name__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>sales_rep__r.employee_name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sales Rep Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>visit_date__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Visit Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <label>Coach Visit</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>coach_name__c</columns>
+        <columns>sales_rep_name__c</columns>
+        <columns>visit_date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CV-{00000}</displayFormat>
+        <label>Visit ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Coach Visit</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>coach_name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>sales_rep_name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>visit_date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Appointment_Count__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>coach_name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>sales_rep_name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>visit_date__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>coach_name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>sales_rep_name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>visit_date__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

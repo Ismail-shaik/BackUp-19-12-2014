@@ -1,0 +1,61 @@
+<apex:page controller="Searchng1cntrlr" showHeader="false" sidebar="false" id="page">
+<apex:sectionHeader title="Searching for Classes,Pages,Triggers,Components In you Organisation"/>
+ <script>
+    function validate()
+     {
+        document.getElementById('page:form:text').value='';
+     }
+    
+ </script>
+  <apex:form id="form">
+    <apex:messages />
+     <apex:inputCheckbox value="{!clas}"/>&nbsp;&nbsp;Apex Classes   <br/>
+     <apex:inputCheckbox value="{!pges}"/>&nbsp;&nbsp;Apex Pages     <br/>
+     <apex:inputCheckbox value="{!trgr}"/>&nbsp;&nbsp;Apex Triggers  <br/>
+     <apex:inputCheckbox value="{!cmpt}"/>&nbsp;&nbsp;Apex Components<br/>
+     <p>Please enter your searching string</p>
+     <apex:inputText value="{!searchstring}" label="Enter your searching string......" onmousedown="validate()" id="text"/><br/>
+     <apex:commandButton value="Search" action="{!Searching}"/>
+     
+     <apex:outputPanel rendered="{!clashide}">
+       <apex:pageBlock >
+         <apex:pageblockTable value="{!claslist}" var="cl">
+           <apex:column headerValue="Class Name">
+             <apex:commandLink value="{!cl.Name}"/>
+           </apex:column>
+         </apex:pageblockTable>
+       </apex:pageBlock>
+     </apex:outputPanel>
+     
+     <apex:outputPanel rendered="{!pagehide}">
+       <apex:pageBlock >
+         <apex:pageblockTable value="{!pagelist}" var="pl">
+           <apex:column headerValue="Page Name">
+             <apex:commandLink value="{!pl.Name}"/>
+           </apex:column>
+         </apex:pageblockTable>
+       </apex:pageBlock>
+     </apex:outputPanel>
+     
+     <apex:outputPanel rendered="{!triggerhide}">
+       <apex:pageBlock >
+         <apex:pageblockTable value="{!triggerlist}" var="tl">
+           <apex:column headerValue="Trigger Name">
+             <apex:commandLink value="{!tl.Name}"/>
+           </apex:column>
+         </apex:pageblockTable>
+       </apex:pageBlock>
+     </apex:outputPanel>
+     
+     <apex:outputPanel rendered="{!componenthide}">
+       <apex:pageBlock >
+         <apex:pageblockTable value="{!componentlist}" var="cml">
+           <apex:column headerValue="Component Name">
+             <apex:commandLink value="{!cml.Name}"/>
+           </apex:column>
+         </apex:pageblockTable>
+       </apex:pageBlock>
+     </apex:outputPanel>
+     
+  </apex:form>
+</apex:page>

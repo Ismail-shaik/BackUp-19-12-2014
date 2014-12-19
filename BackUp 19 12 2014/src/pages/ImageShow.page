@@ -1,0 +1,21 @@
+<apex:page id="page" >
+ <script>
+ <!-- fuction Show()
+   {
+    document.getElementById('page:form:img).style.display='block';
+   }
+  fuction Hide()
+   {
+    document.getElementById('page:form:img).style.display='block';
+   }   -->
+ </script>
+  <apex:form id="form" >
+  <apex:pageblock title="hiding an image" >
+   <apex:pageBlockSection title="Image show">
+    <apex:commandLink value="Show" onclick="Show(); return false;"/>
+    <apex:commandlink value="Hide" onclick="Hide(); return false;" /><br/>
+    <apex:image id="img" style="dislpay:none" value="{!$Resource.Rose}"/>
+   </apex:pageBlockSection>
+  </apex:pageblock>
+  </apex:form>
+</apex:page>

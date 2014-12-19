@@ -1,0 +1,86 @@
+<apex:page standardController="Position__c" tabStyle="Position__c" recordSetVar="Pos" extensions="PositionExtrnCntrlr" id="page">
+<apex:sectionHeader title="Psition Edit" subtitle="Working on position object" />
+<script>
+ <!--  funtion validate()
+  {
+    var skrq= document.getElementById('page:frmid:pbs3:skreq').value;
+     if(skrq=='null'||skrq==' ')
+      {
+       alert('Please enter Skill Required');
+       skrq.focus();
+       return false;
+  }  -->
+  
+ function validate1()
+  {
+    alert('please enter position name');
+  }
+  
+</script>
+  <apex:form id="frmid">
+        <apex:pageBlock title="For getting Records from Position object">
+        <apex:pageblockSection title="Position Records" collapsible="true">
+          <apex:pageblockTable value="{!pos}" var="p">
+            <apex:column value="{!p.Name}"/>
+            <apex:column value="{!p.Location__c}"/>
+            <apex:column value="{!p.Status__c}"/>
+            <apex:column value="{!p.Type__c}"/>
+            <apex:column value="{!p.Open_Date__c}"/>
+            <apex:column value="{!p.Close_Date__c}"/>
+            <apex:column value="{!p.Job_Level__c}"/>
+            <apex:column value="{!p.Functional_Area__c}"/>
+            <apex:column value="{!p.Travel_Required__c}"/>
+            <apex:column value="{!p.Hire_By__c}"/>
+            <apex:column value="{!p.Max_Pay__c}"/>
+            <apex:column value="{!p.Min_Pay__c}"/>
+          </apex:pageblockTable>
+        </apex:pageblockSection>
+     </apex:pageBlock><br/><br/><br/><br/><br/>     
+     <apex:pageblock title="For Entering The records for the Position object" id="pb1">
+       <apex:pageBlockSection title="Information" collapsible="true" columns="2" id="pbs1">
+         <apex:inputfield value="{!Position__c.Name}" required="true"/>
+         <apex:inputfield value="{!Position__c.Status__c}"/>
+         <apex:inputfield value="{!Position__c.Location__c}"/>
+         <apex:inputfield value="{!Position__c.Type__c}"/>
+         <apex:inputfield value="{!Position__c.Open_Date__c}"/>
+         <apex:inputfield value="{!Position__c.Functional_Area__c}"/>
+         <apex:inputfield value="{!Position__c.Hire_By__c}"/>
+         <apex:inputfield value="{!Position__c.Job_Level__c}"/>
+         <apex:inputfield value="{!Position__c.Close_Date__c}"/>
+         <apex:inputfield value="{!Position__c.Travel_Required__c}"/>
+         <apex:inputfield value="{!Position__c.Hiring_Manager__c}"/>
+       </apex:pageBlockSection>
+       <apex:pageBlockSection title="Compansation" collapsible="true" columns="2" id="pbs2">
+        <apex:inputField value="{!Position__c.Min_Pay__c}" required="true"/ >
+        <apex:inputField value="{!Position__c.Max_Pay__c}" required="true"/>
+       </apex:pageBlockSection>
+       <apex:pageBlockSection title="Description" collapsible="true" columns="1" id="pbs3">
+        <apex:inputField value="{!Position__c.Job_Description__c}"/>
+        <apex:inputField value="{!Position__c.Responsibilities__c}"/>
+        <apex:inputField value="{!Position__c.Skills_Required__c}" id="skreq"/>
+        <apex:inputField value="{!Position__c.Educational_Requirements__c}"/>
+       </apex:pageBlockSection>
+       <apex:pageBlockSection title="Required Languages" collapsible="true" columns="2">
+        <apex:inputField value="{!Position__c.Java__c}"/>
+        <apex:inputField value="{!Position__c.c__c}"/>
+        <apex:inputField value="{!Position__c.JavaScript__c}"/>
+        <apex:inputField value="{!Position__c.Apex__c}"/>
+       </apex:pageBlockSection>
+       <apex:pageBlockButtons location="bottom">
+         <apex:commandButton value="Save" action="{!Save}" rerender="frmid" onclick="validate1()"/>
+       <!-- <apex:commandButton action="{!Save & New}" value="Save & New" onclick="Action1()"/>  -->
+       </apex:pageBlockButtons>
+     </apex:pageblock>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+        
+  </apex:form>
+</apex:page>

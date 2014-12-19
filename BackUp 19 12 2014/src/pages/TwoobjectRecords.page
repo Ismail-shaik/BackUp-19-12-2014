@@ -1,0 +1,19 @@
+<apex:page controller="TwoobjectRecordscontroller">
+ <apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:pageBlockTable value="{!wrapper}" var="wrap">
+                <apex:column headerValue="Question No" value="{!wrap.QccRec.Question_Number__c }"/>
+                <apex:column headerValue="Question Name" value="{!wrap.QccRec.Name}"/>
+                <apex:column headerValue="validate" value="{!wrap.AccRec.Status__c}"/>
+                <apex:column headerValue="Answer Name">
+                  <apex:inputText value="{!wrap.AccRec.Name}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+          <apex:pageblockButtons location="bottom">
+             <apex:commandButton value="save" action="{!save}" />
+          </apex:pageblockButtons>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,23 @@
+<apex:page controller="InterviewSixClass" sidebar="false" showHeader="true">
+  <apex:sectionHeader title="Using Custom Controller Position with Candidates As Account with Contacts"/>
+  <apex:form >
+    <apex:pageBlock title=" Position with Candidates" tabstyle="Candidate__c">
+      <apex:messages />
+      <apex:repeat value="{!lstpos}" var="pos"> 
+        <apex:pageblockSection title="{!pos.Name}" columns="1">
+          <apex:pageblocktable value="{!lstcan}" var="can">
+            <apex:column headerValue="First Name">
+            <apex:outputText value="{!can.First_Name__c}"/>
+            </apex:column>
+            <apex:column headerValue="Last Name">
+            <apex:outputText value="{!can.Last_Name__c}"/>
+            </apex:column>
+            <apex:column headerValue="Phone">
+            <apex:outputText value="{!can.Phone__c}"/>
+            </apex:column>
+          </apex:pageblocktable>
+        </apex:pageblockSection>
+      </apex:repeat>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

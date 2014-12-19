@@ -1,0 +1,182 @@
+<apex:page standardController="KEvents__EventsPreferences__c" extensions="KEvents.KEEventsPreferencesCntr" showHeader="true" sidebar="false" standardStylesheets="true">
+
+    
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+            
+    <style>
+        body
+        {
+          font-size: 14px;
+        }
+    </style>
+    <body>
+    <div class="row">
+  <div class="col-md-2">
+      <c:KELeftNavigationComp />
+  </div>
+  <div class="col-md-10">
+ 
+    <apex:sectionHeader title="Events Preferences "/>
+
+  <apex:form >
+   <div class="panelNew panel-SkyBlue">
+         <div class="panel-heading">
+             <image src="{!$Resource.PreferenceWhite}" width="25px" height="25px"/> &nbsp;&nbsp;<h1 class="panel-title">Application Settings</h1>
+          </div>
+          <div class="panel-body">
+              <div class="form-group">
+              <label  class="col-lg-4 control-label">Support Reservations?</label>
+                  <div class="col-lg-2">
+                   <apex:outputText value="{!objeventpre.KEvents__SupportReservations__c}" />
+                  </div>
+                                
+                  <label  class="col-lg-3 control-label">Support Events?</label>
+                  <div class="col-lg-2">
+                   <apex:outputText value="{!objeventpre.KEvents__SupportTrainings__c}"/>
+                  </div><br/>
+                </div>
+               <div class="form-group">
+                  <label  class="col-lg-4 control-label">Support Trainings?</label>
+                  <div class="col-lg-2">
+                   <apex:outputText value="{!objeventpre.KEvents__SupportClasses__c}"/>
+                  </div>
+                  <label  class="col-lg-3 control-label">Support Internal?</label>
+                  <div class="col-lg-2">
+                   <apex:outputText value="{!objeventpre.KEvents__SupportInternal__c}" />
+                  </div><br/>
+               </div>
+               <div class="form-group">
+                  <label  class="col-lg-4 control-label">Support Multiple Events?</label>
+                  <div class="col-lg-2">
+                   <apex:outputText value="{!objeventpre.KEvents__SupportMultipleEvents__c}"/>
+                  </div>
+                  <label  class="col-lg-3 control-label">Allow Membership</label>
+                  <div class="col-lg-3">
+                   <apex:outputText value="{!objeventpre.KEvents__AllowMembership__c}" />
+                  </div><br/>
+                  
+               </div>
+               <div class="form-group">
+                  <label  class="col-lg-4 control-label">Display Title 1/Eligible for Sponsorship</label>
+                  <div class="col-lg-2">
+                   <apex:outputText value="{!objeventpre.KEvents__Title1__c}" />
+                  </div>
+                  <label  class="col-lg-3 control-label">Default Event Type</label>
+                  <div class="col-lg-3">
+                   <apex:outputText value="{!objeventpre.KEvents__DefaultEventType__c}"/>
+                  </div><br/>
+                  
+              </div>
+              <div class="form-group"> 
+                     <label  class="col-lg-4 control-label">Display Donation Amount</label>
+                      <div class="col-lg-2">
+                       <apex:outputText value="{!objeventpre.KEvents__DonationAmount__c}" />
+                      </div>
+                      <label  class="col-lg-3 control-label"> Admin Salesforce User Name</label>
+                      <div class="col-lg-3">
+                       <apex:outputText value="{!objeventpre.KEvents__AdminSalesforceUserName__c}"/>
+                      </div><br/>
+              </div>
+               <label  class="col-lg-4 control-label">Time Zone</label>
+                      <div class="col-lg-2">
+                       <apex:outputText value="{!objeventpre.KEvents__TimeZone__c}" />
+                      </div>
+           
+           </div>
+        </div> 
+        <div class="panelNew panel-SkyBlue">
+         <div class="panel-heading">
+             <image src="{!$Resource.LinksWhiteIcon}" width="25px" height="25px"/> &nbsp;&nbsp;<h1 class="panel-title"> Links </h1>
+          </div>
+          <div class="panel-body">
+              <div  class="form-group ">
+              
+                  <label  class="col-lg-3 control-label">Organization Web Url</label>
+                      <div class="col-lg-6">
+                       <apex:outputText value="{!objeventpre.KEvents__OrganizationWebUrl__c}"/>
+                      </div>
+                        
+                  
+                </div><br/>
+                
+              
+             
+               <div class="form-group ">
+               
+                <label  class="col-lg-3 control-label">Site URL</label>
+                  <div class="col-lg-6">
+                   <apex:outputText value="{!objeventpre.KEvents__SiteURL__c}" />
+                  </div>
+               
+                  
+                  
+               </div><br/>
+               <div class="form-group">
+              
+              <label  class="col-lg-3 control-label">Staffing Confirmation URL</label>
+                      <div class="col-lg-6">
+                       <apex:outputText value="{!objeventpre.KEvents__AsmtConfirmURL__c}" />
+                      </div><br/>
+                  
+                  
+                  
+                  
+               </div>
+          </div>
+      </div>
+      <div class="panelNew panel-SkyBlue">
+         <div class="panel-heading">
+             <image src="{!$Resource.StaticResourceIcon}" width="25px" height="25px"/> &nbsp;&nbsp;<h1 class="panel-title"> Static Resources </h1>
+          </div>
+          <div class="panel-body">
+              <div  class="form-group ">
+              <label  class="col-lg-3 control-label">Site Privacy Policy</label>
+                  <div class="col-lg-5">
+                   <apex:outputText value="{!objeventpre.KEvents__SitePrivacyPolicy__c}" />
+                  </div>
+                  
+                        
+                  
+                </div><br/>
+                
+              
+             
+               <div class="form-group ">
+               <label  class="col-lg-3 control-label">Site Disclimar</label>
+                      <div class="col-lg-5">
+                       <apex:outputText value="{!objeventpre.KEvents__SiteDisclimar__c}"/>
+                      </div>
+                      </div><br/>
+             
+               <div class="form-group">
+               <label  class="col-lg-3 control-label">Site Terms and Conditions</label>
+                  <div class="col-lg-5">
+                   <apex:outputText value="{!objeventpre.KEvents__SiteTermsandConditions__c}" />
+                  </div>
+                  </div>
+                  <br/>
+             
+                  
+                  
+                  
+               
+          </div>
+      </div>
+
+          
+        <center>
+           <apex:commandButton value="Edit" action="{!Update1}" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" />
+  
+       </center>
+      
+   
+   </apex:form>
+   </div>
+   </div>
+  </body>
+  
+</apex:page>

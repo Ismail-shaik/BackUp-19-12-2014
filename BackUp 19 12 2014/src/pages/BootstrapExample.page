@@ -1,0 +1,159 @@
+<apex:page standardStylesheets="true" showHeader="false"  sidebar="false" controller="BootstrapExampleCntrlr">
+  <apex:composition template="{!$Site.Template}"> 
+ <apex:define name="body">
+
+
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/bootstrap.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Styles, '/js/bootstrap.min.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/strap.css')}"/>
+
+
+
+
+
+
+  <apex:form > 
+  
+      <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Panel primary</h3>
+      </div>
+       <div  class="list-group-item list-group-item-success">  <!-- this is for disalying the back ground color look -->
+      <div class="panel-body">
+         
+      
+  
+        <div class="form-group">
+        <div class="list-group">
+           
+                  <label  class="col-lg-4 control-label"> Name</label>
+                      <div class="col-lg-2">
+                         <apex:inputField value="{!position.Name}" id="nameId" required="true"  html-placeholder="First Name" styleClass="form-control"/>
+                      </div>
+                      
+                   <label class="col-lg-4 control-label"> Name2 </label>
+                      <div class="col-lg-2">
+                       <apex:inputField value="{!position.Name}" html-placeholder="Second Name" styleClass="form-control"/> 
+                      </div>
+                   </div>    
+                      
+                  
+    
+               <label class="col-lg-4 control-label"> Classes </label>
+               <div class="col-lg-2">
+                   <apex:inputCheckbox value="{!cls}"  html-placeholder="Classes">
+                     <apex:actionSupport event="onchange" action="{!nextpage}"/>
+                   </apex:inputCheckbox>
+               </div>
+               
+                 
+         
+               
+               
+               
+               
+                                                     <ul class="nav nav-pills">
+                                                              <li class="active"><a href="https://ap1.salesforce.com/setup/forcecomHomepage.apexp?setupid=ForceCom&retURL=%2Fsecur%2Ffrontdoor.jsp%3Fsid%3D00D90000000rhX6%2521ARAAQBiiQGV1.67vv_cn_pBbpTyBfCR_UC2LFOaO8FW38fB5hXguMceg8nLywFexOCThPnD_VWoI02sQ7XNr5qfVGZjzR60y%26apv%3D1%26cshc%3D0000002FwWL0000000rhX6%26display%3Dpage">Salesforce Home</a></li>
+                                                              <li><a href="https://c.ap1.visual.force.com/apex/pagereferel">Pagereferel</a></li>
+                                                              <li class="disabled"><a href="#">Disabled</a></li>
+                                                              <li class="dropdown">
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                                      Dropdown <span class="caret"></span>
+                                                                    </a>
+                                                                    <ul class="dropdown-menu">
+                                                                      <li><a href="#">Action</a></li>
+                                                                      <li><a href="#">Another action</a></li>
+                                                                      <li><a href="#">Something else here</a></li>
+                                                                      <li class="divider"></li>
+                                                                      <li><a href="#">Separated link</a></li>
+                                                                      <li class="divider"></li>
+                                                                      <li><a href="#">Separated link2</a></li>
+                                                                      <li class="divider"></li>
+                                                                      <li><a href="#">Action</a></li>
+                                                                      <li><a href="#">Another action</a></li>
+                                                                      <li class="divider"></li>
+                                                                      <li><a href="#">Action</a></li>
+                                                                      <li><a href="#">Another action</a></li>
+                                                                      <li><a href="#">Something else here</a></li>
+                                                                    </ul>
+                                                              </li>
+                                                    </ul>
+                                               
+              
+               
+               
+               
+               
+               
+               
+               
+               
+         
+        </div>
+       </div>
+      </div>
+      </div>
+      
+      
+      
+      
+                          <div class="panel panel-primary">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">Panel primary</h3>
+                          </div>
+                          <div  class="list-group-item list-group-item-success">
+                          <div class="panel-body">
+                          
+                               <ul class="nav nav-pills">
+                                                              <li class="active"><a href="https://ap1.salesforce.com/setup/forcecomHomepage.apexp?setupid=ForceCom&retURL=%2Fsecur%2Ffrontdoor.jsp%3Fsid%3D00D90000000rhX6%2521ARAAQBiiQGV1.67vv_cn_pBbpTyBfCR_UC2LFOaO8FW38fB5hXguMceg8nLywFexOCThPnD_VWoI02sQ7XNr5qfVGZjzR60y%26apv%3D1%26cshc%3D0000002FwWL0000000rhX6%26display%3Dpage">Salesforce Home</a></li>
+                                                              <li><a href="https://c.ap1.visual.force.com/apex/pagereferel">Pagereferel</a></li>
+                                                              <li class="disabled"><a href="#">Disabled</a></li>
+                                                              <li class="dropdown">
+                                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                                      Dropdown <span class="caret"></span>
+                                                                    </a>
+                                                                    <ul class="dropdown-menu">
+                                                                      <li><a href="#">Action</a></li>
+                                                                      <li><a href="#">Another action</a></li>
+                                                                      <li><a href="#">Something else here</a></li>
+                                                                      <li class="divider"></li>
+                                                                      <li><a href="#">Separated link</a></li>
+                                                                      <li class="divider"></li>
+                                                                      <li><a href="#">Separated link2</a></li>
+                                                                      <li class="divider"></li>
+                                                                      <li><a href="#">Action</a></li>
+                                                                      <li><a href="#">Another action</a></li>
+                                                                      <li class="divider"></li>
+                                                                      <li><a href="#">Action</a></li>
+                                                                      <li><a href="#">Another action</a></li>
+                                                                      <li><a href="#">Something else here</a></li>
+                                                                    </ul>
+                                                              </li>
+                                                    </ul>
+                          
+                          </div>
+                        </div>    
+                         </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  </apex:form>
+  
+  
+  
+  </apex:define>
+  </apex:composition>
+</apex:page>

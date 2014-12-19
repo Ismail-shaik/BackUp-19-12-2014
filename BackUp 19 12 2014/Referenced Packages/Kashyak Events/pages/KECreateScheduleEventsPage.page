@@ -1,0 +1,615 @@
+<apex:page standardController="KEvents__Schedule__c" extensions="KEvents.KECreateScheduleEventsCntr" showHeader="true" sidebar="false" standardStylesheets="true" id="pageId">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+    <apex:stylesheet value="{!$Resource.KEvents__StyleColors}"/>   
+
+    <style>
+        body
+        {
+          font-size: 14px;
+        }
+    </style>
+    <body>
+    <div class="row">
+  <div class="col-md-2">
+      <c:KELeftNavigationComp />
+  </div>
+  <div class="col-md-10">
+ 
+       <script>
+         function checkEventType()
+            {
+                var x= new Date() 
+                var y= x.getFullYear() 
+                var m= x.getMonth()+1 // added +1 because javascript counts month from 0 
+                var d= x.getDate() 
+                var h= x.getHours() 
+                var mi= x.getMinutes() 
+                var s= x.getSeconds() 
+                var today =(m+'/'+d+'/'+y);
+                
+              
+             
+              var Name=document.getElementById('pageId:eventsForm:nameId').value;
+              var program=document.getElementById('pageId:eventsForm:programId').value;
+              var Sdate=document.getElementById('pageId:eventsForm:SDID').value;
+              var Edate=document.getElementById('pageId:eventsForm:EDID').value;
+              var Stime=document.getElementById('pageId:eventsForm:stid').value;
+              var Etime=document.getElementById('pageId:eventsForm:etid').value;
+              var eveType =document.getElementById('pageId:eventsForm:rtid').value;
+              var SRevent=document.getElementById('pageId:eventsForm:stage').value;
+              var datetime = new Date(Sdate+' '+Stime);
+              var startDate = new Date(Sdate);
+              //alert(startDate);
+               var tds =new Date(today);
+              // alert(tds);
+               var endDate = new Date(Edate);
+               var startTime;
+               var endTime;
+               
+                var currentTime = new Date()
+                var hours = currentTime.getHours()
+                var minutes = currentTime.getMinutes()
+            
+                if (minutes < 10)
+                minutes = "0" + minutes
+            
+                var suffix = "AM";
+                if (hours >= 12) 
+                {
+                    suffix = "PM";
+                    hours = hours - 12;
+                }
+                if (hours == 0) 
+                {
+                    hours = 12;
+                }
+
+                var ctime = hours + ":" + minutes + " " + suffix;
+                
+                var dtStart = new Date("1/1/2011 " + Stime);
+                var dtEnd = new Date("1/1/2011 " + Etime);
+                var difference_in_milliseconds = dtEnd - dtStart;
+               
+                if(dtStart <= ctime)
+                {
+                   alert("The Start Time Should be Greatar than are Equal Current time");
+                }
+                
+               
+              if(Name == null || Name == "")
+                {
+                 alert('Please Enter Your Event Name');
+                 Name.focus();
+                 return false;
+                }
+              else if(program == null || program == "")
+                {
+                 alert('Please Select the Program');
+                 program.focus();
+                 return false;
+                }
+               else if(Sdate == null || Sdate == "")
+                {
+                     alert('Please Select Start Date');
+                     Sdate.focus();
+                     return false;
+                }
+                else if(startDate < tds)
+                {
+                    // alert(Sdate);
+                    // alert(today);
+                     alert('Start Date is before todays date, please change the Start Date to today or future date');
+                     Sdate.focus();
+                     return false;
+                }
+               else if(Edate== null || Edate == "")
+                {
+                 alert('Please Select End Date');
+                 Edate.focus();
+                 return false;
+                }
+             /*  else if(Edate < today)
+                {
+                     alert(' End Date is before todays date, please change the End Date to today or future date');
+                     Edate.focus();
+                     return false;
+                }*/
+                else if(endDate < startDate)
+                {
+                  alert('End Date is before the Start Date, please change the End Date same or after Start Date');
+                  Edate.focus();
+                  return false;
+                  
+                }
+                else if(Stime == null || Stime == "")
+                {
+                     alert('Please Select Start Time');
+                     Stime.focus();
+                     return false;
+                }
+                else if(datetime <x)
+                {
+                     alert('Start Time is before todays Current Time, please change the Start Time future Time');
+                     Sdate.focus();
+                     return false;
+                }
+                else if(Etime == null || Etime == "")
+                {
+                     alert('Please Select End Time');
+                     Etime.focus();
+                     return false;
+                }
+                else if(difference_in_milliseconds == 0)
+                {
+                     alert('Start Time and End Time are  same time,please change the End Time to after Start Time');
+                     Etime.focus();
+                     return false;
+                }
+                else if (difference_in_milliseconds < 0)
+                {
+                   alert("End Time is before the Start Time, please change the End Time to after Start Time");
+                   Etime.focus();
+                   return false;
+                }
+                else if(eveType== '--Please Select--')
+                  {
+                        alert('Plese Select Event Type');
+                        eveType.focus();
+                        return false;
+                  }
+                else if(SRevent == '--None--')
+                {
+                 alert('Please Select Single/Recurring Events');
+                 SRevent.focus();
+                 return false;
+                }  
+                
+                valid();
+                monthval();
+                dayval();
+            }
+            
+            function valid()
+            {
+               var gap =document.getElementById('pageId:eventsForm:gapBetweenId').value;
+               
+               if(gap == '')
+               {
+                  alert('Please Select Gap Between Event');
+                  gap.focus();
+                  return false;
+               }
+               
+            }
+            
+            function monthval()
+            {
+               var jan =document.getElementById('pageId:eventsForm:janid').checked;
+              var feb =document.getElementById('pageId:eventsForm:febid').checked;
+              var mar =document.getElementById('pageId:eventsForm:marid').checked;
+              var apr =document.getElementById('pageId:eventsForm:aprid').checked;
+              var may =document.getElementById('pageId:eventsForm:mayid').checked;
+              var jun =document.getElementById('pageId:eventsForm:junid').checked;
+              var jul =document.getElementById('pageId:eventsForm:julid').checked;
+              var aug =document.getElementById('pageId:eventsForm:augid').checked;
+              var sep =document.getElementById('pageId:eventsForm:sepid').checked;
+              var oct =document.getElementById('pageId:eventsForm:octid').checked;
+              var nov =document.getElementById('pageId:eventsForm:novid').checked;
+              var dec =document.getElementById('pageId:eventsForm:decid').checked; 
+                 if(jan ==false && feb == false && mar ==false && apr ==false && may == false && jun == false && jul == false && aug == false && sep == false && oct == false && nov == false && dec== false) 
+              {
+                  alert('Please Select Atleast one Month');
+                  jan.focus();
+                  return false;
+              } 
+             
+            }
+             
+             function dayval()
+             {
+                var Mon = document.getElementById('pageId:eventsForm:Monid').checked;
+                  var Tue = document.getElementById('pageId:eventsForm:Tueid').checked;
+                  var Wed = document.getElementById('pageId:eventsForm:Wedid').checked;
+                  var Thu = document.getElementById('pageId:eventsForm:Thuid').checked;
+                  var Fri = document.getElementById('pageId:eventsForm:Friid').checked;
+                  var Sat = document.getElementById('pageId:eventsForm:Satid').checked;
+                  var Sun = document.getElementById('pageId:eventsForm:Sunid').checked;
+                 
+                  
+                   if(Mon == false && Tue == false && Wed == false && Thu == false && Fri == false && Sat == false && Sun == false)
+                   {
+                     alert('Please Select Atleast one Day');
+                     Mon.focus();
+                     return false;
+                   }
+             }
+             
+       </script> 
+       <style type="text/css">
+        .dashboard-panel-6 {
+           width: 45%;
+        } 
+       </style>
+       <style>
+        /* This is for the full screen DIV */
+        .popupBackground {
+            /* Background color */
+            background-color:#542D78;
+            opacity: 0.20;
+            filter: alpha(opacity = 20);
+        
+            /* Dimensions */
+            width: 200%;
+            height: 200%;
+            top: 0;
+            left: 0;
+            z-index: 998;
+            position: absolute;
+            
+            /* Mouse */
+            cursor:wait;
+        }
+     
+        /* This is for the message DIV */
+        .PopupPanel {
+            /* Background color 
+            border: solid 2px gray;
+            background-color: white;*/
+     
+           /* Dimensions */
+            left: 60%;
+            width: 60px;
+            margin-left: -100px;
+            top: 70%;
+            height: 40px;
+            margin-top: -25px;
+            z-index: 999;
+            position: fixed;
+            
+            /* Mouse */
+            cursor:pointer;
+        }
+    </style>
+    <apex:actionStatus id="statusSaveTrip" stopText="">
+       <apex:facet name="start">
+            <div>
+                <div class="popupBackground" />
+                <div class="PopupPanel">
+                    <table border="0" width="100%" height="100%">
+                        
+                        <tr>
+                            <td align="center"><img src="{!$Resource.Processing}"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionStatus>
+       <apex:form id="eventsForm">
+          <apex:pagemessages ></apex:pagemessages>
+           <div class="panelNew panel-Purple">
+                  <div class="panel-heading">
+                    <span class="glyphicon glyphicon-calendar"/> &nbsp;&nbsp;<h3 class="panel-title">Create Events</h3>
+                  </div>
+                  <div class="panel-body">
+                     <apex:outputPanel layout="block" >
+                          <div class="col-lg-12">
+                              <div class="form-group dashboard-panel-6 pull-left">
+                                  <label  class="col-lg-4 control-label"> Name &nbsp;<font size="2" color="Red">* </font></label>
+                                      <div class="col-lg-6">
+                                         <apex:inputField value="{!schedule.KEvents__Name__c}" id="nameId" required="false"  html-placeholder="Name" styleClass="form-control"/>
+                                      </div>
+                               </div>
+                               <div class="form-group dashboard-panel-6 pull-right">       
+                                  <label  class="col-lg-4 control-label" >Program &nbsp;<font color="Red">* </font> </label>
+                                      <div class="col-lg-6">
+                                        <apex:inputfield value="{!schedule.KEvents__Program__c}" html-placeholder="Program"  id="programId" required="false" />
+                                      </div><br/><br/>
+                               </div>
+                               <div class="form-group dashboard-panel-6 pull-left">
+                                  <label  class="col-lg-4 control-label">Start Date &nbsp;<font color="Red">*</font> </label>
+                                      <div class="col-lg-6">
+                                         <apex:inputField value="{!schedule.KEvents__StartDate__c}" required="false" id="SDID"  html-placeholder="Start Date" styleClass="form-control"/>
+                                      </div>
+                               </div>
+                               <div class="form-group dashboard-panel-6 pull-right">
+                                  <label  class="col-lg-4 control-label">End Date &nbsp;&nbsp;<font color="Red">*</font> </label>
+                                      <div class="col-lg-6">
+                                         <apex:inputField value="{!schedule.KEvents__EndDate__c}" required="false" id="EDID"  html-placeholder="End Date" styleClass="form-control"/>
+                                      </div>
+                               </div>
+                               <div class="form-group dashboard-panel-6 pull-left">
+                                  <label  class="col-lg-4 control-label">Start Time &nbsp;&nbsp;<font color="Red">*</font> </label>
+                                      <div class="col-lg-6">
+                                         <apex:inputField value="{!schedule.KEvents__StartTime__c}" required="true" id="stid"  styleClass="form-control">
+                                            <apex:actionSupport event="onchange" action="{!DurationOfTime}" reRender="stid" />
+                                         </apex:inputField>
+                                      </div>
+                                </div>      
+                                <div class="form-group dashboard-panel-6 pull-right">  
+                                  <label  class="col-lg-4 control-label">End Time &nbsp;<font color="Red">*</font> </label>
+                                      <div class="col-lg-6">
+                                         <apex:inputField value="{!schedule.KEvents__EndTime__c}" required="true" id="etid"  styleClass="form-control">
+                                            <apex:actionSupport event="onchange" action="{!DurationOfTime}" reRender="etid" />
+                                         </apex:inputField>
+                                      </div>
+                                 </div>
+                                 <div class="form-group dashboard-panel-6 pull-left">     
+                                  <label  class="col-lg-4 control-label">Except Holiday &nbsp; </label> 
+                                      <div class="col-lg-6">
+                                          <apex:inputField value="{!schedule.KEvents__ExceptHoliday__c}" required="True" styleClass="checkbox"/>
+                                      </div>
+                                 </div>
+                               <!--  <div class="form-group dashboard-panel-6 pull-right">
+                                  <label  class="col-lg-4 control-label">Event Type &nbsp;<font color="Red">*</font> </label>
+                                      <div class="col-lg-6">
+                                           <apex:selectList size="1" styleClass="form-control" value="{!RecType}" id="rtid" required="false" >
+                                              <apex:selectOptions value="{!RecordTypes}"/> 
+                                           </apex:selectList>
+                                      </div>
+                                 </div> -->
+                                 <div class="form-group dashboard-panel-6 pull-right">
+                                  <label  class="col-lg-4 control-label">Single/Recurring<font color="Red">*</font> </label>
+                                      <div class="col-lg-6">
+                                         <apex:actionRegion >
+                                            <apex:inputField value="{!schedule.KEvents__SingleMultipleEvents__c}" styleClass="form-control" id="stage" Required="false" >
+                                                <apex:actionSupport event="onchange" action="{!nullvalues}" status="statusSaveTrip" reRender="multipleEvent,noneid"  />
+                                            </apex:inputField><br/>
+                                         </apex:actionRegion>  
+                                       </div>
+                                 </div>      
+                           </div>                     
+                        </apex:outputPanel>
+                      
+                              <apex:outputPanel id="multipleEvent">   
+                                  <apex:outputPanel rendered="{!schedule.KEvents__SingleMultipleEvents__c = 'Recurring Event'}">
+                                    <apex:outputPanel layout="block" >
+                                       <div class="col-lg-10">
+                                            <label  class="col-lg-3 control-label fontcolor-blue">Frequency in a Day &nbsp;<font color="Red">*</font> </label>
+                                              <div class="col-lg-3">
+                                                 <apex:actionRegion > 
+                                                
+                                                       <apex:inputfield value="{!schedule.KEvents__FrequencyinaDay__c}" styleClass="form-control" id="frequencyId" required="True" >
+                                                           <apex:actionSupport event="onchange" status="statusSaveTrip" reRender="gapBetweenEventId"/>
+                                                       </apex:inputField><br/>
+                                                
+                                                 </apex:actionRegion>  
+                                                   <!-- <apex:actionStatus id="staFreId" startText="Loading......." />  -->
+                                              </div>  
+                                       </div>  
+                                       <div class="col-lg-10">     
+                                              <apex:outputPanel id="gapBetweenEventId" > 
+                                                  <apex:outputPanel rendered="{!(schedule.KEvents__FrequencyinaDay__c = '2' || schedule.KEvents__FrequencyinaDay__c = '3' || schedule.KEvents__FrequencyinaDay__c = '4' || schedule.KEvents__FrequencyinaDay__c = '5' || schedule.KEvents__FrequencyinaDay__c = '6' || schedule.KEvents__FrequencyinaDay__c = '7' || schedule.KEvents__FrequencyinaDay__c = '8'|| schedule.KEvents__FrequencyinaDay__c = '9'||schedule.KEvents__FrequencyinaDay__c = '10')}"> 
+                                                   <label  class="col-lg-3 control-label fontcolor-blue">Gap Between Event &nbsp;<font color="Red">*</font> &nbsp;</label>
+                                                      <div class="col-lg-3">
+                                                      
+                                                        <apex:inputfield value="{!schedule.KEvents__GapBetweenEvent__c}" styleClass="form-control" id="gapBetweenId" required="false" /><br/>
+                                                      </div>
+                                                  </apex:outputpanel>
+                                              </apex:outputPanel>
+                                      </div>
+                                   </apex:outputPanel>   
+                                             <apex:outputpanel rendered="{!hideduration}">
+                                                <div class="col-lg-3">
+                                                    <table>
+                                                       <tr style="margin-left:405px;" >
+                                                           <apex:inputfield value="{!schedule.KEvents__Duration__c}" required="true"/> <h2 style="color:red;">Note: Please Enter Duration in Hours(EX: 1)</h2>
+                                                             <apex:outputlabel value="{!duration}"/>
+                                                       </tr> 
+                                                   </table>      
+                                                </div>
+                                            </apex:outputpanel>    
+                                   <apex:outputPanel layout="block" >             
+                                              <apex:outputpanel >  
+                                                <div class="col-lg-10"> 
+                                                    <label  class="col-lg-3 control-label fontcolor-blue1">Months &nbsp;<font color="Red">*</font> </label>
+                                                      <div class="col-lg-3">
+                                                         <apex:actionRegion >  
+                                                              <apex:inputfield value="{!schedule.KEvents__Months__c}" required="true" styleClass="form-control">
+                                                                 <apex:actionSupport event="onchange" status="statusSaveTrip" reRender="monthId,datesInMonth"/>
+                                                              </apex:inputfield><br/>
+                                                              <apex:actionStatus id="str" startText="Loading......."/>
+                                                         </apex:actionRegion>       
+                                                      </div>
+                                                 </div>     
+                                               </apex:outputPanel>
+                                        
+                                        <apex:outputPanel id="monthId">
+                                                <apex:outputPanel rendered="{!schedule.KEvents__Months__c = 'Custom'}">
+                                                   <div class="col-lg-8"> 
+                                                      <div  class="col-lg-8">
+                                                          <div class="form-group dashboard-panel-6 pull-left">
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">January</label>
+                                                                  <div class="col-lg-2">
+                                                                    <apex:inputField styleClass="checkbox" id="janid" value="{!schedule.KEvents__January__c}"/>
+                                                                  </div>
+                                                           </div>
+                                                            <div class="form-group dashboard-panel-6 pull-right">
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">July</label>
+                                                                  <div class="col-lg-2">      
+                                                                     <apex:inputField styleClass="checkbox" id="julid" value="{!schedule.KEvents__July__c}"/>
+                                                                  </div><br/>
+                                                             </div>
+                                                           <div class="form-group dashboard-panel-6 pull-left"> 
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">February</label>
+                                                                  <div class="col-lg-2">
+                                                                     <apex:inputField styleClass="checkbox" id="febid" value="{!schedule.KEvents__February__c}"/>
+                                                                     
+                                                                  </div>
+                                                            </div>
+                                                            <div class="form-group dashboard-panel-6 pull-right">
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">August</label>
+                                                                  <div class="col-lg-2">  
+                                                                     <apex:inputField styleClass="checkbox" id="augid" value="{!schedule.KEvents__August__c}"/>
+                                                                  </div>
+                                                             </div>
+                                                            <div class="form-group dashboard-panel-6 pull-left">
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">March</label>
+                                                                  <div class="col-lg-2">
+                                                                     <apex:inputField styleClass="checkbox" id="marid" value="{!schedule.KEvents__March__c}"/>      
+                                                                  </div>
+                                                             </div>
+                                                             <div class="form-group dashboard-panel-6 pull-right">
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">September</label>
+                                                                  <div class="col-lg-2">       
+                                                                     <apex:inputField styleClass="checkbox" id="sepid" value="{!schedule.KEvents__September__c}"/>
+                                                                  </div>
+                                                             </div>
+                                                             <div class="form-group dashboard-panel-6 pull-left">
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">April</label>
+                                                                  <div class="col-lg-2">     
+                                                                     <apex:inputField styleClass="checkbox" id="aprid" value="{!schedule.KEvents__April__c}"/>
+                                                                  </div>
+                                                             </div>
+                                                             <div class="form-group dashboard-panel-6 pull-right">
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">October</label>
+                                                                  <div class="col-lg-2">  
+                                                                     <apex:inputField styleClass="checkbox" id="octid" value="{!schedule.KEvents__October__c}"/>
+                                                                  </div>
+                                                             </div>
+                                                             <div class="form-group dashboard-panel-6 pull-left">
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">May</label>
+                                                                  <div class="col-lg-2">     
+                                                                    <apex:inputField styleClass="checkbox" id="mayid" value="{!schedule.KEvents__May__c}"/>     
+                                                                  </div>
+                                                              </div>
+                                                              <div class="form-group dashboard-panel-6 pull-right">
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">November</label>
+                                                                  <div class="col-lg-2">  
+                                                                    <apex:inputField styleClass="checkbox" id="novid" value="{!schedule.KEvents__November__c}"/>
+                                                                  </div>
+                                                               </div>
+                                                              <div class="form-group dashboard-panel-6 pull-left">    
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">June</label>
+                                                                  <div class="col-lg-2">      
+                                                                    <apex:inputField styleClass="checkbox" id="junid" value="{!schedule.KEvents__June__c}"/>
+                                                                  </div>
+                                                             </div>
+                                                            <div class="form-group dashboard-panel-6 pull-right">   
+                                                             <label  class="col-lg-6 control-label fontcolor-blue1">December</label>
+                                                                 <div class="col-lg-2">
+                                                                     <apex:inputField styleClass="checkbox" id="decid" value="{!schedule.KEvents__December__c}" />
+                                                                </div>  <br/>
+                                                              </div>  
+                                                     </div> 
+                                                  </div>     <br/><br/>
+                                                </apex:outputPanel>
+                                        </apex:outputPanel>
+                               </apex:outputPanel>         
+                                        <apex:outputPanel id="datesInMont" >
+                                          <div class="col-lg-10">
+                                            <label  class="col-lg-3 control-label fontcolor-blue2">Dates in a Month &nbsp;<font color="Red">*</font></label>
+                                               <div class="col-lg-3">
+                                                   <apex:actionRegion > 
+                                                        <apex:inputField value="{!schedule.KEvents__DateinMonth__c}" styleClass="form-control">
+                                                           <apex:actionSupport event="onchange" status="statusSaveTrip" reRender="dmonthId"/>
+                                                        </apex:inputfield><br/>
+                                                   </apex:actionRegion>  
+                                               </div>     
+                                           </div>         
+                                                    <apex:actionStatus id="datesinmonth" startText="Loading......."/>
+                                        </apex:outputPanel>
+                                       
+                                        <apex:outputPanel id="dmonthId" >
+                                             <apex:outputPanel rendered="{!schedule.DateinMonth__c = 'Custom Date' }">
+                                             <div class="col-lg-10">
+                                                 <label  class="col-lg-3 control-label fontcolor-blue2">Select Dates &nbsp;<font color="Red">*</font> </label>
+                                                    <div class="col-lg-3">
+                                                       <apex:inputField value="{!schedule.KEvents__DatesInAMonth__c}" id="dateid" /><br/>
+                                                    </div>
+                                              </div>      
+                                             </apex:outputPanel> 
+                                        </apex:outputPanel>
+                                          
+                                           <div class="col-lg-10">   
+                                                <label  class="col-lg-3 control-label fontcolor-blue3">Days &nbsp;<font color="Red">*</font> </label>
+                                                    <div class="col-lg-3">
+                                                      <apex:actionRegion > 
+                                                        <apex:inputField value="{!schedule.KEvents__Day__c}" styleClass="form-control" Required="TRUE">
+                                                           <apex:actionSupport event="onchange" status="statusSaveTrip"  reRender="custId"/>
+                                                        </apex:inputField>
+                                                      </apex:actionRegion> 
+                                                      <apex:actionStatus id="daystatus" startText="Loading......."/>
+                                                   </div>
+                                           </div>
+                                           
+                                          <apex:outputPanel id="custId">
+                                               <apex:outputPanel rendered="{!schedule.KEvents__Day__c = 'Custom Day'}">
+                                                <div class="col-lg-8"> <br/> 
+                                                  <div class="col-lg-8">
+                                                  <div class="form-group dashboard-panel-6 pull-left">
+                                                     <label  class="col-lg-6 control-label fontcolor-blue3">Monday</label>
+                                                        <div class="col-lg-2"> 
+                                                           <apex:inputField styleClass="checkbox" id="Monid" value="{!schedule.KEvents__Monday__c}"/> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group dashboard-panel-6 pull-left">  
+                                                     <label  class="col-lg-6 control-label fontcolor-blue3">Friday</label>
+                                                        <div class="col-lg-2">
+                                                           <apex:inputField styleClass="checkbox" id="Friid" value="{!schedule.KEvents__Friday__c}"/>
+                                                        </div>
+                                                     </div>
+                                                    <div class="form-group dashboard-panel-6 pull-left"> 
+                                                     <label  class="col-lg-6 control-label fontcolor-blue3">Tuesday</label>
+                                                        <div class="col-lg-2">
+                                                           <apex:inputField styleClass="checkbox" id="Tueid" value="{!schedule.KEvents__Tuesday__c}"/>
+                                                        </div>
+                                                     </div>
+                                                      <div class="form-group dashboard-panel-6 pull-left">
+                                                    <label  class="col-lg-6 control-label fontcolor-blue3">Saturday</label>
+                                                        <div class="col-lg-2">
+                                                           <apex:inputField styleClass="checkbox" id="Satid" value="{!schedule.KEvents__Satrday__c}"/>
+                                                        </div>
+                                                    </div>
+                                                     <div class="form-group dashboard-panel-6 pull-left">
+                                                     <label  class="col-lg-6 control-label fontcolor-blue3">Wednesday</label>
+                                                        <div class="col-lg-2">
+                                                          <apex:inputField styleClass="checkbox" id="Wedid" value="{!schedule.KEvents__Wednesdays__c}"/>
+                                                        </div>
+                                                       </div>
+                                                       <div class="form-group dashboard-panel-6 pull-left">
+                                                    <label  class="col-lg-6 control-label fontcolor-blue3">Sunday</label>
+                                                        <div class="col-lg-2">    
+                                                          <apex:inputField styleClass="checkbox" id="Sunid" value="{!schedule.KEvents__Sunday__c}"/>
+                                                         </div>
+                                                     </div> 
+                                                     <div class="form-group dashboard-panel-6 pull-left"> 
+                                                     <label  class="col-lg-6 control-label fontcolor-blue3">Thursday</label>
+                                                        <div class="col-lg-2">
+                                                          <apex:inputField styleClass="checkbox" id="Thuid" value="{!schedule.KEvents__Thursdays__c}"/>
+                                                          
+                                                        </div>
+                                                      </div>
+                                                    
+                                                    
+                                                      
+                                                  </div>
+                                               </div>   
+                                               </apex:outputPanel>
+                                          </apex:outputPanel> 
+                                        
+                                  </apex:outputPanel>
+                              </apex:outputPanel>    
+                       
+                  </div>
+                   
+           </div>  
+           <div  class="form-group">
+                      <center> 
+                         <apex:commandButton value="Create Events"  styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" onmouseover="checkEventType()" status="button" action="{!submitSchedule}" />
+                         &nbsp;&nbsp;&nbsp;
+                         <apex:commandButton styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" value="Cancel" action="{!Cancel}"/>
+                      </center> 
+                   </div>         
+       </apex:form>
+       </div>
+       </div>
+       
+     </body>  
+     
+     
+</apex:page>

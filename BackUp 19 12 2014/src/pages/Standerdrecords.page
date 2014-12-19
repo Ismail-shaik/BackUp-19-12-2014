@@ -1,0 +1,32 @@
+<apex:page standardController="Account" recordSetVar="cons" >
+<script>
+  function salesforce()
+    {
+      
+    }
+</script>
+  <apex:form >
+   <apex:pageBlock title="Account record">
+    <apex:pageBlockTable value="{!cons}" var="a">
+     <apex:column value="{!a.Name}"/>
+     <apex:Column value="{!a.phone}"/>
+     <apex:Column value="{!a.Fax}"/>
+     <apex:Column value="{!a.Industry}"/>
+    </apex:pageBlockTable>
+   <apex:commandLink action="{!previous}">
+   <apex:image value="{!$Resource.previous}" width="50" height="50" onclick="salesforce()"/>
+   <apex:outputLink value="https://www.salesforce.com" id="Previous">Previous</apex:outputLink>
+   </apex:commandLink>
+   <apex:commandLink action="{!Next}">
+   <apex:image value="{!$Resource.Next}" width="50" height="50"/><br/>
+   <apex:outputLink value="https://www.salesforce.com" id="Nex">Next</apex:outputLink>
+   </apex:commandLink>
+   <apex:pageBlockSection title="Account information">
+    <apex:inputField value="{!Account.my_name__c}"/><br/>
+    <apex:commandButton action="{!Save}" value="Save"/>
+    <!-- <apex:commandButton action="{!Save & New}" value="Save & New"/> -->
+    <!--<apex:commandButton action="{!Cancel}" value="Cancel"/> -->
+   </apex:pageBlockSection>
+   </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,454 @@
+<apex:page standardController="KEvents__Event__c" id="pageId"  extensions="KEvents.KERegistrationCntr" showHeader="false" sidebar="false" cache="false" standardStylesheets="false"> 
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <head>
+        <style>
+            div #map_canvas { height: 300px; width: 300Px; }
+        </style>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    </head>
+
+ <script>
+  function validation()
+   {
+     var regtext=/^[a-zA-Z ]+$/;
+     var cv =/^[0-9]+$/;
+    var cardnum =document.getElementById('pageId:SiteTemplate:formId:CardID').value;
+    var name =document.getElementById('pageId:SiteTemplate:formId:fNameId').value;
+    var lastname =document.getElementById('pageId:SiteTemplate:formId:lnameId').value;
+    var provid=document.getElementById('pageId:SiteTemplate:formId:ProId').value;
+    var ctype=document.getElementById('pageId:SiteTemplate:formId:CTId').value;
+    var cvv=document.getElementById('pageId:SiteTemplate:formId:cvvId').value;
+    var chec= document.getElementById('pageId:SiteTemplate:formId:check').checked;
+    var captch=document.getElementById('recaptcha_response_field').value;
+   if(cardnum  ==null || cardnum == "")
+    {
+     alert('Please Enter Valid CardNumber');
+     cardnum.focus();
+     return false;
+    }
+   else if(name == null || name == "")
+    {
+     alert('Please Enter Your First Name');
+     name.focus();
+     return false;
+    }
+   else if(lastname == null || lastname == "")
+    {
+     alert('Please Enter Your Last Name');
+     lastname.focus();
+     return false;
+    } 
+   else if(regtext.test(provid) == false && provid != null)
+    {
+     alert('Please Enter Valid Provider Name');
+     provid.focus();
+     return false;
+    }
+   else if(ctype == null || ctype == "")
+    {
+     alert('Please Select Your Card Type');
+     ctype.focus();
+     return false;
+    }
+   else if(cv.test(cvv) ==false  && cvv != null)
+    {
+     alert('Please Enter Valid CVV Number');
+     cvv.focus();
+     return false;
+    }
+    else if(captch ==null || captch =="")
+    {
+       alert('Please Enter Captcha Verification Code');
+       captch.focus();
+       return false;
+    }
+    else if(chec == false)
+       {
+          alert('Please accept the Refund Policy and  Privacy Policy');
+          chec.focus();
+          return false;
+       }
+   } 
+  function captchver()
+  {
+    captchVerify();
+  }   
+  function checkbox()
+  {
+      
+      var chec= document.getElementById('pageId:formId:visualId:j_id7:panelId:j_id226:PBId:j_id329:j_id330:check').checked;
+      
+      if(chec == false)
+       {
+          alert('Please Select the Check Box');
+          chec.focus();
+          return false;
+       }
+   }  
+</script>
+<style type="text/css">
+    .dashboard-panel-6 
+    {
+       width: 45%;
+    } 
+</style>
+<apex:composition template="{!$Site.Template}">
+<apex:define name="body">
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+<apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+<apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, 'strap.css')}"/> 
+     <!--<div class="form-group">
+          <div class="col-lg-4">
+               <apex:image url="{!$Resource.CardTypes}" /> 
+          </div>
+       </div>--> <br/>
+          <table align="right">
+            <tr>
+              <td>
+              
+                    <c:KETooltipComp text="Calendar View"> <a  href="/events/{!calendarPage}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarView.png')}"/></a></c:KETooltipComp>   
+                 
+                     <c:KETooltipComp text="List View"> <a href="/events/{!EventsListDisplayPage}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconListView.png')}"/></a></c:KETooltipComp>
+                  
+                     <c:KETooltipComp text="Detail View"><a href="/events/{!EventDetailPage}" ><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconThumbNailView.png')}"/></a></c:KETooltipComp> 
+                   
+              <!-- <apex:outputLink value="/apex/KEEventCalendarPage" style="background:#446e9b;font-size:12px;color:White;" styleClass="btn btn-primary" target="_self">Event Calendar</apex:outputLink>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <apex:outputLink value="/apex/KEDisplayEventListBootstrapPage" style="background:#446e9b;font-size:12px;color:White;" styleClass="btn btn-primary" target="_self" >Event List</apex:outputLink>-->
+              </td>
+            </tr>   
+        </table><br/><br/>
+            
+<apex:form id="formId">
+<label><center> <h2 class="title">{!curEvent.Name__c}</h2> </center></label>
+<div class="form-group"> 
+ <div class="col-lg-6">  
+ <div class="panelNew panel-Purple">
+  <div class="panel-heading">
+     <span class="glyphicon glyphicon-credit-card"/>&nbsp;&nbsp;<h3 class="panel-title">Billing Information</h3>
+  </div>
+   
+  <div class="panel-body">  
+    
+    <apex:pageMessages id="shwmsg"></apex:pageMessages>
+    
+    
+      <apex:outputPanel id="panelid">
+       <div class="form-group">
+          <div class="col-lg-8">
+          <div class="input-group">
+              <apex:inputField value="{!pay.KEvents__CardNumber__c}" id="CardID" styleClass="form-control" html-placeholder="Card Number" required="false">
+                <span class="input-group-addon"><image src="{!$Resource.CreditCard}" height="10px"/></span>
+              </apex:inputField>
+           </div>   
+          </div>
+       </div><br/><br/></apex:outputPanel>
+      <div class="form-group">
+          <div class="col-lg-4">
+             <apex:selectList value="{!cardMonth}" size="1" required="false" styleClass="form-control">
+              <apex:selectOptions value="{!months}" id="monthsId" />
+             </apex:selectList>
+          </div>
+          <div class="col-lg-4">
+             <apex:selectList value="{!cardYear}" size="1" required="false" styleClass="form-control">
+             <apex:selectOptions value="{!years}" id="yearId" />
+             </apex:selectList>
+           </div>  
+        </div><br/><br/>    
+       <div class="form-group">
+          <div class="col-lg-4">
+             <apex:inputText value="{!firstName}" styleClass="form-control" html-placeholder="First Name" id="fNameId" required="false"/>
+          </div>
+      
+          <div class="col-lg-4">
+              <apex:inputText value="{!lastName}" styleClass="form-control" html-placeholder="Last Name" id="lnameId" required="false"/>
+          </div>
+       </div><br/><br/>
+       <div class="form-group">
+          <div class="col-lg-8">
+              <apex:inputText value="{!pay.KEvents__Provider__c}" styleClass="form-control" html-placeholder="Provider *" id="ProId" required="false"/>
+          </div>
+       </div><br/><br/>
+       <div class="form-group">
+          <div class="col-lg-8">
+              <apex:inputField value="{!pay.KEvents__CardType__c}" id="CTId" styleClass="form-control" required="false"/>
+          </div>
+       </div><br/><br/>
+       <div class="form-group">
+          <div class="col-lg-8">
+              <div class="input-group">
+                  <apex:inputtext value="{!pay.KEvents__CVV__c}" id="cvvId" styleClass="form-control" html-placeholder="CVV *" required="false"/>
+                  <span class="input-group-addon"><image src="{!$Resource.CreditCardCvv}" height="10px"/></span>
+               </div>
+          </div>
+       </div><br/><br/>
+       
+        <div class="form-group">
+          <div class="col-lg-8">
+              <label  class="col-lg-6 control-label">Amount :</label>
+              <apex:outputField value="{!pay.KEvents__Amount__c}" />
+          </div>
+       </div><br/>
+       <div class="form-group">
+            <div class="col-lg-6"> 
+                        <apex:outputpanel id="captchId" >
+                          <!-- reCAPTCHA verification 
+                                 Source: https://developers.google.com/recaptcha/docs/display -->
+                            <script type="text/javascript"
+                                src="https://www.google.com/recaptcha/api/challenge?k={!publicKey}">
+                            </script>
+                            <noscript>
+                                <iframe src="https://www.google.com/recaptcha/api/noscript?k={!publicKey}"
+                                height="300" width="500" frameborder="0"></iframe><br/>
+                                <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+                                <input type="hidden" name="recaptcha_response_field"
+                                    value="manual_challenge"/>
+                            </noscript>
+                            <!-- end reCAPTCHA verification -->
+                       </apex:outputpanel>
+                        
+           </div>
+       </div><br/><br/><br/><br/><br/><br/><br/><br/>
+      
+       <div class="form-group">
+          <div class="col-lg-12">
+              <apex:inputCheckbox id="check" value="{!pay.KEvents__Iagree__c}" />&nbsp;&nbsp;&nbsp;&nbsp; I agree to the &nbsp;<apex:outputLink value="{!refundData}" target="_blank">Refund Policy &nbsp;</apex:outputLink>and &nbsp;<apex:outputLink value="{!privacyData}" target="_blank">Privacy Policy</apex:outputLink>
+          </div>
+       </div> <br/>
+       <div class="form-group">
+          <div class="col-lg-6">
+               <center> <apex:commandButton value="Pay Now" action="{!process}" onmouseover="validation()"  styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/></center>
+          </div>
+       </div> <br/>
+       
+      <div class="form-group">
+          <div class="col-lg-12">
+               <apex:image value="{!$Resource.KEvents__Truste}"/> 
+               <apex:image value="{!$Resource.KEvents__Verisign}"/>
+          </div>
+      </div>  
+ </div>
+</div>              
+</div>
+
+<div class="col-lg-6">    
+<div class="panelNew panel-Orange">
+  <div class="panel-heading">
+     <span class="glyphicon glyphicon-th-list"/>&nbsp;&nbsp; <h3 class="panel-title">Event Details</h3>
+  </div>
+  <div class="panel-body">
+     <div class="form-group">
+      <label  class="col-lg-7 control-label">Attending Date :</label>
+          <div class="col-lg-5">
+            <apex:outputText value="{0,date,MM/dd/yyyy}">
+            <apex:param value="{!curEvent.KEvents__EventStartDate__c}" />
+            </apex:outputText><br/><br/>
+          </div>
+        <label  class="col-lg-7 control-label">Start Time :</label>
+              <div class="col-lg-5">
+                <apex:outputText value="{!curEvent.KEvents__StartTime__c}"/><br/><br/>
+              </div>
+       
+         <label  class="col-lg-7 control-label"># Attendees :</label>
+          <div class="col-lg-5">
+            <apex:outputText value="{!noOfAtendeesDisplay}" /><br/><br/>
+          </div>
+        
+        <apex:outputPanel id="resverId"  rendered="{!(eventType =='Reservation')}">
+           <apex:outputPanel rendered="{!isfreeHide}">
+           <apex:outputPanel rendered="{!SchShip}">
+             <label  class="col-lg-7 control-label">Scholarship :</label>
+                  <div class="col-lg-5">
+                    <apex:outputText value=" {!KEvents__Event__c.Program__r.KEvents__Scholarship__c}" />  <br/><br/>
+                  </div>
+           </apex:outputPanel>
+           
+              <label for="inputEmail" class="col-lg-7 control-label">Reservation Fee :</label>
+                  <div class="col-lg-5">
+                     <apex:outputText value="$ {!curEvent.KEvents__EventFees__c}" /> <br/><br/>
+                  </div>
+             
+             <label  class="col-lg-7 control-label"># Attendees Allowed with Reservation Fee :</label>
+                  <div class="col-lg-5">
+                    <apex:outputText value=" {!curEvent.KEvents__StudentsAllowedwithEventFees__c}" /> 
+                  </div><br/><br/>
+             <label for="inputEmail" class="col-lg-7 control-label">Additional Fee per Attendee : </label>
+                  <div class="col-lg-5">
+                     <apex:outputText value="$ {!curEvent.KEvents__ExtraFeesAdditionalStudent__c}" /> <br/><br/> 
+                  </div><br/>
+             
+            </apex:outputPanel>
+          </apex:outputPanel>
+           
+       <apex:outputPanel rendered="{!(eventType =='Event' ||eventType =='Training')}">   
+           <label  class="col-lg-7 control-label">Price :</label>
+              <div class="col-lg-5">
+               <apex:outputText value="$ {!curEvent.KEvents__NonMemberPrice__c}" /><br/><br/>
+              </div>
+            <apex:outputPanel id="evntHideId" rendered="{!ismemhide}">
+                    <label for="inputEmail" class="col-lg-7 control-label">Member Price :</label>
+                      <div class="col-lg-5">
+                        <apex:outputText value="$ {!curEvent.KEvents__MemberPrice__c}" /><br/><br/>
+                      </div>
+                     
+           </apex:outputPanel> 
+           <apex:outputPanel rendered="{!payDoorHide}">  
+           <apex:outputPanel rendered="{!eventType =='Event'}">
+            <label for="inputEmail" class="col-lg-7 control-label">Price Pay At Door Price :</label>
+                  <div class="col-lg-5">
+                     <apex:outputText value="$ {!NonMemberPayAtDoorPrice}.00" /> <br/><br/>
+                  </div>
+             </apex:outputPanel>
+            </apex:outputPanel>        
+           <apex:outputPanel rendered="{!DiscountHide}">   
+                <apex:outputPanel rendered="{!eventType =='Event'}">
+                   <label for="inputEmail" class="col-lg-7 control-label">Member Pay At Door Price :</label>
+                      <div class="col-lg-5">
+                         <apex:outputText value="$ {!MemberPayAtDoorPrice}" /> <br/><br/>
+                      </div>
+                         
+                </apex:outputPanel>
+              </apex:outputPanel> 
+              
+        <apex:outputpanel rendered="{!(eventType =='Event' || eventType =='Training' || eventType =='Reservation')}">   
+            <apex:outputPanel rendered="{!curRegistration.KEvents__DonationAmount__c !=null}">
+            <label  class="col-lg-7 control-label">Donation Amount :</label>
+              <div class="col-lg-5">
+                 <apex:outputText value="${!curRegistration.KEvents__DonationAmount__c}" /><br/><br/>
+              </div>
+           </apex:outputPanel>
+        </apex:outputpanel>  
+        
+        <apex:outputPanel rendered="{!eventType =='Event'}">
+        <apex:outputPanel rendered="{!GroupHide}"> 
+          <label  class="col-lg-7 control-label">Group Discount Eligibility :</label>
+              <div class="col-lg-5">
+                <apex:outputText value="{!curEvent.Program__r.KEvents__GroupDiscountAligability__c}" /><br/><br/>
+              </div>
+          <label  class="col-lg-7 control-label">Group Discount Amount:</label>
+              <div class="col-lg-5">
+                 <apex:outputText value="$ {!curEvent.Program__r.KEvents__GroupDiscountAmount__c}" /><br/><br/>
+              </div>
+         
+          </apex:outputPanel>
+        </apex:outputPanel> 
+      </apex:outputPanel>    
+   <!-- <apex:outputPanel rendered="{!ReservationHidereg}">
+       <div class="form-group">
+          <label  class="col-lg-4 control-label">Scholarship :</label>
+          <div class="col-lg-2">
+            <apex:outputText value=" {!KEvents__Event__c.Program__r.KEvents__Scholarship__c}" />  
+          </div>
+       </div>
+          <div class="form-group"> 
+               <label for="inputEmail" class="col-lg-4 control-label">Reservation Fee :</label>
+              <div class="col-lg-2">
+                 <apex:outputText value="$ {!Event__c.Program__r.Fee__c}" /> 
+              </div>
+          </div>
+       <div class="form-group">
+          <label  class="col-lg-4 control-label"># Students Allowed with Event Fee :</label>
+          <div class="col-lg-2">
+            <apex:outputLabel value="$ {!Event__c.Program__r.StudentsAllowedwithEventFees__c}" />
+          </div>
+       </div>
+          <div class="form-group"> 
+              <label  class="col-lg-4 control-label">Additional Fee/Attendee : </label>
+              <div class="col-lg-2">
+                <apex:outputLabel value="$ {!Event__c.Program__r.AdditionalFee__c}" />
+              </div>
+          </div>
+     </apex:outputPanel>-->
+     
+     <apex:outputPanel rendered="{!(eventType =='Event' || eventType =='Training' || eventType =='Reservation')}">   
+      <apex:outputPanel rendered="{!ReservationHidereg}">
+       <label  class="col-lg-7 control-label">Total Amount :</label>
+          <div class="col-lg-5">
+            <apex:outputText value="${!pay.KEvents__Amount__c}" /><br/><br/>
+          </div>
+       <br/>
+       </apex:outputPanel>
+      </apex:outputPanel><br/> 
+      <label class="col-lg-3"/>
+      <div class="col-lg-6">
+       <apex:commandButton value="Modify Registration" action="{!goToRegiPage}" immediate="true"  styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" /> 
+       </div>
+       </div>    
+     </div>
+</div>         
+</div>
+</div>
+ 
+</apex:form>
+
+  <script type="text/javascript">
+//twistSection(document.getElementById('page:form:resultsBlock:debugSection').childNodes[0].childNodes[0]);     
+
+    var Eventscontacts = {!contactsJson};    // Array of contact data, some of them might have lat/long info, some we'll have to geocode client side
+    var coords = [];                   // Just the latitude/longitude for each contact
+    var requestCounter = 0;
+
+    var markers = [];                  // Red things we pin to the map.
+    var balloon = new google.maps.InfoWindow(); // Comic-like baloon that floats over markers.
+
+    function geocodeClientSide() {
+        for(var i = 0; i < Eventscontacts.length; i++) {
+            if(Eventscontacts[i].KEvents__Program__r.KEvents__Site__r.KEvents__Location__Latitude__s != null && Eventscontacts[i].KEvents__Program__r.KEvents__Site__r.KEvents__Location__Longitude__s != null) {
+                coords.push(new google.maps.LatLng(Eventscontacts[i].KEvents__Program__r.KEvents__Site__r.KEvents__Location__Latitude__s, Eventscontacts[i].KEvents__Program__r.KEvents__Site__r.KEvents__Location__Longitude__s));
+            } else {
+                ++requestCounter;
+                var address = Eventscontacts[i].KEvents__Program__r.KEvents__Site__r.KEvents__MailingStreet__c + ' ' + Eventscontacts[i].KEvents__Program__r.KEvents__Site__r.MailingCity__c + ' ' + Eventscontacts[i].KEvents__Program__r.KEvents__Site__r.KEvents__MailingCountry__c;
+                var geocoder = new google.maps.Geocoder();
+                if (geocoder) {
+                    geocoder.geocode({'address':address}, function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            coords.push(results[0].geometry.location);
+                        } else {
+                            var pTag = document.createElement("p");
+                            pTag.innerHTML = status;
+                            document.getElementById('log').appendChild(pTag);
+                        }
+                        if(--requestCounter == 0) {
+                            drawMap();
+                        }
+                    });
+                }
+            }
+        }
+        // It could be the case that all was geocoded on server side (or simply retrieved from database).
+        // So if we're lucky - just proceed to drawing the map.
+        if(requestCounter == 0) {
+            drawMap();
+        }
+    }
+
+    function drawMap(){
+        var mapOptions = {
+            center: coords[0],
+            zoom: 16,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),  mapOptions);
+
+        for(var i = 0; i < coords.length; ++i){
+            var marker = new google.maps.Marker({map: map, position: coords[i], title:Eventscontacts[i].name, zIndex:i});
+
+            google.maps.event.addListener(marker, 'click', function() {
+                var index = this.zIndex;
+                balloon.content = '<b>'+Eventscontacts[index].KEvents__Program__r.KEvents__Site__r.KEvents__name + '</b><br/>'+Eventscontacts[index].KEvents__Program__r.KEvents__Site__r.KEvents__name +  '<br/>' + Eventscontacts[index].Program__r.Site__r.KEvents__name;
+               // balloon.content :"abc";
+                balloon.open(map,this);
+            });
+            markers.push(marker);
+        }
+       
+    }
+
+    geocodeClientSide();
+    </script>
+
+</apex:define>
+</apex:composition>
+</apex:page>

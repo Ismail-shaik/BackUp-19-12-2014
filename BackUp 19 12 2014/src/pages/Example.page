@@ -1,0 +1,9 @@
+<apex:page controller="ExampleCntrlr">
+<apex:form >
+  <apex:pageBlock >
+    <apex:pageblockSection title="Example">
+       <apex:inputField value="{!con.Languages__c}"/>
+    </apex:pageblockSection>
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

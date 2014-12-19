@@ -1,0 +1,121 @@
+<apex:page standardStylesheets="true" controller="SearchingBootstrapcntrlr" showHeader="false" sidebar="false" id="page">
+   <apex:composition template="{!$Site.Template}"> 
+    <apex:define name="body">
+
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/bootstrap.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Styles, '/js/bootstrap.min.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/strap.css')}"/>
+
+          <apex:form id="form">
+             <apex:messages />
+          
+            <p class="lead">Searching for apex classes, vf pages, triggers, components in organisation</p>
+               
+               <!-- Panel starts  -->
+               
+                <div class="panel panel-primary">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Searching panel</h3>
+                  </div>   
+                  <div class="panel-body">  <!-- panel body starts  -->
+                    
+                            <div class="form-group">
+                            
+                              <label class="col-lg-1 control-label">Apex Classes</label>
+                              <div class="col-lg-2">
+                                <apex:inputCheckbox value="{!cls}" html-placeholder="Apex Classes"/>
+                              </div>
+                               
+                              <label class="col-lg-1 control-label">Apex Pages</label>
+                              <div class="col-lg-2">
+                                <apex:inputCheckbox value="{!pgs}" html-placeholder="Apex Pages"/>
+                              </div>
+                              
+                              <label class="col-lg-1 control-label">Apex Trigger</label>
+                              <div class="col-lg-2">
+                                <apex:inputCheckbox value="{!tgr}" html-placeholder="Apex Trigger"/>
+                              </div>
+                              
+                              <label class="col-lg-1 control-label">Apex Component</label>
+                              <div class="col-lg-2">
+                                <apex:inputCheckbox value="{!cmt}" html-placeholder="Apex Component"/>
+                              </div>
+                              
+                              <label  class="col-lg-4 control-label"> Enter your search string</label>
+                              <div class="col-lg-4">
+                                 <apex:inputText value="{!Searchstring}" html-placeholder="Enter your search string.........." styleClass="form-control"/>
+                              </div>
+                              
+                              <div class="col-lg-10">
+                              <div class="col-lg-16">
+                         <center>        <apex:commandButton value="Search" action="{!searching}" styleClass="btn btn-primary" html-placeholder="Search" reRender="form"/> </center>
+                              </div>
+                              </div>
+                              
+                            </div>
+                    
+                  </div>
+                </div>
+                
+            <!-- Panel ends  -->
+            
+                         
+                          <div class="input-group">
+                            <span class="input-group-addon">$</span>
+                            <input type="text" class="form-control"></input>
+                            
+                          </div>
+                        
+                    
+                      
+                        <apex:outputPanel rendered="{!clshide}">
+                          <apex:pageBlock >
+                            <apex:pageblockTable value="{!listcls}" var="lc"  >
+                              <apex:column headerValue="Class Name" styleClass="success">
+                                <apex:commandLink value="{!lc.Name}"/>
+                              </apex:column>
+                            </apex:pageblockTable>
+                          </apex:pageBlock>
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel rendered="{!pgehide}">
+                          <apex:pageBlock >
+                            <apex:pageblockTable value="{!listpge}" var="lp"  >
+                              <apex:column headerValue="Page Name" styleClass="success">
+                                <apex:commandLink value="{!lp.Name}"/>
+                              </apex:column>
+                            </apex:pageblockTable>
+                          </apex:pageBlock>
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel rendered="{!Tgrhide}">
+                          <apex:pageBlock >
+                            <apex:pageblockTable value="{!listtgr}" var="lt"  >
+                              <apex:column headerValue="Trigger Name" styleClass="success">
+                                <apex:commandLink value="{!lt.Name}"/>
+                              </apex:column>
+                            </apex:pageblockTable>
+                          </apex:pageBlock>
+                        </apex:outputPanel>
+                        
+                        <apex:outputPanel rendered="{!Cmphide}">
+                          <apex:pageBlock >
+                            <apex:pageblockTable value="{!listcmp}" var="lcm"  >
+                              <apex:column headerValue="Component Name" styleClass="success">
+                                <apex:commandLink value="{!lcm.Name}"/>
+                              </apex:column>
+                            </apex:pageblockTable>
+                          </apex:pageBlock>
+                        </apex:outputPanel>
+                      
+                    
+                    
+            
+          </apex:form>
+      
+      
+    </apex:define>
+   </apex:composition>
+</apex:page>

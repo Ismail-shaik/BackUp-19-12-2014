@@ -1,0 +1,27 @@
+<apex:page controller="calculaterCntrlr" sidebar="false" showHeader="false">
+  <apex:sectionHeader title="calculater"/>
+   <apex:form id="Frmid">
+     <apex:pageBlock > 
+       <apex:pageblocksection title="calculater" columns="2">
+         <apex:outputLabel value="First Value"/>
+         <apex:inputtext value="{!first}"/>
+         <apex:outputLabel value="Second Value"/>
+         <apex:inputtext value="{!Second}"/>
+         <apex:selectRadio value="{!function}"><br/>
+           <apex:selectOptions value="{!Funcs}"/>
+         </apex:selectRadio>
+       </apex:pageblocksection>
+       <apex:pageblockSection title="Result Section" collapsible="true" columns="2">
+         <apex:outputLabel value="Result"/>
+         <apex:inputtext value="{!Result}"/>
+       </apex:pageblockSection>
+       
+           <apex:pageblockButtons location="bottom">
+             <apex:commandButton value="Find" action="{!Find}" reRender="Frmid"/>
+           </apex:pageblockButtons>
+      
+     </apex:pageBlock>
+     
+    
+   </apex:form>
+</apex:page>

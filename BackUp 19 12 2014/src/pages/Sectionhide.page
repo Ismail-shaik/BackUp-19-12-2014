@@ -1,0 +1,57 @@
+<apex:page standardController="Account" extensions="SelectPicklist" showHeader="false" sidebar="false">
+  <apex:form >
+    <apex:pageblock title="Page Details">
+      <apex:pageblocksection title="hiding section">
+            <apex:selectList label="Year Of Passing" value="{!YearValue}" size="1" multiselect="false">
+              <apex:actionsupport event="onchange" action="{!PickList}" />
+              <apex:selectOptions value="{!YearList}" />
+            </apex:selectList>
+      </apex:pageblocksection>
+    </apex:pageblock>
+    
+    <apex:outputpanel id="OPID" rendered="{!YearValue1}">
+     <apex:pageblock title="2010 Hiding Details">
+      <apex:pageblocksection >
+        <apex:pageblocksectionItem >
+          <apex:outputlabel value="Account Name">
+          </apex:outputlabel>
+          <apex:inputField value="{!Account.Name}"/>
+        </apex:pageblocksectionItem>
+        <apex:pageblockSectionItem >
+         <apex:outputLabel value="Account Industry">
+         </apex:outputLabel>
+         <apex:inputfield value="{!Account.Industry}"/>
+        </apex:pageblockSectionItem>
+      </apex:pageblocksection>
+     </apex:pageblock>
+    </apex:outputpanel>
+    
+    <apex:outputpanel rendered="{!YearValue2}">
+      <apex:pageblock title="2011 hiring details">
+       <apex:pageblockSection >
+         <apex:pageblockSectionItem >
+         <apex:outputLabel value="Account Phone">
+         </apex:outputLabel>
+         <apex:inputfield value="{!Account.Phone}"/>
+        </apex:pageblockSectionItem>
+        <apex:pageblockSectionItem >
+         <apex:outputLabel value="Account Type">
+         </apex:outputLabel>
+         <apex:inputfield value="{!Account.Type}"/>
+        </apex:pageblockSectionItem>
+        <apex:pageblockSectionItem >
+         <apex:outputLabel value="Account Description">
+         </apex:outputLabel>
+         <apex:inputfield value="{!Account.Description}"/>
+        </apex:pageblockSectionItem>
+        <apex:pageblockSectionItem >
+         <apex:outputLabel value="Account Rating">
+         </apex:outputLabel>
+         <apex:inputfield value="{!Account.Rating}"/>
+        </apex:pageblockSectionItem>
+       </apex:pageblockSection>
+      </apex:pageblock>
+    </apex:outputpanel>
+  
+  </apex:form>  
+</apex:page>

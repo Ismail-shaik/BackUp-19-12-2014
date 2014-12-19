@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Event__c$Name__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$Id</field>
+    </columns>
+    <columns>
+        <field>Event__c$EventStartTime__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$EndTime__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$EventLocation__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$locationType__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$Status__c</field>
+    </columns>
+    <description>It is displaying Internal Type of Events</description>
+    <filter>
+        <criteriaItems>
+            <column>Event__c$RecordType</column>
+            <operator>equals</operator>
+            <value>Event__c.Internal</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>KS1-Event of Type of Internal</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>KS1_With_Events_Registration__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Event__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_PREVCURFY</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>KE Event Status Updated From Under Review to Confirmed</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EventsLetterHead</letterhead>
+    <name>KE Registration Confirmation Notification</name>
+    <style>formalLetter</style>
+    <subject>{!$Organization.Name} - Registration Confirmation Notification</subject>
+    <textOnly>Dear {!Event__c.Organizer__c},
+We are happy to inform that your reservation request for {!Event__c.Name__c} has been confirmed.
+
+Registration ID : {!Registration__c.Name}
+Event : {!Event__c.Name__c}
+Date : {!Registration__c.AttendingDate__c}
+Group Name: {!Registration__c.GroupName__c}
+Meeting Location : {!Registration__c.EventLocation__c}
+Program Time : {!Registration__c.EventStartTime__c} to  {!Registration__c.EventEndTime__c}
+Number of Students : {!Registration__c.00NZ0000001C5X8}
+Thank You,
+Administration Team</textOnly>
+    <type>html</type>
+</EmailTemplate>

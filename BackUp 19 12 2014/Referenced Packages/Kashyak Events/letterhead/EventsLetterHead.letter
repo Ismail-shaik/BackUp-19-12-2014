@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Letterhead xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <backgroundColor>#CCCCCC</backgroundColor>
+    <bodyColor>#FFFFFF</bodyColor>
+    <bottomLine>
+        <color>#666666</color>
+        <height>5</height>
+    </bottomLine>
+    <description>Events Letter Head</description>
+    <footer>
+        <backgroundColor>#FFFFFF</backgroundColor>
+        <height>100</height>
+        <horizontalAlignment>Center</horizontalAlignment>
+        <logo>Stationary/KashyakLogo.jpg</logo>
+        <verticalAlignment>Top</verticalAlignment>
+    </footer>
+    <header>
+        <backgroundColor>#FFFFFF</backgroundColor>
+        <height>100</height>
+        <horizontalAlignment>Center</horizontalAlignment>
+        <logo>Stationary/Kashyak_Schedule_1.png</logo>
+        <verticalAlignment>Top</verticalAlignment>
+    </header>
+    <middleLine>
+        <color>#666666</color>
+        <height>5</height>
+    </middleLine>
+    <name>Events Letter Head</name>
+    <topLine>
+        <color>#6600CC</color>
+        <height>5</height>
+    </topLine>
+</Letterhead>

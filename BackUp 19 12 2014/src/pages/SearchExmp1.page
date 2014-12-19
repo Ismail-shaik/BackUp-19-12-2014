@@ -1,0 +1,32 @@
+<apex:page controller="SearchExmp1Cntrlr" showHeader="false" sidebar="false" id="page">
+ <apex:sectionHeader title="Searching Functionality Example1"/> 
+ <script>
+   function validate()
+    {
+       document.getElementById('page:form:pgb:pgbs:iptext').value='';
+    }
+   function Validate1()
+   {
+       alert('review the string....... once again by clicking this button u r submitted the details')
+   }
+ </script>
+  <apex:form id="form">
+   <apex:messages />
+    <apex:pageBlock id="pgb">
+      <apex:pageblockSection title="Components of Page" columns="1" collapsible="true" id="pgbs">
+        <apex:inputCheckbox value="{!clas}"/> Apex Class<br/>
+        <apex:inputText value="{!searchstring}" title="Entre u r string..........." onmousedown="validate()" id="iptext"/>
+        <apex:commandButton value="Search" action="{!Search}" onclick="Validate1()"/>
+      </apex:pageblockSection>
+      
+      <!--   Apex Page Block Table  -->
+      <apex:outputPanel rendered="{!clashide}">
+       <apex:pageblockTable value="{!ClasList}" var="cl">
+        <apex:column headerValue="Name Of Class">
+         <apex:commandLink value="{!cl.Name}"/>
+        </apex:column>
+       </apex:pageblockTable>
+      </apex:outputPanel>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

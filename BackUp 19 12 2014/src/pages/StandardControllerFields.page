@@ -1,0 +1,23 @@
+<apex:page standardController="Opportunity" showHeader="false" sidebar="false" extensions="PositionFieldsExtrnCntrlr">
+ <apex:sectionHeader title=" Dispaly fields by using a  standard Controller"/> 
+  <apex:form >
+    <apex:pageBlock title="standardController Fields">
+      <apex:pageBlockSection title="Opportunity Records" collapsible="true" columns="2">
+         <apex:inputField value="{!Opportunity.Name}"/>
+         <apex:inputField value="{!Opportunity.StageName}"/>
+         <apex:inputField value="{!Opportunity.Type}"/>
+         <apex:inputField value="{!Opportunity.CurrentGenerators__c}"/>
+         <apex:inputField value="{!Opportunity.DeliveryInstallationStatus__c}"/>
+         <apex:inputField value="{!Opportunity.OrderNumber__c}"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection title="Position Records" collapsible="true" columns="2">
+        <apex:inputField value="{!pos.Name}"/>
+        <apex:inputField value="{!pos.Educational_Requirements__c}"/>
+        <apex:inputField value="{!pos.Functional_Area__c}"/>
+        <apex:inputField value="{!pos.Hiring_Manager__c}"/>
+        <apex:inputField value="{!pos.Hire_By__c}"/>
+        <apex:inputField value="{!pos.Java__c}"/>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,24 @@
+<apex:page standardController="Document" extensions="documentExt" id="page">
+    <apex:messages />
+    <apex:form >
+      <apex:pageBlock >
+        <apex:inputFile value="{!document.body}" filename="{!document.name}"/>
+      </apex:pageBlock>
+    </apex:form>
+    <apex:form id="theForm">
+     
+         select file
+         <apex:inputCheckbox value="{!recsave}"/>
+       
+         <apex:outputPanel rendered="{!panelhide}">
+              <apex:pageBlock >
+                  <apex:pageBlockSection >
+                   <apex:commandButton value="Save" action="{!save}" reRender="theForm"/>
+                  </apex:pageBlockSection>
+               </apex:pageBlock>
+          </apex:outputPanel>
+          
+          <apex:commandButton value="open" action="{!open}"/>
+      
+    </apex:form>
+</apex:page>

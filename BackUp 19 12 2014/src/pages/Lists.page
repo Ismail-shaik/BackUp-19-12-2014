@@ -1,0 +1,8 @@
+<apex:page controller="ListsController">
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!Indexes}" var="i">
+            <apex:column value="{!Foos[i]}" />
+            <apex:column value="{!Bars[i]}" />
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

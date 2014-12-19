@@ -1,0 +1,43 @@
+<apex:page controller="MyCalendarCntrlr" showHeader="false" docType="html-5.0" standardStylesheets="true">
+
+   <apex:composition template="{!$Site.Template}"> 
+    <apex:define name="body">
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/bootstrap.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Styles, '/js/bootstrap.min.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/strap.css')}"/>
+        <apex:stylesheet value="{!$Resource.colorcode}"/>
+        
+        
+            
+            <apex:page >
+              <apex:form >
+              
+                 <br/><br/>
+                 
+                     <apex:iframe src="http://www.salesforce.com" scrolling="true" id="theIframe1"/>
+                 
+                  
+                   <div class="panel panel-primary">
+                      <div class="panel-heading">
+                         <h3 class="panel-title">My Calendar</h3>
+                      </div>   
+                      <div class="panel-body">  <!-- panel body starts  -->
+                        
+                                <div class="form-group">
+                                
+                                   <apex:iframe src="http://www.salesforce.com" scrolling="true" id="theIframe"/>
+                                 
+                                </div>
+                      </div>
+                   </div>       
+                   
+              </apex:form>
+            </apex:page>
+            
+        
+        
+    </apex:define>
+   </apex:composition>   
+</apex:page>

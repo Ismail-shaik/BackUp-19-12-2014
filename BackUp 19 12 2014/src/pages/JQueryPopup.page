@@ -1,0 +1,71 @@
+<apex:page showHeader="false">
+  <apex:composition template="{!$Site.Template}"> 
+   <apex:define name="body">
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+      <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+      <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/bootstrap.min.css')}" />
+      <apex:includeScript value="{!URLFOR($Resource.Styles, '/js/bootstrap.min.js')}"/>
+      <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/strap.css')}"/>
+      <apex:stylesheet value="{!$Resource.colorcode}"/>
+      
+        <link href="{!$Resource.fullCalendarCSS}" rel="stylesheet" />
+
+        <link href="{!$Resource.fullCalendarPrintCSS}" rel="stylesheet" media="print" />
+    
+        <apex:includeScript value="{!URLFOR($Resource.FullCalendar, '/fullcalendar-2.1.1/lib/moment.min.js')}"  />
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    
+        <script src="{!$Resource.fullCalendarMinJS1}"></script>
+        
+      <html>
+         <head>
+        
+        <script>
+        
+          $('menu_videos').hover(function() {
+            $('menu_feedback').html('free videos tutorials');
+           });
+          
+          $('menu_code').hover(function() {
+            $('#menu_feedback').html('code for development');
+           });
+           
+          $('#menu_forum').hover(function() {
+            $('#menu_feedback').html('A Help Link');
+           });
+           
+          $('.hover').mousemove(function() {
+             alert('mouse move');
+           });
+          
+        </script>
+        
+        </head>
+            <body>
+              <a href="#" id="menu_videos">videos</a> /
+              <a href="#" id="menu_code">code</a> /
+              <a href="#" id="menu_forum">videos</a> 
+              
+              <div id="menu_feedback"> </div>
+              
+              
+              <a class="hover" href="google.com">google</a>
+              
+               <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    
+        <script src="{!$Resource.fullCalendarMinJS1}"></script>
+              
+            </body>
+        </html>
+      
+      
+      
+   </apex:define>
+  </apex:composition>
+</apex:page>

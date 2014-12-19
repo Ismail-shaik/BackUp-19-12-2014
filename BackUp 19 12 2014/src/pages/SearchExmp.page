@@ -1,0 +1,62 @@
+<apex:page controller="SearchExmpCntrlr" sidebar="false" showHeader="false" id="page">
+ <apex:sectionHeader title="SearchExmp"/>
+ 
+ <script>
+   function Validate()
+   {
+     document.getElementById('page:form:text').value='';
+   }
+   
+ </script>
+   <apex:form id="form">
+   <apex:messages />
+     <apex:inputCheckbox value="{!clas}" id="ipch"/> Apex Classes
+     <apex:inputCheckbox value="{!pges}" id="pages"/> Apex Pages
+     <apex:inputCheckbox value="{!trgr}" id="trggrs"/> Apex Triggers
+     <apex:inputCheckbox value="{!comp}" id="cmpnents"/> Apex Components
+     <br/><br/><br/>
+     <p> Enter Your String </p> <apex:inputText value="{!Searchstring}" id="text" onmousedown="Validate()" title="Enter Your Value......"/><br/>
+     <apex:commandButton value="Search" action="{!Search}" rerender="form"/>
+    
+    <apex:outputPanel rendered="{!classhide}">
+     <apex:pageBlock >
+       <apex:pageblockTable value="{!Classlist}" var="cl" >
+         <apex:column headerValue="Class Name">
+         <apex:commandLink value="{!cl.Name}"/>
+         </apex:column>  
+       </apex:pageblockTable>
+     </apex:pageBlock>
+    </apex:outputPanel>
+    
+    <apex:outputPanel rendered="{!Pagehide}">
+      <apex:pageBlock >
+       <apex:pageblockTable value="{!Pagelist}" var="pl">
+         <apex:column headerValue="Page Name" >
+         <apex:commandLink value="{!pl.Name}"/>
+         </apex:column>
+       </apex:pageblockTable>
+     </apex:pageBlock>
+    </apex:outputPanel>
+    
+     <apex:outputPanel rendered="{!Triggerhide}">
+      <apex:pageBlock >
+       <apex:pageblockTable value="{!Triggerlist}" var="tl">
+         <apex:column headerValue="Trigger Name" >
+         <apex:commandLink value="{!tl.Name}"/>
+         </apex:column>
+       </apex:pageblockTable>
+     </apex:pageBlock>
+    </apex:outputPanel>
+    
+     <apex:outputPanel rendered="{!Componenthide}">
+      <apex:pageBlock >
+       <apex:pageblockTable value="{!Componentlist}" var="compl">
+         <apex:column headerValue="Component Name" >
+         <apex:commandLink value="{!compl.Name}"/>
+         </apex:column>
+       </apex:pageblockTable>
+     </apex:pageBlock>
+    </apex:outputPanel>
+     
+   </apex:form>
+</apex:page>

@@ -1,0 +1,107 @@
+<apex:page controller="KEvents.KESiteHeaderCntr" sidebar="false" showHeader="false" standardStylesheets="true">
+  <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>       <head>
+       <style>
+                body
+                {
+                  font-size: 14px;
+                  background-color: #eeeeee;
+                }
+            </style>
+        <style type="text/css">
+            @media (min-width: 768px) {
+  .navbar-collapse {
+    height: auto;
+    border-top: 0;
+    box-shadow: none;
+    max-height: none;
+    padding-left:0;
+    padding-right:0;
+  }
+  .navbar-collapse.collapse {
+    display: block !important;
+    width: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+  }
+  .navbar-collapse.in {
+    overflow-x: visible;
+  }
+
+.navbar1
+{
+    max-width:;
+    max-height:100%
+    min-height: 800px;
+    margin-right: 0;
+    margin-left: 0;
+}   
+
+.navbar-nav,
+.navbar-nav > li,
+.navbar-left,
+.navbar-right,
+.navbar-header
+{float:none !important;}
+
+.navbar-right .dropdown-menu {left:0;right:auto;}
+.navbar-collapse .navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+}
+}
+        </style>
+    </head>
+    <body>
+  <nav class="navbar1 navbar-default" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -- <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+    <ul class="nav navbar-nav">
+      <li><a href="#" onclick="return window.open('{!CreatEventsPage}', '_top')"><image src="{!$Resource.Events}" width="20px" height="20px"/>&nbsp;Create Events</a></li>
+      <li class="dropdown">
+         
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><image src="{!$Resource.Calendar}" width="20px" height="20px"/>&nbsp;Calendars<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" onclick="return window.open('{!AllEventCalPage}', '_top')"><image src="{!$Resource.AllEventCalendar}" width="15px" height="15px"/> &nbsp;All Events</a></li>
+          <li><a href="#" onclick="return window.open('{!ResrvationCalPage}', '_top')"><image src="{!$Resource.ReservationCalendar}" width="15px" height="15px"/> &nbsp;Reservations</a></li>
+          <li><a href="#" onclick="return window.open('{!EventCalPage}', '_top')"><image src="{!$Resource.EventCalendar}" width="15px" height="15px"/> &nbsp;Events</a></li>
+          <li><a href="#" onclick="return window.open('{!TrainingCalPage}', '_top')"><image src="{!$Resource.TrainingCalendar}" width="15px" height="15px"/> &nbsp;Trainings</a></li>
+          <li><a href="#" onclick="return window.open('{!IntrnalCalPage}', '_top')"><image src="{!$Resource.InternalCalendar}" width="15px" height="15px"/> &nbsp;Internal Events</a></li>
+        </ul>
+      </li>
+    </ul>
+    
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" ><image src="{!$Resource.Configure}" width="20px" height="20px"/>&nbsp;Configure<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" onclick="return window.open('{!GatewayPage}', '_top')"><image src="{!$Resource.Gateway}" width="15px" height="15px"/> &nbsp;Gateway</a></li>
+          <li><a href="#" onclick="return window.open('{!EventPrefPage}', '_top')"><image src="{!$Resource.Preference}" width="15px" height="15px"/> &nbsp;Application</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><image src="{!$Resource.Help}" width="20px" height="20px"/>&nbsp;Help<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#" onclick="return window.open('http://kashyak.com/Schedule1/help/userManual.html', '_top')"><image src="{!$Resource.UserManual}" width="15px" height="15px"/> &nbsp;User Manual</a></li>
+          <li><a href="#" onclick="return window.open('http://kashyak.com/Schedule1/help/FAQ.html', '_top')"><image src="{!$Resource.FAQ}" width="15px" height="15px"/> &nbsp;FAQ </a></li>
+          <li><a href="#" onclick="return window.open('http://kashyak.com/Schedule1/help/videos.html', '_top')"><image src="{!$Resource.video}" width="15px" height="15px"/> &nbsp;Videos </a></li>
+        </ul>
+      </li>
+    </ul>
+    
+  <!-- /.navbar-collapse -->
+</nav>
+</body>
+</apex:page>

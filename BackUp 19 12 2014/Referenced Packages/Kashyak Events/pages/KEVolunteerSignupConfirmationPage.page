@@ -1,0 +1,31 @@
+<apex:page showHeader="false" sidebar="false" cache="false" standardStylesheets="false">
+       <!-- <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+        <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/bootstrap.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.BootStrapStyles, '/js/bootstrap.min.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/strap.css')}"/>-->
+         <style>
+         
+         body
+        {
+          font-size: 14px;
+        }
+         </style>
+                     
+    <apex:composition template="{!$Site.Template}"> 
+        <apex:define name="body">
+           <body> 
+           <br/>
+                <div class="panelNew panel-Green">
+                      <div class="panel-heading">
+                        <span class="glyphicon glyphicon-ok"/>&nbsp;&nbsp;<h3 class="panel-title">Volunteer Signup Confirmation</h3>
+                      </div>
+                        <div class="panel-body">  
+                           <h4> <Label class="text-success">  Your Volunteer Sign up completed successfully.</Label></h4><br/>
+                            <Label >Thank you for Sign up, we will be contacting you for the future volunteer programs soon.</label><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                        </div>
+               </div>                 
+            </body>
+        </apex:define> 
+    </apex:composition>
+</apex:page>

@@ -1,0 +1,31 @@
+<apex:page controller="CustomControllerFields" showHeader="false" sidebar="false">
+ <apex:sectionHeader title=" Dispaly fields by using a Custom Controller"/>
+  <apex:form >
+     <apex:pageBlock title="CustomControllerFields">
+        <apex:pageblockSection collapsible="true" columns="2" title="Opportunity Information">
+          <apex:inputField value="{!opp.Name}"/>
+          <apex:inputField value="{!opp.Description}"/>
+          <apex:inputField value="{!opp.ExpectedRevenue}"/>
+          <apex:inputField value="{!opp.LeadSource}"/>
+          <apex:inputField value="{!opp.NextStep}"/>
+          <apex:inputField value="{!opp.CloseDate}"/>
+          <apex:inputField value="{!opp.IsPrivate}"/>
+          <apex:inputField value="{!opp.StageName}"/>
+          <apex:inputField value="{!opp.Active__c}"/>
+          <apex:inputField value="{!opp.CurrentGenerators__c}"/>
+          <apex:inputField value="{!opp.OrderNumber__c}"/>
+          <apex:inputField value="{!opp.TrackingNumber__c}"/>
+        </apex:pageblockSection>
+        <apex:pageBlockSection collapsible="true" columns="2" title="Position Records">
+          <apex:inputField value="{!pos.Name}"/>
+          <apex:inputField value="{!pos.Candidate__c}"/> 
+          <apex:inputField value="{!pos.Close_Date__c}"/> 
+          <apex:inputField value="{!pos.Days_Open__c}"/> 
+          <apex:inputField value="{!pos.Java__c}"/> 
+          <apex:inputField value="{!pos.Min_Pay__c}"/> 
+          <apex:inputField value="{!pos.Status__c}"/> 
+          <apex:inputField value="{!pos.Travel_Required__c}"/>        
+        </apex:pageBlockSection>
+     </apex:pageBlock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Event__c$RecordType__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$Name</field>
+    </columns>
+    <columns>
+        <field>Event__c$Status__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$EventStartDate__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$EventEndDate__c</field>
+    </columns>
+    <columns>
+        <field>Event__c.Registrations__r$Name</field>
+    </columns>
+    <columns>
+        <field>Event__c.Registrations__r$Status__c</field>
+    </columns>
+    <description>This reports tells us that how many reseravaions are there in recored type reservation</description>
+    <filter>
+        <criteriaItems>
+            <column>Event__c$RecordType__c</column>
+            <operator>equals</operator>
+            <value>Reservation</value>
+        </criteriaItems>
+    </filter>
+    <format>Tabular</format>
+    <name>Ks1-Event of Type Reservation</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>KS1_With_Events_Registration__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Event__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

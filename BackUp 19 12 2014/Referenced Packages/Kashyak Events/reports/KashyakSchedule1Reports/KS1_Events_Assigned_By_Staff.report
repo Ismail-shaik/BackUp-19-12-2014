@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <chart>
+        <backgroundColor1>#993399</backgroundColor1>
+        <backgroundColor2>#FF9900</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>RowCount</column>
+        </chartSummaries>
+        <chartType>Donut</chartType>
+        <enableHoverLabels>false</enableHoverLabels>
+        <expandOthers>false</expandOthers>
+        <groupingColumn>Event__c$StaffAssigned__c</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_TOP</location>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>true</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <title>Events Assigned By Staff</title>
+        <titleColor>#009900</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <columns>
+        <field>Event__c$Name__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$Name</field>
+    </columns>
+    <columns>
+        <field>Event__c$AvailableSeat__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$VolunteersAssigned__c</field>
+    </columns>
+    <columns>
+        <field>Event__c$AllStaffingPositionsAssigned__c</field>
+    </columns>
+    <description>This Report Showing us that All Events are assigned by how many staff</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Event__c$StaffAssigned__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>KS1-Events Assigned By Staff</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>KS1_W_Wo_Events_Assignments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Event__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

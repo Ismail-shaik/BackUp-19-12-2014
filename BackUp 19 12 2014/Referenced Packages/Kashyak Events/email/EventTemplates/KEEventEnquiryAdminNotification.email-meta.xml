@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email Notification sent to Admin on Event Enquirey</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EventsLetterHead</letterhead>
+    <name>KE Event Enquiry Admin Notification</name>
+    <style>formalLetter</style>
+    <subject>Have Question request notification</subject>
+    <textOnly>Dear Admin,
+Have Question request has been submitted by an user.
+
+Name : {!Contact.FirstName} {!Contact.LastName}
+
+Email : {!Contact.Email}
+
+Phone : {!Contact.Phone}
+
+Question : {!Contact.MyQuery__c}
+Sincerely,
+
+Administration Team.</textOnly>
+    <type>html</type>
+</EmailTemplate>

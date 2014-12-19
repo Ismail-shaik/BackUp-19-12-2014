@@ -1,0 +1,24 @@
+<apex:page controller="Poscntrl" sidebar="true" showHeader="true">
+<apex:form >
+  <apex:sectionHeader title="Position records using Custom Controller"/>
+    <apex:pageBlock title="Position records using custom controller">
+    
+     <apex:inputField value="{!posobj.Name}"/>
+     <apex:outputLabel value="Candidate NAme" />
+          <apex:inputField value="{!posobj.Candidate__c}"/>
+     <apex:inputField value="{!posobj.Close_Date__c}"/>
+     
+      <apex:pageBlockTable value="{!lstpos}" var="lst">
+         <apex:column value="{!lst.Name}"/>
+         <apex:column value="{!lst.Close_Date__c}"/>
+         <apex:column value="{!lst.Days_Open__c}"/>
+         <apex:column value="{!lst.Hire_By__c}"/>
+         <apex:column value="{!lst.Job_Level__c}"/>
+         <apex:column value="{!lst.Location__c }"/>
+         <apex:column value="{!lst.Responsibilities__c }"/>
+         <apex:column value="{!lst.Min_Pay__c}"/>
+         <apex:column value="{!lst.Max_Pay__c}"/>
+      </apex:pageBlockTable>
+    </apex:pageBlock>
+   </apex:form>
+</apex:page>

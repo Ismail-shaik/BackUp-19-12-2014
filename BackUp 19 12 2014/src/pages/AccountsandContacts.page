@@ -1,0 +1,6 @@
+<apex:page standardController="Account" extensions="AccountsandContactscntrl">
+  <apex:sectionHeader title="Accounts and Contacts" subtitle="This is my page" />
+  <apex:pageBlock title="Contacts">
+  
+  </apex:pageBlock>
+</apex:page>

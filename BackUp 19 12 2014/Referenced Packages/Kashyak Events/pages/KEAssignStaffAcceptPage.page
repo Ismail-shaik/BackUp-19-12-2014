@@ -1,0 +1,98 @@
+<apex:page standardController="KEvents__Assignment__c" extensions="KEvents.KEAssignStaffAcceptCntr"
+    showHeader="false"
+    sidebar="false"
+    cache="false"
+    standardStylesheets="false"> 
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, 'strap.css')}"/>
+    <apex:stylesheet value="{!$Resource.KEvents__colorcode}"/>
+    
+    <style>
+        body
+        {
+          font-size: 14px;
+        }
+    </style>
+    <body>
+    <apex:composition template="{!$Site.Template}">
+        <apex:define name="body">
+           <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+    <br/><br/>
+<apex:form >
+
+ <div class="panelNew panel-Purple">
+           <div class="panel-heading">
+               <span class="glyphicon glyphicon-question-sign"/>&nbsp;&nbsp;<h3 class="panel-title">Staff/Volunteer Status Check</h3>
+           </div>
+           <div class="panel-body">
+                <div class="form-group">
+                     <label  class="col-lg-2 control-label">Event Name :</label>
+                      <div class="col-lg-6">
+                        <apex:outputText value="{!KEvents__Assignment__c.Event__r.KEvents__Name__c}" />
+                      </div><br/><br/>
+                       <label  class="col-lg-2 control-label">Event Start Date:</label>
+                       <div class="col-lg-6">
+                         <apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__EventStartDate__c}"/>
+                       </div><br/><br/>
+                        <label  class="col-lg-2 control-label">Event End Date:</label>
+                       <div class="col-lg-6">
+                         <apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__EventEndDate__c}"/>
+                       </div><br/><br/>
+                       <label  class="col-lg-2 control-label">Event Start Time:</label>
+                       <div class="col-lg-6">
+                         <apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__StartTime__c}"/>
+                       </div><br/><br/>
+                        <label  class="col-lg-2 control-label">Event End Time:</label>
+                       <div class="col-lg-6">
+                         <apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__EndTime__c}"/>
+                       </div><br/><br/>
+                       <label  class="col-lg-2 control-label">Event Location:</label>
+                       <div class="col-lg-6">
+                         <apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__EventLocation__c}"/>
+                       </div>
+                      
+                   <!--     <table>
+                            <tr>
+                                <td><strong>Event Name:</strong></td>
+                                <td><apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__Name__c}"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong> Event Start Date: </strong></td>
+                                <td><apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__EventStartDate__c}"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong> Event End Date: </strong></td>
+                                <td><apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__EventEndDate__c}"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong> Event Statrt Time : </strong></td>
+                                <td><apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__StartTime__c}"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong> Event End Time : </strong></td>
+                                <td><apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__EndTime__c}"/></td>
+                            </tr>
+                            <tr>
+                                <td><strong> Event Location : </strong></td>
+                                <td><apex:outputField value="{!KEvents__Assignment__c.Event__r.KEvents__EventLocation__c}"/></td>
+                            </tr>
+                        </table><br/>  --> 
+                        <br/><br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <apex:commandButton value="Accept" action="{!Accept}" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/> &nbsp;
+               <apex:commandButton value="Decline" action="{!Declain}" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" />
+              </div>
+            </div> 
+          </div>       
+</apex:form>
+ </apex:define>
+  </apex:composition> 
+</body>
+</apex:page>

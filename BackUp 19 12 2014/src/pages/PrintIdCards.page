@@ -1,0 +1,109 @@
+<apex:page standardController="Contact" tabStyle="Contact" extensions="OppStandardCntrlr" showHeader="{!bolPrintableView}" sidebar="{!bolPrintableView}" action="{!init}">
+
+
+       
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+        <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>    
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/bootstrap.min.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.Styles, '/js/bootstrap.min.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/strap.css')}"/> 
+        
+        <style type="text/css" media="print">
+           @page 
+                {
+                  size: landscape; 
+                }
+        </style>
+
+        <apex:outputPanel rendered="{!bolPrintableView}">
+             <script>
+                  window.print()
+             </script>
+        </apex:outputPanel>                     
+
+ <apex:form >
+    
+   
+       <apex:commandLink onclick="window.print();">
+         <font style="text-align:right;"><P align="right"> Print Id Card</p></font>
+       </apex:commandLink>
+           
+      <apex:outputPanel rendered="{!NOT(bolPrintableView)}">
+        <a href="/apex/PrintIdCards?print=1" target="_blank" >Printable View </a>
+      </apex:outputPanel>  
+        
+        <div style="margin: 1 auto; width:608px; height:42px;">
+           <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">Id Card</h3>
+              </div>
+              <div class="panel-body">
+                
+                
+                        <div class = "form-group">
+                           <label class="col-lg-4 control-label">Contact Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+                               <div class="col-lg-2">
+                                   <apex:outputField value="{!Contact.Contact_Id__c}"/> 
+                               </div>
+                        </div><br/>  
+                        
+                        <div class = "form-group"> 
+                            <label class="col-lg-4 control-label">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+                               <div class="col-lg-2"> 
+                                   <apex:outputField value="{!Contact.Name}"/>   
+                               </div> 
+                        </div> <br/>
+                        
+                        <div class = "form-group">
+                            <label class="col-lg-4 control-label">Bar Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+                               <div class="col-lg-2">
+                                   <apex:outputField value="{!Contact.Bar_Code__c}"/>    
+                               </div> 
+                        </div><br/><br/>
+                           
+                        <div class = "form-group">
+                           <label class="col-lg-4 control-label">QR Code&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+                               <div class="col-lg-2">
+                                   <apex:outputField value="{!Contact.QR_Code__c }"/>   
+                               </div> 
+                        </div>
+                        
+                         <div class = "form-group">
+                          
+                               <div class="col-lg-2">
+                                   <apex:inputfield value="{!Contact.Url__c}"/>
+                               </div> 
+                        </div>
+                
+                
+              </div>
+            </div>
+         </div>
+            
+            <br/><br/><br/>
+            
+            
+           
+    
+       <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      Help   
+                    </a>    
+                    <ul class="dropdown-menu">
+                       <li><a href="#" onclick="return window.open('http://kashyak.com/Schedule1/help/userManual.html', '_top')"> &nbsp;User Manual</a></li>
+                       <li><a href="#" onclick="return window.open('http://kashyak.com/Schedule1/help/FAQ.html', '_top')"> &nbsp;FAQ </a></li>
+                    </ul>
+                </li>
+             </ul>
+     
+     
+            
+            
+            
+            
+            
+            
+  </apex:form>
+  
+</apex:page>

@@ -1,0 +1,162 @@
+<apex:page standardcontroller="KEvents__Gateway__c" extensions="KEvents.KEGatewayCntr" id="pageid" showHeader="true" sidebar="false" standardStylesheets="true">
+  
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+            
+   <script>
+      function showError(){
+         alert('welcome');
+        var MTkey=document.getElementById('pageid:formid:keyid').value;
+        var Mlogin=document.getElementById('pageid:formid:loginid').value;
+        var url=document.getElementById('pageid:formid:urlid').value;
+        
+       if(MTkey == null || MTkey == "")
+        {
+         alert('Please Enter the Merchant Transaction Key');
+         MTkey.focus();
+         return false;
+        }
+        else if(Mlogin == null || Mlogin == "")
+        {
+         alert('Please Enter the Merchant API Login ID');
+         Mlogin.focus();
+         return false;
+        }
+        else if(url == null || url == "")
+        {
+         alert('Please Enter the Url');
+         url.focus();
+         return false;
+        }
+    </script>    
+   <style>
+        body
+        {
+          font-size: 14px;
+        }
+    </style>
+    <body>
+    <div class="row">
+  <div class="col-md-2">
+      <c:KELeftNavigationComp />
+  </div>
+  <div class="col-md-10">
+ 
+    <div class="bs-example">
+        <div class="page-header"> <image src="{!$Resource.Configure}"/> <h5> &nbsp; Configure Payment Gateway</h5> </div> 
+    </div>  
+              
+   <!--<apex:sectionHeader title="Configure Payment Gateway" />-->
+    <apex:form id="formid">
+    
+   <div class="form-group">   
+       <label  class="col-lg-3 control-label">Select Gatway :</label> 
+      <div class="col-lg-2"> 
+         <apex:selectList size="1" value="{!picVakue}" styleClass="form-control">
+             <apex:actionSupport event="onchange" action="{!selectvalue}"/>
+              <apex:selectOptions value="{!Selectgateway}"/>
+         </apex:selectList>
+      </div><br/><br/>     
+      </div>
+      <apex:pageMessages ></apex:pageMessages>  
+       <apex:outputPanel rendered="{!TestHide}">
+       <center>
+       <script type="text/javascript">
+       function display(){
+        var MTkey=document.getElementById('pageid:formid:keyid').value;
+        var Mlogin=document.getElementById('pageid:formid:loginid').value;
+        var url=document.getElementById('pageid:formid:urlid').value;
+        
+       if(MTkey == null || MTkey == "")
+        {
+         alert('Please Enter the Merchant Transaction Key');
+         MTkey.focus();
+         return false;
+        }
+        else if(Mlogin == null || Mlogin == "")
+        {
+         alert('Please Enter the Merchant API Login ID');
+         Mlogin.focus();
+         return false;
+        }
+        else if(url == null || url == "")
+        {
+         alert('Please Enter the Url');
+         url.focus();
+         return false;
+       }
+       }
+       </script>
+     </center>       
+      <div class="panelNew panel-SkyBlue">
+          <div class="panel-heading">
+            <image src="{!$Resource.GatewayWhite}" width="25px" height="25px"/> &nbsp;&nbsp;<h3 class="panel-title">Payment Gateway Information</h3>
+          </div>
+          <div class="panel-body">
+           <div class="form-group">
+                <label  class="col-lg-3 control-label">Name</label>
+                <div class="col-lg-3">
+                   <apex:outputText value="{!objgateway.Name}"/>
+                </div>
+            <label  class="col-lg-3 control-label">Is Active</label>
+                 <div class="col-lg-2">
+                    <apex:inputField value="{!objgateway.KEvents__IsActive__c}" />
+                 </div><br/>
+           </div>
+           
+            <div class="form-group"> 
+                <label  class="col-lg-3 control-label">Merchant API Login ID <font color="Red">&nbsp; * </font></label>
+                       <div class="col-lg-3">
+                        <apex:inputField value="{!objgateway.KEvents__MerchantLoginID__c}" styleClass="form-control" id="loginid"/>
+                       </div> 
+                 <label  class="col-lg-3 control-label">Enable CVS</label>
+                 <div class="col-lg-2">
+                   <apex:inputField value="{!objgateway.KEvents__EnableCVS__c}" />
+                 </div><br/> 
+            </div> 
+            <div class="form-group">
+            <label  class="col-lg-3 control-label">Merchant Transaction Key <font color="Red">&nbsp; * </font></label>
+                   <div class="col-lg-3">
+                    <apex:inputField value="{!objgateway.KEvents__MerchantKey__c}" styleClass="form-control" id="keyid"/>
+                    </div>
+                 <label  class="col-lg-3 control-label">Enable AVS</label>
+                 <div class="col-lg-2">
+                   <apex:inputField value="{!objgateway.KEvents__EnableAVS__c}" />
+                 </div><br/>
+            </div>   
+            
+              
+              
+               
+               <div class="form-group">  
+                      <label  class="col-lg-3 control-label">Signature</label>
+                       <div class="col-lg-3">
+                        <apex:inputField value="{!objgateway.KEvents__Signature__c}" styleClass="form-control" id="sigid"/>
+                       </div><br/> 
+                    </div>
+               <div class="form-group">  
+                      <label  class="col-lg-3 control-label">Url<font color="Red">&nbsp; * </font></label>
+                       <div class="col-lg-3">
+                        <apex:inputField value="{!objgateway.KEvents__Url__c}" styleClass="form-control" id="urlid"/>
+                       </div><br/> 
+               </div>     
+           </div>
+        </div>  
+        <center>
+         <apex:commandButton value="Save" action="{!Save}" onmouseover="display()" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" />
+           <apex:commandButton value="Cancel" action="{!cancel}" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/> 
+           </center>  
+     </apex:outputPanel>   
+    
+
+        
+    </apex:form>
+    
+      </div>
+      </div>
+      </body>
+    
+</apex:page>

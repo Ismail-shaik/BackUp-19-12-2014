@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>SALESCONGO/Train: Questions for the course, coach or new hire tests</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Correct_Answer__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Correct Answer</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Max_Score__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Max score of the answers associated to the question. Used for the calculation of the total available points in a test</description>
+        <externalId>false</externalId>
+        <label>Max Score</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Question_Full_Text__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Store question text here, since &quot;Name&quot; is only 80 characters</description>
+        <externalId>false</externalId>
+        <label>Question Full Text</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Question_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <description>external id</description>
+        <externalId>true</externalId>
+        <label>Import ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Question_SEQ__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Question SEQ</label>
+        <precision>4</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Question_Type__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Question Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Multiple Choice</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>True/False</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Essay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Choice Essay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multiple Select</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>section__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Optional section/group header for questions (used by Coaching forms)</description>
+        <externalId>false</externalId>
+        <label>Section</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>test__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Test</label>
+        <referenceTo>test__c</referenceTo>
+        <relationshipLabel>Test Questions</relationshipLabel>
+        <relationshipName>Test_Questions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Test Question</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Question Text</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Test Questions</pluralLabel>
+    <searchLayouts>
+        <listViewButtons>AutoPopNewQuestion</listViewButtons>
+        <lookupDialogsAdditionalFields>section__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>section__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>section__c</searchFilterFields>
+        <searchResultsCustomButtons>AutoPopNewQuestion</searchResultsCustomButtons>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>AutoPopNewQuestion</fullName>
+        <availability>online</availability>
+        <description>Auto-populating stuff on a new question</description>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Question</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/a0J/e?CF00N5000000204qR={!test__c.Name}&amp;Name={!test__c.Name}+{!test__c.Max_Question_Seq__c}&amp;CF00N5000000204qR_lkid=a0I50000004oPSu&amp;retURL=%2F{!test__c.Id}</url>
+    </webLinks>
+</CustomObject>

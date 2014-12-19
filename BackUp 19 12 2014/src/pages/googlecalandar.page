@@ -1,0 +1,15 @@
+<apex:page controller="CalenderConnect">
+<apex:form >
+<!-- Here the button will authenticate the gmail user and then it creates an evnent in the calender. this google button will perform OAUTH2.0-->
+  <apex:commandButton value="Google" action="{!doGoogleConnectCall}"/><br/>  
+  <apex:commandLink value="Show Calender" action="{!displayCalender}"/><br/>
+  <apex:outputPanel rendered="{!calenderShow}">
+  <apex:pageMessages ></apex:pageMessages> 
+  <apex:outputLabel value="Outlook Email:"></apex:outputLabel>
+  <apex:inputText value="{!emailValue}"/>  
+  <apex:commandLink action="{!outlookConnect}" value="OutLook"/><br/>
+  <apex:commandLink target="_blank" action="{!doYahooconnectCall}" value="Yahoo"/><br/>
+  <apex:commandLink target="_blank" action="{!googleConnectCall}" value="Google"/>
+  </apex:outputPanel>
+</apex:form>
+</apex:page>

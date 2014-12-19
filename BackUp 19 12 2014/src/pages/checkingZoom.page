@@ -1,0 +1,37 @@
+<apex:page showHeader="false" docType="html-5.0" controller="checkingZoomCntrlr">
+
+    <script>
+    
+        function bigImg(x) 
+          {
+            x.style.height = "300px";
+            x.style.width = "300px";
+          }
+        
+        function normalImg(x) 
+          {
+            x.style.height = "200px";
+            x.style.width = "200px";
+          }
+       
+        function validate()
+          {
+              // alert('welcomes to you');
+                 display();
+          }
+        
+    </script>
+
+  <apex:form >
+    
+       <img onmouseover="bigImg(this)" onmouseout="normalImg(this)" border="0" src="{!$Resource.Flower}" alt="Smiley" width="200" height="200"></img>
+       
+       <br/><br/>
+       
+       <apex:image value="{!$Resource.Flower}" height="200" width="200" onmouseover="validate()"/>
+       <apex:image value="{!$Resource.Flower}" height="500" width="500" />
+
+  </apex:form>
+  
+  
+</apex:page>

@@ -1,0 +1,31 @@
+<apex:page id="page" >
+   
+        
+<script>
+ function Check()
+  {
+        var User name = document.getElementById('page:form:UN').value;
+        //alert(name);
+        var Password = document.getElementById('page:form:PSW').value;
+        //alert(pswd);
+        if(User name== '' || Password == '')
+        {
+        alert('Plx check your credentials...');
+        return false;
+        }
+    }
+</script>
+ <apex:form id="form">
+  <apex:pageBlock title="Login sheets">
+   <apex:pageBlockSection title="Login Sheets" >
+    <apex:outputLabel > User name</apex:outputLabel>
+    <apex:inputtext id="UN"/>
+    <apex:outputLabel > Password</apex:outputLabel>
+    <apex:inputSecret id="PSW"/>
+    <apex:commandButton value="Login" onclick="Check()" action="https://www.google.co.in"/>
+    <apex:commandButton value="Register" action="https://www.google.co.in"/>
+   </apex:pageBlockSection>
+  </apex:pageBlock>
+ </apex:form>
+  
+</apex:page>

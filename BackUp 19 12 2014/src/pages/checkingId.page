@@ -1,0 +1,12 @@
+<apex:page controller="checkingIdcntrlr">
+ <apex:form >
+   <apex:pageblock >
+      <apex:pageBlockTable value="{!Conlist}" var="cl">
+        <apex:column value="{!cl.id}"/>
+        <apex:column value="{!cl.Name}"/>
+        <apex:column value="{!cl.email}"/>
+        <apex:column value="{!cl.Password__c}"/>
+      </apex:pageBlockTable>
+   </apex:pageblock>
+ </apex:form>
+</apex:page>

@@ -1,0 +1,16 @@
+<apex:page controller="Recordctrlr" tabStyle="Contact">
+  <apex:form >
+   <apex:pageBlock title="Contact records">
+    <apex:pageBlockSection title="Contact Records">
+      <apex:pageblocktable value="{!Listacc}" var="lst">
+       <apex:column value="{!lst.FirstName}"/>
+       <apex:column value="{!lst.Phone}"/>
+       <apex:column value="{!lst.HomePhone}"/>
+       <apex:column value="{!lst.Fax}"/>
+       <apex:column value="{!lst.Description}"/> 
+       <apex:column value="{!lst.AssistantName}"/> 
+      </apex:pageblocktable>
+    </apex:pageBlockSection>
+   </apex:pageBlock>
+  </apex:form>
+</apex:page>

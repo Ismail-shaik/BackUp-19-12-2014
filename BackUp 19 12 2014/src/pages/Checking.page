@@ -1,0 +1,15 @@
+<apex:page controller="CheckingCntrlr" >
+
+  <apex:form >
+    <apex:pageblock >
+       <apex:pageblockSection title="Checking">
+          <apex:inputField value="{!Pos.Travel_Required__c}"/>
+            
+             <apex:outputPanel rendered="{!fieldhide}">
+               <apex:inputField value="{!Pos.Min_Pay__c}"/>
+             </apex:outputPanel>
+           <apex:commandLink action="{!Next}" title="Next" value="Next"/>
+       </apex:pageblockSection>
+    </apex:pageblock>
+  </apex:form>
+</apex:page>

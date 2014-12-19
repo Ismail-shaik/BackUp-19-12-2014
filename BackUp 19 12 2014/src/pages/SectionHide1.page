@@ -1,0 +1,59 @@
+<apex:page standardController="Account" extensions="SectionHideCntrlr" showHeader="false" sidebar="false">
+  <apex:form >
+    <apex:sectionHeader title="Hiding more sections......"/>
+      <apex:messages />
+      <apex:message />
+    <apex:pageblock >
+       <apex:pageblockSection title="hiding section">
+         <apex:selectList label="Year of passing" value="{!YearValue}" multiselect="false" size="1">
+           <apex:actionsupport event="onchange" action="{!picklist}"/>
+         <apex:selectoptions value="{!YearList}"/>
+         </apex:selectList>
+       </apex:pageblockSection>
+    </apex:pageblock>
+    
+    <apex:outputpanel id="OPID" rendered="{!YearValue1}">
+     <apex:pageblock >
+       <apex:pageblockSection title="2010 hiding details">
+         <apex:pageblocksectionItem >
+           <apex:outputLabel value="Account Name">
+           </apex:outputLabel>
+           <apex:inputfield value="{!Account.Name}"/>
+         </apex:pageblocksectionItem>
+         <apex:pageblocksectionItem >
+           <apex:outputLabel value="Account Industry">
+           </apex:outputLabel>
+           <apex:inputfield value="{!Account.Industry}"/>
+         </apex:pageblocksectionItem>
+       </apex:pageblockSection>
+     </apex:pageblock>
+    </apex:outputpanel>
+    
+    <apex:outputpanel id="OPPID" rendered="{!YearValue2}">
+     <apex:pageblock >
+       <apex:pageblockSection title="2011 hiding details">
+         <apex:pageblocksectionItem >
+           <apex:outputLabel value="Account Type">
+           </apex:outputLabel>
+           <apex:inputfield value="{!Account.Type}"/>
+         </apex:pageblocksectionItem>
+         <apex:pageblocksectionItem >
+           <apex:outputLabel value="Account Rating">
+           </apex:outputLabel>
+           <apex:inputfield value="{!Account.Rating}"/>
+         </apex:pageblocksectionItem>
+         <apex:pageblocksectionItem >
+           <apex:outputLabel value="Account Phone">
+           </apex:outputLabel>
+           <apex:inputfield value="{!Account.Phone}"/>
+         </apex:pageblocksectionItem>
+         <apex:pageblocksectionItem >
+           <apex:outputLabel value="Account Description">
+           </apex:outputLabel>
+           <apex:inputfield value="{!Account.Description}"/>
+         </apex:pageblocksectionItem>
+       </apex:pageblockSection>
+     </apex:pageblock>
+    </apex:outputpanel>
+  </apex:form>
+</apex:page>

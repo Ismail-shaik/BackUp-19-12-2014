@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Object to store Registration information for an Event</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>AtendeeList__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Atendee List</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Atendee List</inlineHelpText>
+        <label>Atendee List</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Attendee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Attendee</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Attendee</inlineHelpText>
+        <label>Attendee</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Registrations</relationshipLabel>
+        <relationshipName>Registrations</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AttendingDate__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Attending Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Date of Attending the Event</inlineHelpText>
+        <label>Attending Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>CancelComment__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Cancel Comment</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Cancel Comment</inlineHelpText>
+        <label>Cancel Comment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>CheckIn__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Check In</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is all the attendees of this registration are Checked In ?</inlineHelpText>
+        <label>Check In</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Comments</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Comments</inlineHelpText>
+        <label>Comments/Questions</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>DonationAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Donation Amount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Donation Amount</inlineHelpText>
+        <label>Donation Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>EventEndTime__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Event End Time</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Event End Time</inlineHelpText>
+        <label>Event End Time</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EventLocation__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Event__r.EventLocation__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Event Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EventRecordType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Event Record Type</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Event Record Type</inlineHelpText>
+        <label>Event Record Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Reservation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>EventStartTime__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Event Start Time</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Event Start Time</inlineHelpText>
+        <label>Event Start Time</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Event__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Event related to this Registration</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Event /Training/ Reservation/Internal Event related to this Registration</inlineHelpText>
+        <label>Event</label>
+        <referenceTo>Event__c</referenceTo>
+        <relationshipLabel>Registrations</relationshipLabel>
+        <relationshipName>Registrations</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>FieldTripWithUsBefore__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Have you ever brought your group on a field trip with us before?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Have you ever brought your group on a field trip with us before?</inlineHelpText>
+        <label>Field Trip with us Before?</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GroupName__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>School/Group Name</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HowDidYouHearAboutOurPrograms__c</fullName>
+        <deprecated>false</deprecated>
+        <description>How did you hear about our programs</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How did you hear about our programs</inlineHelpText>
+        <label>How Did You Hear About Our Programs</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>NumberOfAttendees__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <description># of Attendees</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of Attendees</inlineHelpText>
+        <label># of Attendees</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OneChaperonesPer__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>Event__r.Program__r.OneChaperonesPer__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>One Chaperones Per</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Organizer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Coordinator</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Coordinator</inlineHelpText>
+        <label>Coordinator</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Registrations (Organizer)</relationshipLabel>
+        <relationshipName>Registrations1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>PayByDate__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL(PaymentType__c, &quot;Check&quot;),AttendingDate__c - 30, null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pay By Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>PaymentRecived__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Payment Received</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Payment Received</inlineHelpText>
+        <label>Payment Received</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>PaymentType__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Payment Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Credit Card(online)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Check</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pay At The Door</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>RegistrationPrice__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Registration Price</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Price to be payed to complete this Registration (Sum of all attendees price)</inlineHelpText>
+        <label>Registration Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Registration Status</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Registration Status</inlineHelpText>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved: Full Scholarship</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved: Partial Scholarship</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>History</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>TeacherName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Teacher&apos;s Name, If Different than Contact Person</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Teacher&apos;s Name, If Different than Contact Person</inlineHelpText>
+        <label>Teacher&apos;s/Organizer&apos;s Name</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title1__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Title 1</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Title 1</inlineHelpText>
+        <label>Title I</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <label>Registration</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Event__c</columns>
+        <columns>AttendingDate__c</columns>
+        <columns>NumberOfAttendees__c</columns>
+        <columns>Comments__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>REG{00000000}</displayFormat>
+        <label>Registration ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Registrations</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Event__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>AttendingDate__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>RegistrationPrice__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Comments__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Event__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>AttendingDate__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>NumberOfAttendees__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Comments__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Event__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>AttendingDate__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>NumberOfAttendees__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Comments__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Event__c</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchFilterFields>AttendingDate__c</searchFilterFields>
+        <searchFilterFields>EventStartTime__c</searchFilterFields>
+        <searchFilterFields>EventEndTime__c</searchFilterFields>
+        <searchFilterFields>NumberOfAttendees__c</searchFilterFields>
+        <searchFilterFields>EventLocation__c</searchFilterFields>
+        <searchResultsAdditionalFields>Event__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>AttendingDate__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>NumberOfAttendees__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Comments__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

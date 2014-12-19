@@ -1,0 +1,168 @@
+<apex:page controller="KEvents.KEAdminAllEventsCalendarCntr" id="thePage" showHeader="true" sidebar="false" standardStyleSheets="false"> 
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+            <apex:stylesheet value="{!$Resource.KEvents__StyleColors}"/>
+   <style>
+    body
+    {
+    font-size: 14px;
+    }
+    </style>
+    <body>
+    <div class="row">
+    
+        <div class="col-md-2">
+            <c:KELeftNavigationComp />
+        </div>
+        
+        <div class="col-md-9 ">
+            
+    
+    <apex:form id="theForm1">
+            <!-- <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+             <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>-->
+        <div class="panelNew panel-Purple">
+          <div class="panel-heading">
+             <span class="glyphicon glyphicon-calendar"/> &nbsp;&nbsp;<h3 class="panel-title">Events Calendar</h3>
+          </div>
+          <div class="panel-body">
+             <center>
+                <div class="row">
+                  &nbsp;&nbsp;&nbsp;<c:KETooltipComp text="Legend for Reservations"> <label class="fontcolor-6">Reservations</label> &nbsp; <apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarReservationS.png')}"/> </c:KETooltipComp>&nbsp;&nbsp;<!--<label>Reservations</label> --> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <c:KETooltipComp text="Legend for Events"> <label class="fontcolor-4">Events</label> &nbsp;<apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarEventS.png')}"/> </c:KETooltipComp>&nbsp;&nbsp; <!--<label>Events </label>-->     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <c:KETooltipComp text="Legend for Trainings"> <label class="fontcolor-blue3">Trainings</label> &nbsp; <apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarTrainingS.png')}"/> </c:KETooltipComp>&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <c:KETooltipComp text="Legend for Internal Events"> <label class="fontcolor-5">Internal Events</label> &nbsp;<apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarInternalS.png')}"/></c:KETooltipComp> &nbsp;&nbsp;
+               </div>
+             </center>   
+        <apex:outputPanel id="theCalendar">
+            <div class="table-responsive">
+              <table class="table table-bordered" width="100%">
+                    <caption>
+                         <div class="calHeader">
+                        <!-- <apex:commandLink value="Event(s)" style="font-size:17px;" action="{!eventCalender}"/>&nbsp;&nbsp;&nbsp;&nbsp;<apex:commandLink value="Class(s)" style="font-size:17px;" action="{!classCalender}"/>&nbsp;&nbsp;&nbsp;&nbsp;<apex:commandLink style="font-size:17px;" value="Reservation(s)" action="{!reservationCalender}"/>&nbsp;&nbsp;&nbsp;&nbsp;<apex:commandLink style="font-size:17px;" value="Volunteer Event(s)" action="{!volunteerCalender}"/> --> 
+                            <br/> <apex:commandLink action="{!prev}" rerender="theCalendar"> 
+                                 <img title="Previous Month" alt="Previous Month" src="{!$Resource.LeftArrow}" width="18px" height="20px" />
+                             </apex:commandLink>
+                                {!month.monthname}&nbsp;&nbsp;{!month.yearname}
+                            <apex:commandLink action="{!next}" rerender="theCalendar">
+                            <img title="Next Month" alt="Next Month" src="{!$Resource.RightArrow}" width="18px" height="20px" /></apex:commandLink>
+                        </div>
+                    </caption>
+                    
+                    <tbody>
+                        
+                        <tr class="headerRow">
+                            <th scope="col" class="calDays">Sunday</th>
+                            <th scope="col" class="calDays">Monday</th>
+                            <th scope="col" class="calDays">Tuesday</th>
+                            <th scope="col" class="calDays">Wednesday</th>
+                            <th scope="col" class="calDays">Thursday</th>
+                            <th scope="col" class="calDays">Friday</th>
+                            <th scope="col" class="calDays">Saturday</th>
+                        </tr>
+
+                        <apex:repeat value="{!weeks}" var="wk" id="foreachWeek">
+                            <tr>
+                                <apex:repeat value="{!wk.days}" var="day" id="foreachday">
+                                    <td class="{!day.cssname} col-lg-1" height="90" valign="top">
+                                        <div class="date">
+                                             <!--<a href="/a02/e?aid=023i0000000UYr7&StartDateTime__c={!day.date}&anm=Event+Booking+Calendar&evt4={!day.dayofmonth}/{!month.MonthNumber}/{!month.yearname}&retURL=/00U/c?cal_lkid=023i0000000UYr7&md1={!month.MonthNumber}&md0={!month.yearname}" title="Add Event - {!day.date}">
+                                                <img src="/s.gif" alt="Add Event - {!day.date}" class="addNewEventIcon" title="Add Event - {!day.date}" />
+                                             </a> -->
+                                           <!--  <a href="/a02/e?retURL=/apex/EMSEventCalendarPage?RType={!eventType}&RecordType={!eventTypeID}&00Ni00000047BmD={!day.convertedDate}&00Ni00000047BmS={!day.convertedDate}" title="Add Event - {!day.date}">
+                                                <img src="/s.gif" alt="Add Event - {!day.date}" class="addNewEventIcon" title="Add Event - {!day.date}" />
+                                             </a> -->
+                                             <!--<a href="/a02/e?retURL=/apex/EMSEventCalendarPage?RType={!eventType}&RecordType={!eventTypeID}&00Ni00000047BmD={!day.convertedDate}&00Ni00000047BmS={!day.convertedDate}" title="Day View - {!day.date}" >{!day.dayofmonth}</a>-->
+                                             <!--<a href="/a02/e?cal_lkid=023i0000000UYr7&00Ni00000047BmD={!day.convertedDate}&00Ni00000047BmS={!day.convertedDate}&00Ni00000047Bmd=Test Event" title="Day View - {!day.date}">{!day.dayofmonth} </a>-->
+                                             {!day.dayofmonth}
+
+                                        </div>
+                                        <div>
+                                            <apex:repeat value="{!day.eventstoday}" var="v" id="foreachevent">
+                                                <span class="event">{!v.formateddate}</span>
+                                                <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Training'}" >
+                                                <label class="fontsize-small"> 
+                                                     <a href="#" id="{!v.ev.id}" 
+                                                     onblur="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onfocus="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();" 
+                                                     onmouseout="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onmouseover="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();"
+                                                     onclick="return window.open('/{!v.ev.id}')">
+                                                     <font class="fontcolor-blue3">{!v.ev.Name__c}({!v.ev.StartTime__c})</font> 
+                                                      </a>
+                                                </label>
+                                                </apex:outputPanel>
+                                                 <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Event'}" >
+                                               <label class="fontsize-small">  <a href="#" id="{!v.ev.id}" 
+                                                     onblur="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onfocus="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();" 
+                                                     onmouseout="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onmouseover="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();"
+                                                     onclick="return window.open('/{!v.ev.id}')">
+                                                     <font class="fontcolor-4">{!v.ev.Name__c} ({!v.ev.StartTime__c})</font>
+                                                 </a> </label>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Internal'}" >
+                                               <label class="fontsize-small">  <a href="#" id="{!v.ev.id}" 
+                                                     onblur="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onfocus="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();" 
+                                                     onmouseout="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onmouseover="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();"
+                                                     onclick="return window.open('/{!v.ev.id}')">
+                                                    <font class="fontcolor-5">{!v.ev.Name__c} ({!v.ev.StartTime__c})</font>
+                                                 </a></label>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Reservation'}" >
+                                               <label class="fontsize-small">  <a href="#" id="{!v.ev.id}" 
+                                                     onblur="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onfocus="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();" 
+                                                     onmouseout="LookupHoverDetail.getHover('{!v.ev.id}').hide();" 
+                                                     onmouseover="LookupHoverDetail.getHover('{!v.ev.id}', '/{!v.ev.id}/m?retURL=%2F{!v.ev.id}&isAjaxRequest=1').show();"
+                                                     onclick="return window.open('/{!v.ev.id}')">
+                                                     <font class="fontcolor-6">{!v.ev.Name__c} ({!v.ev.StartTime__c})</font>
+                                                 </a></label>
+                                                </apex:outputPanel>
+                                                <!--<a href="/{!v.ev.id}" >{!v.ev.Name__c} color:#542D78;  ({!v.ev.StartTime__c})</a>-->
+                                                <!--{!v.ev.status__c}-->
+                                                <br />
+                                            </apex:repeat>
+                                        </div>
+                                        <!--
+                                         <div class="date">
+                                            <a href="https://na15.salesforce.com/a02/e?aid=023i0000000UYr7&StartDateTime__c={!day.date}&anm=Event+Booking+Calendar&evt4={!day.dayofmonth}/{!month.MonthNumber}/{!month.yearname}&retURL=/00U/c?cal_lkid=023i0000000UYr7&md1={!month.MonthNumber}&md0={!month.yearname}" title="Add Event - {!day.date}">
+                                                <img src="/s.gif" alt="Add Event - {!day.date}" class="addNewEventIcon" title="Add Event - {!day.date}" />
+                                             </a> 
+                                             <a href="https://na15.salesforce.com/a02/e?md0={!month.yearname}&cal_lkid=023i0000000UYr7&md3={!day.DayOfYear}&StartDateTime__c={!day.date}" title="Day View - {!day.date}">{!day.dayofmonth} </a>
+                                        </div>
+                                        <div>
+                                            <apex:repeat value="{!day.eventstoday}" var="v" id="foreachevent">
+                                                <span class="event">{!v.formateddate}</span>
+                                                <a href="https://na15.salesforce.com/{!v.ev.id}?retURL=/00U/c?cal_lkid=023i0000000UYr7&md0={!month.yearname}&md3={!day.DayOfYear}&StartDateTime__c={!day.date}">{!v.ev.Name__c}</a>
+                                                {!v.ev.status__c}
+                                                <br />
+                                            </apex:repeat>
+                                        </div>-->
+                                    </td>
+                                </apex:repeat>
+                            </tr>
+                       </apex:repeat>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </apex:outputPanel>
+           </div>
+        </div>
+    </apex:form>
+    </div>
+    </div>
+    </body>
+</apex:page>

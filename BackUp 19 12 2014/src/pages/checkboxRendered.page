@@ -1,0 +1,19 @@
+<apex:page controller="checkboxRenderedCntrlr" id="page">
+ <apex:form id="form">
+    <apex:pageblock >
+      <apex:pageBlockSection title="Master section" columns="2">
+        Checkbox1 <apex:inputCheckbox value="{!checkbox1}" >
+                     <apex:actionSupport event="onchange" action="{!publicview}" reRender="form"/>
+                  </apex:inputCheckbox>
+      </apex:pageBlockSection>
+      <apex:outputPanel rendered="{!rendered}">
+                  <apex:pageBlockSection title="Rendered section" columns="2">
+                    Checkbox2 <apex:inputCheckbox value="{!checkbox2}"/>
+                    Checkbox3 <apex:inputCheckbox value="{!checkbox3}"/>
+                    Checkbox4 <apex:inputCheckbox value="{!checkbox4}"/>
+                  </apex:pageBlockSection>
+      </apex:outputPanel>
+    </apex:pageblock>
+ </apex:form>
+  
+</apex:page>

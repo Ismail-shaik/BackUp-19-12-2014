@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Object to store Payment method or way to pay information</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Amount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Amount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Amount</inlineHelpText>
+        <label>Amount</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CVV__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Security Code</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Security Code</inlineHelpText>
+        <label>CVV</label>
+        <length>4</length>
+        <maskChar>asterisk</maskChar>
+        <maskType>all</maskType>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>EncryptedText</type>
+    </fields>
+    <fields>
+        <fullName>CardName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Card Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Card Name</inlineHelpText>
+        <label>Card Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CardNumber__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Card Number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Card Number</inlineHelpText>
+        <label>Card Number</label>
+        <length>16</length>
+        <maskChar>asterisk</maskChar>
+        <maskType>creditCard</maskType>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>EncryptedText</type>
+    </fields>
+    <fields>
+        <fullName>CardReference__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Card Reference</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Card Reference</inlineHelpText>
+        <label># Card Reference</label>
+        <length>250</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CardType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Card Type</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Card Type</inlineHelpText>
+        <label>Card Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Visa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MasterCard</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Discover</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AMEX</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CheckNumber__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Check Number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check Number</inlineHelpText>
+        <label>Check Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ExpirationMonth__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Expiration Month</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Expiration Month</inlineHelpText>
+        <label>Expiration Month</label>
+        <length>2</length>
+        <maskChar>asterisk</maskChar>
+        <maskType>all</maskType>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>EncryptedText</type>
+    </fields>
+    <fields>
+        <fullName>ExpirationYear__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Expiration Year</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Expiration Year</inlineHelpText>
+        <label>Expiration Year</label>
+        <length>4</length>
+        <maskChar>asterisk</maskChar>
+        <maskType>all</maskType>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>EncryptedText</type>
+    </fields>
+    <fields>
+        <fullName>GUID__c</fullName>
+        <deprecated>false</deprecated>
+        <description>GUID Security Token</description>
+        <externalId>false</externalId>
+        <inlineHelpText>GUID Security Token</inlineHelpText>
+        <label>GUID</label>
+        <length>40</length>
+        <maskChar>asterisk</maskChar>
+        <maskType>lastFour</maskType>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>EncryptedText</type>
+    </fields>
+    <fields>
+        <fullName>Gateway__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Gateway</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Gateway</inlineHelpText>
+        <label>Gateway</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Authorize.net</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PayPal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Iagree__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>I agree Refund Policy and Privacy Policy</description>
+        <externalId>false</externalId>
+        <inlineHelpText>I agree Refund Policy and Privacy Policy</inlineHelpText>
+        <label>I agree Refund Policy and Privacy Policy</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Provider__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Bank name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Example: Like Bank Name..</inlineHelpText>
+        <label>Provider</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Pay Way</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PW{00000000}</displayFormat>
+        <label>Pay Way ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Pay Way</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Cash</fullName>
+        <active>true</active>
+        <description>Cash Payments</description>
+        <label>Cash</label>
+        <picklistValues>
+            <picklist>CardType__c</picklist>
+            <values>
+                <fullName>AMEX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discover</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MasterCard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gateway__c</picklist>
+            <values>
+                <fullName>Authorize%2Enet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PayPal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Check</fullName>
+        <active>true</active>
+        <description>Check Payments</description>
+        <label>Check</label>
+        <picklistValues>
+            <picklist>CardType__c</picklist>
+            <values>
+                <fullName>Visa</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gateway__c</picklist>
+            <values>
+                <fullName>Authorize%2Enet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PayPal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CreditCard</fullName>
+        <active>true</active>
+        <description>Credit Card Payments</description>
+        <label>Credit Card</label>
+        <picklistValues>
+            <picklist>CardType__c</picklist>
+            <values>
+                <fullName>AMEX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discover</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MasterCard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Visa</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gateway__c</picklist>
+            <values>
+                <fullName>Authorize%2Enet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PayPal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sage</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Provider__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CardType__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Amount__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>RECORDTYPE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Amount__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>RECORDTYPE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Amount__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Amount__c</searchFilterFields>
+        <searchFilterFields>Gateway__c</searchFilterFields>
+        <searchFilterFields>Provider__c</searchFilterFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Amount__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

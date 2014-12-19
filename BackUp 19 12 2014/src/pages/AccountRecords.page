@@ -1,0 +1,11 @@
+<apex:page controller="StandardRecords" sidebar="false" showHeader="true">
+  <apex:form >
+    <apex:pageBlock title="Account Records">
+      <apex:pageblockSection title="Account Records">
+        <apex:pageblocktable value="{!lstacc}" var="acc">
+          
+        </apex:pageblocktable>
+      </apex:pageblockSection>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

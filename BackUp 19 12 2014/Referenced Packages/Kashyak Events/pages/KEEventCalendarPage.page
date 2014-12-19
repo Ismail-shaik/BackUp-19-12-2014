@@ -1,0 +1,223 @@
+<!--
+****************************************************************************************
+Name            : KEEventCalendarPage
+Author          : Hari Prasad Jella
+Created Date    : June 09, 2013
+Package         : Kashyak Events
+Module          : Events
+Usage           : This VFP is used to display the events in a calander. 
+Revision History 
+                :
+                :    
+****************************************************************************************
+-->
+<apex:page controller="KEvents.KECalendarCntr" 
+     showHeader="false"
+    sidebar="false"
+    cache="false"
+    standardStylesheets="false"
+    > 
+    
+    
+    <!--<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.BootStrapStyles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, 'strap.css')}"/>
+    <apex:stylesheet value="{!$Resource.colorcode}"/>-->
+    <style>
+    ..dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #446e9b;
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #ffffff;
+  text-decoration: none;
+  outline: 0;
+  background-color: #446e9b;
+}
+</style>
+           
+        <apex:composition template="{!$Site.Template}"> 
+            <apex:define name="body">
+           <meta name="viewport" content="width=device-width, initial-scale=1"/>
+         <!-- <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:includeScript value="{!URLFOR($Resource.BootStrapStyles, '/js/bootstrap.min.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/bootstrap.min.css')}" />
+                <apex:stylesheet value="{!URLFOR($Resource.BootStrapStyles, '/css/strap.css')}"/>
+             <apex:stylesheet value="{!$Resource.StyleColors}"/>-->
+             <br/> 
+               <apex:form id="formid" >
+                  <table align="Right">
+                    <tr> 
+                      <td>
+                       
+                        &nbsp; <c:KETooltipComp text="List View"> <a href="/events/{!EventsListDisplayPage}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconListView.png')}"/></a></c:KETooltipComp>         
+                        
+                         <c:KETooltipComp text="Detail View"> <a href="/events/{!EventDetailPage}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconThumbNailView.png')}"/></a></c:KETooltipComp>
+                       
+                      </td>
+                      </tr>
+                        </table>                 
+  <!-- <table align="right">
+                    <tr> 
+                      <td>
+      <ul class="nav navbar-nav">
+         <li class="dropdown">
+               <button type="button" class="btnNew btn-Gray dropdown-toggle" align="left"  data-toggle="dropdown" >
+                 <label>Show</label> 
+                 <span class="caret"></span>
+               </button>
+               <ul class="dropdown-menu" style="text-align:Left">
+                    <li><apex:outputPanel rendered="{!(supEvent && supClas && supResr && supIntrnal)}">
+                         <apex:image value="{!$Resource.AllEventCalendar}" width="15px" height="15px"/>&nbsp;
+                         <apex:commandLink value="All Events" action="{!AlleventCalender}"/>
+                       </apex:outputPanel></li>
+                    <li><apex:outputPanel rendered="{!supResr}">  
+                        <apex:image value="{!$Resource.ReservationCalendar}" width="15px" height="15px"/>&nbsp;
+                         <apex:commandLink value="Reservations" action="{!reservationCalender}"/>
+                       </apex:outputPanel></li>
+                    <li><apex:outputPanel rendered="{!supEvent}">
+                         <apex:image value="{!$Resource.EventCalendar}" width="15px" height="15px"/>&nbsp;
+                         <apex:commandLink value="Events" action="{!eventCalender}"/>
+                       </apex:outputPanel></li>
+                    <li><apex:outputPanel rendered="{!supClas}"> 
+                         <apex:image value="{!$Resource.TrainingCalendar}" width="15px" height="15px"/>&nbsp;
+                         <apex:commandLink value="Training" action="{!classCalender}"/>
+                        </apex:outputPanel></li>
+                    <li><apex:outputPanel rendered="{!supIntrnal}">  
+                        <apex:image value="{!$Resource.InternalCalendar}" width="15px" height="15px"/>&nbsp;
+                         <apex:commandLink value="Internal Events" action="{!volunteerCalender}"/> 
+                       </apex:outputPanel></li>
+               </ul>
+          </li>
+        </ul>    
+    </td></tr></table>-->
+    
+                          <!--  <apex:commandButton reRender="formid" value="Add To Calender" styleClass="btn btn-primary" style="background:#446e9b;font-size:12px;color:White;" action="{!displayCalender}"/>
+                                   <apex:outputPanel rendered="{!calenderShow}">
+                                            <apex:commandLink styleClass="btn btn-primary" action="{!outlookConnect}" value="OutLook"/><br/>
+                                          <apex:commandlink styleClass="btn btn-primary" target="_blank" style="background:#446e9b;font-size:12px;color:White;" action="{!doYahooconnectCall}" value="Yahoo"/>
+                                          <apex:commandlink styleClass="btn btn-primary" target="_blank" style="background:#446e9b;font-size:12px;color:White;" action="{!googleConnectCall}" value="Google"/> 
+                                   </apex:outputPanel>    -->
+                             
+  
+
+    <div class="form-group">
+      <div align="left">
+          &nbsp;&nbsp;
+          <apex:outputPanel rendered="{!(supEvent && supClas && supResr && supIntrnal)}">
+              <c:KETooltipComp text="All Events">
+                 <apex:commandLink action="{!AlleventCalender}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarAllL.png')}" width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+              </c:KETooltipComp>
+          </apex:outputPanel>
+          <apex:outputPanel rendered="{!supResr}">     
+              <c:KETooltipComp text="Reservations">
+                 <apex:commandLink action="{!reservationCalender}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarReservationL.png')}" width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+              </c:KETooltipComp>
+          </apex:outputPanel>    
+          <apex:outputPanel rendered="{!supEvent}">
+              <c:KETooltipComp text="Events">
+                 <apex:commandLink action="{!eventCalender}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarEventL.png')}" width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+              </c:KETooltipComp>
+          </apex:outputPanel>    
+          <apex:outputPanel rendered="{!supClas}">
+              <c:KETooltipComp text="Trainings">
+                 <apex:commandLink action="{!classCalender}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarTrainingL.png')}" width="35px" height="35px"/></apex:commandLink>&nbsp;&nbsp;&nbsp;&nbsp;
+              </c:KETooltipComp>
+          </apex:outputPanel>    
+          <apex:outputPanel rendered="{!supIntrnal}"> 
+              <c:KETooltipComp text="Internal Events">
+                 <apex:commandLink action="{!volunteerCalender}"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iConCalendarInternalL.png')}" width="35px" height="35px"/></apex:commandLink>
+              </c:KETooltipComp>
+          </apex:outputPanel>  
+      </div>
+   </div>  <br/>
+                                         
+                                  </apex:form> 
+            <div class="panelNew {!if(EventName == 'Reservation','panel-Purple', if(EventName == 'Event', 'panel-Orange' ,if(EventName == 'Training','panel-LightBlue','panel-Gray')))}" >
+                      <div class="panel-heading">
+                        <span class="glyphicon glyphicon-calendar"/> &nbsp;&nbsp;<h3 class="panel-title">{!EventName} Calendar </h3>
+                      </div>
+                      <div class="panel-body">
+           <!-- <h1 class="title">Events Calendar</h1>-->
+                
+                  <apex:form id="theForm">
+                      <apex:outputPanel id="theCalendar">
+                            <apex:pageMessages ></apex:pageMessages>
+                               <div >
+                                            <div class="table-responsive">   
+                                             <table class="table table-bordered" width="100%">
+                                           
+                                               <caption>
+                                                 <div class="calHeader">
+                                                   <apex:commandLink action="{!prev}" reRender="theCalendar"> 
+                                                              
+                                                         <img title="Previous Month" alt="Previous Month" src="{!$Resource.LeftArrow}" width="18px" height="20px" />
+                                                     </apex:commandLink>
+                                                       <label>{!month.monthname}&nbsp;&nbsp;{!month.yearname} </label>
+                                                    <apex:commandLink action="{!next}" reRender="theCalendar">
+                                                    <img title="Next Month" alt="Next Month" src="{!$Resource.RightArrow}" width="18px" height="20px" /></apex:commandLink>
+                                                </div>
+                                            </caption>
+                                            
+                                            <tbody>
+                                                
+                                                <tr class="headerRow">
+                                                    <th scope="col" class="calDays">Sunday</th>
+                                                    <th scope="col" class="calDays">Monday</th>
+                                                    <th scope="col" class="calDays">Tuesday</th>
+                                                    <th scope="col" class="calDays">Wednesday</th>
+                                                    <th scope="col" class="calDays">Thursday</th>
+                                                    <th scope="col" class="calDays">Friday</th>
+                                                    <th scope="col" class="calDays">Saturday</th>
+                                                </tr>
+                        
+                                                <apex:repeat value="{!weeks}" var="wk" id="foreachWeek">
+                                                    <tr>
+                                                        <apex:repeat value="{!wk.days}" var="day" id="foreachday">
+                                                            <td class="{!day.cssname} col-lg-1" height="90" valign="top">
+                                                              <div >{!day.dayofmonth}</div>
+                                                              <div>
+                                                                    <apex:repeat value="{!day.eventstoday}" var="v" id="foreachevent">
+                                                                       <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Reservation'}"> 
+                                                                           
+                                                                           <label class="fontsize-small2"> <apex:outputLink value="/events/{!DisplayEventPage}?id={!v.ev.id}" target="_self"><font class="fontcolor-6">{!v.ev.Name__c}&nbsp;&nbsp;({!v.ev.StartTime__c})</font></apex:outputLink></label>
+                                                                       </apex:outputPanel>
+                                                                       <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Event'}"> 
+                                                                            
+                                                                           <label class="fontsize-small2"><apex:outputLink value="/events/{!DisplayEventPage}?id={!v.ev.id}" target="_self"><font class="fontcolor-orange">{!v.ev.Name__c}&nbsp;&nbsp;({!v.ev.StartTime__c})</font></apex:outputLink></label> 
+                                                                       </apex:outputPanel>
+                                                                       <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Training'}"> 
+                                                                            
+                                                                            <label class="fontsize-small2"><apex:outputLink value="/events/{!DisplayEventPage}?id={!v.ev.id}" target="_self"><font class="fontcolor-blue3">{!v.ev.Name__c}&nbsp;&nbsp;({!v.ev.StartTime__c})</font></apex:outputLink></label> 
+                                                                       </apex:outputPanel>
+                                                                       <apex:outputPanel rendered="{!v.ev.RecordType.Name == 'Internal'}"> 
+                                                                            
+                                                                            <label class="fontsize-small2"><apex:outputLink value="/events/{!DisplayEventPage}?id={!v.ev.id}" target="_self"><font class="fontcolor-5">{!v.ev.Name__c}&nbsp;&nbsp;({!v.ev.StartTime__c})</font></apex:outputLink></label> 
+                                                                       </apex:outputPanel>     
+                                                                        <br />
+                                                                    </apex:repeat>
+                                                                </div>
+                                                                
+                                                            </td>
+                                                        </apex:repeat>
+                                                    </tr>
+                                               </apex:repeat>
+                                               
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:form>
+                          </div>
+                       </div>     
+                </apex:define> 
+    </apex:composition>
+</apex:page>

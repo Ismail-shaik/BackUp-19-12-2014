@@ -1,0 +1,49 @@
+<apex:page controller="NewIdCardTestCntrlr" showHeader="false" sidebar="false">
+
+   <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.Styles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Styles, '/css/strap.css')}"/>
+    <apex:stylesheet value="{!$Resource.colorcode}"/>
+    
+        <style>
+            body{font-size: 14px;}
+        </style> 
+        
+        <apex:form >
+        
+          <body>
+           <div class="bs-example" style="width: 432px;">
+              <div class="color-swatches">
+                                   <div class="color-swatch1 brand-Reservation1" align="center">
+                                        <div class="colorcode" align="Center">{!Rsize}</div><br/>
+                                        <div class="decreaefont" align="Center">RESERVATIONS</div>
+                                    
+                                    </div>
+               </div>
+            </div>  
+            
+          <!--                        
+              <div class="row">
+                       
+                       
+                       <div class="col-md-10">
+                 
+                            <div class="bs-example">
+                                <div > &nbsp;&nbsp; <label><h1> EVENTS BY TYPE</h1></label> </div><br/>
+                                 <div class="color-swatches">
+                                    <div class="color-swatch brand-Reservation" align="center">
+                                        <div class="colorcode" align="Center">{!Rsize}</div>
+                                        <div class="decreaefont" align="Center">RESERVATIONS</div>
+                                    </div>
+                                </div>
+                             </div>
+                       </div>
+                </div>    -->
+             
+          </body>
+        
+        </apex:form>
+  
+</apex:page>

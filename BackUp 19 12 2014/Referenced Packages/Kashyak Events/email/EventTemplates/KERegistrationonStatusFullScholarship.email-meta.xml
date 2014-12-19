@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>KE  Registration Email to Organizer for Status- Full Scholarship</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>EventsLetterHead</letterhead>
+    <name>KE Registration on Status- Full Scholarship</name>
+    <style>formalLetter</style>
+    <subject>{!$Organization.Name} - Registration Confirmation Notification (Full Scholarship)</subject>
+    <textOnly>Dear {!Registration__c.Organizer__c},
+Your request for a scholarship is approved. You&apos;re receiving a full scholarship for this field trip! Please review the information below and advise us of any questions or concerns.
+
+We look forward to working with you and your group!.
+
+Registration ID:{!Registration__c.Name}
+Event: {!Event__c.Name__c}
+Date: {!Registration__c.AttendingDate__c}
+Group Name: {!Registration__c.GroupName__c}
+Meeting Location:{!Registration__c.EventLocation__c}
+Program Time: {!Registration__c.EventStartTime__c} to  {!Registration__c.EventEndTime__c}
+Number Of Students: {!Registration__c.NumberOfAttendees__c}
+Adult Chaperones Required: 1 per {!Registration__c.OneChaperonesPer__c} students
+
+In event of rain, the Education Coordinator will contact you in advance to reschedule.
+Please dress in layers, with good walking shoes, and bring a water bottle.
+Please send an invoice or receipt for transportation fees for reimbursement.The transportation agency can also bill GRPC directly. Send invoices to:
+
+
+Guadalupe River Park Conservancy
+Attn: Education Coordinator
+438 Coleman Avenue
+San Jose, CA 95110
+Email: education@grpg.org
+Fax: 408-288-9048
+Thank You,
+Administration Team</textOnly>
+    <type>html</type>
+</EmailTemplate>

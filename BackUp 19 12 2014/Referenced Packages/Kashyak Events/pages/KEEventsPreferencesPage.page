@@ -1,0 +1,279 @@
+<apex:page standardController="KEvents__EventsPreferences__c" id="Pageid" extensions="KEvents.KEEventsPreferencesCntr" showHeader="true" sidebar="false" standardStylesheets="false">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+    <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/strap.css')}"/>
+    
+ <script>
+        function show()
+        {
+                var siteurl=document.getElementById('Pageid:formid:siteurlid').value;
+                var weburl=document.getElementById('Pageid:formid:urlid').value;
+                var Timezone = document.getElementById('Pageid:formid:TZid').values;
+                               
+                  if(siteurl == null || siteurl =="")
+                   {
+                      alert('Please Enter the Site Url');
+                      siteurl.focus();
+                      return false;
+                    }
+                    else if(weburl == null || weburl =="")
+                   {
+                      alert('Please Enter the Organization Web Url');
+                      weburl.focus();
+                      return false;
+                    }
+                     else if(Timezone != 'EST')
+                   {
+                      alert(welcome);
+                      alert('Please Enter the Defult Time Zone is EST');
+                      Timezone.focus();
+                      return false;
+                    }
+        }
+        
+    /*    var countofEvents=0;
+        function showCount(checkBoxId)
+        {
+           
+           // alert(document.getElementById('Pageid:formid:Srid').checked);
+           // alert('checkbox click'+checkBoxId);
+            if(showCount.countofEvents == undefined)
+            {
+             showCount.countofEvents = 0;
+            }
+        
+            if(checkboxId.checked)
+             {
+              showCount.countofEvents = showCount.countofEvents+1;
+              //alert(showCount.countofEvents);
+             }
+             else
+             {
+              showCount.countofEvents = showCount.countofEvents-1;
+              alert('else c'+showCount.countofEvents);
+             }
+        } */
+        function checkMultievent()
+        {
+           
+         if(!(document.getElementById('Pageid:formid:smid').checked))
+         {
+           
+             var resvation; var sTraining; var sclass;var sIntrnal;
+             var resval; var strval;var sclsval;var sintval;
+             var defVal =document.getElementById('Pageid:formid:DETid').value;
+            
+             if(document.getElementById('Pageid:formid:Srid').checked) 
+             {
+              // alert('welcome inside resvation');
+               resvation = 'Reservation';
+               resval =true;
+              // alert('welcome inside resvation.......');
+               
+             } 
+             if(document.getElementById('Pageid:formid:stid').checked)
+             {
+               sTraining = 'Event';
+               strval = true;
+             }  
+             if(document.getElementById('Pageid:formid:scid').checked)
+             {
+               sclass = 'Training';sclsval =true;
+             }  
+             if(document.getElementById('Pageid:formid:iid').checked) 
+             {
+               sIntrnal = 'Internal';sintval =true;
+             } 
+            // var selectedevents =[resvation,sTraining,sclass,sIntrnal];
+            // if(!(document.getElementById('Pageid:formid:smid').checked) && (countofEvents>=2))
+            if(!(document.getElementById('Pageid:formid:smid').checked) && ((resval && strval) ||(resval && sclsval) ||(resval &&sintval)||(strval && sclsval)||(strval && sintval)||(sclsval &&sintval)))
+             {
+                 alert('If You Want To Show MultipleEvents Then You Must Select Support Multiple Events?');
+             }
+            
+              //if(!(defVal==selectedevents[0] || defVal==selectedevents[1] || defVal==selectedevents[2] || defVal==selectedevents[3]))
+              if(!(defVal==resvation || defVal==sTraining || defVal==sclass || defVal==sIntrnal))
+              {
+                 alert('Default Value Must Be With in Selected Events');
+              }
+        }
+        show();
+     }
+  </script> 
+ 
+    
+    <style>
+        body
+        {
+          font-size: 14px;
+        }
+    </style>
+   <body>
+    <div class="row">
+     <div class="col-md-2">
+       <c:KELeftNavigationComp />
+     </div>
+    
+     <div class="col-md-10">   
+         <div class="bs-example">
+           <div class="page-header"> <image src="{!$Resource.Configure}"/> <h5> &nbsp; Configure Application Settings</h5> </div> 
+         </div>
+      <!--<apex:sectionHeader title="Application Settings"/>-->
+ <!-- <apex:form >
+     <apex:actionFunction name="saverecord" action="{!save}" reRender="none" />
+   </apex:form>-->
+  <apex:form id="formid">
+  <apex:pageMessages ></apex:pageMessages>
+     <div class="panelNew panel-SkyBlue">
+         <div class="panel-heading">
+             <image src="{!$Resource.PreferenceWhite}" width="25px" height="25px"/> &nbsp;&nbsp;<h1 class="panel-title">Application Settings</h1>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+                 <label  class="col-lg-4 control-label">Support Reservations?</label>
+                 <div class="col-lg-2">
+                    <apex:inputcheckbox value="{!objeventpre.KEvents__SupportReservations__c}" id="Srid" />
+                  </div>
+                                
+                  <label  class="col-lg-3 control-label">Support Events?</label>
+                  <div class="col-lg-2">
+                   <apex:inputcheckbox value="{!objeventpre.KEvents__SupportTrainings__c}" id="stid"/>
+                  </div><br/>
+                </div>
+               <div class="form-group">
+                  <label  class="col-lg-4 control-label">Support Trainings?</label>
+                  <div class="col-lg-2">
+                   <apex:inputcheckbox value="{!objeventpre.KEvents__SupportClasses__c}" id="scid"/>
+                  </div>
+                  <label  class="col-lg-3 control-label">Support Internal?</label>
+                  <div class="col-lg-2">
+                   <apex:inputcheckbox value="{!objeventpre.KEvents__SupportInternal__c}" id="iid"/>
+                  </div><br/>
+               </div>
+               <div class="form-group">
+                  <label  class="col-lg-4 control-label">Support Multiple Events?</label>
+                  <div class="col-lg-2">
+                   <apex:inputcheckbox value="{!objeventpre.KEvents__SupportMultipleEvents__c}" id="smid"/>
+                  </div>
+                 <label  class="col-lg-3 control-label">Display Donation Amount</label>
+                      <div class="col-lg-3">
+                       <apex:inputField value="{!objeventpre.KEvents__DonationAmount__c}" />
+                      </div><br/>
+                
+               </div>
+               <div class="form-group">
+                  <label  class="col-lg-4 control-label">Allow Membership</label>
+                  <div class="col-lg-2">
+                   <apex:inputField value="{!objeventpre.KEvents__AllowMembership__c}" />
+                  </div>
+                   <label  class="col-lg-3 control-label">Default Event Type<font color="Red">&nbsp;* </font></label>
+                  <div class="col-lg-3">
+                   <apex:inputField value="{!objeventpre.KEvents__DefaultEventType__c}" styleClass="form-control" id="DETid"/>
+                  </div><br/>
+              </div>
+                 
+               <div class="form-group">
+                  <label  class="col-lg-4 control-label">Display Title 1/Eligible for Sponsorship</label>
+                  <div class="col-lg-2">
+                   <apex:inputField value="{!objeventpre.KEvents__Title1__c}" />
+                  </div>
+                  <label  class="col-lg-3 control-label">Admin's Salesforce User Name</label>
+                      <div class="col-lg-3">
+                       <apex:inputField value="{!objeventpre.KEvents__AdminSalesforceUserName__c}" styleClass="form-control"/>
+                      </div><br/>
+                  
+               </div>
+               <label  class="col-lg-4 control-label">Default Time Zone</label>
+                  <div class="col-lg-2">
+                   <apex:inputField value="{!objeventpre.KEvents__TimeZone__c}" styleClass="form-control" id="TZid"/>
+                  </div>
+           
+           </div>
+        </div> 
+        <div class="panelNew panel-SkyBlue">
+         <div class="panel-heading">
+             <image src="{!$Resource.LinksWhiteIcon}" width="25px" height="25px"/> &nbsp;&nbsp;<h1 class="panel-title">Links</h1>
+          </div>
+          <div class="panel-body">
+               
+               <div class="form-group">
+                  <label  class="col-lg-3 control-label">Site URL<font color="Red">&nbsp;* </font></label>
+                  <div class="col-lg-3">
+                   <apex:inputField value="{!objeventpre.KEvents__SiteURL__c}" styleClass="form-control" id="siteurlid"/>
+                  </div>
+                  
+                  
+               </div><br/>
+                <div class="form-group">
+                <label  class="col-lg-3 control-label">Organization Web Url <font color="Red">&nbsp;* </font></label>
+                      <div class="col-lg-3">
+                       <apex:inputField value="{!objeventpre.KEvents__OrganizationWebUrl__c}" styleClass="form-control" id="urlid"/>
+                      </div>
+                  
+                  
+               </div><br/>
+               <div class="form-group">
+               <label  class="col-lg-3 control-label">Staffing Confirmation URL</label>
+                      <div class="col-lg-3">
+                       <apex:inputField value="{!objeventpre.KEvents__AsmtConfirmURL__c}" styleClass="form-control"/>
+                      </div><br/>
+                       
+                 
+                  
+               </div>
+               <div class="form-group"> 
+                     
+                       
+                </div>
+               
+           </div>
+       </div>
+       <div class="panelNew panel-SkyBlue">
+         <div class="panel-heading">
+             <image src="{!$Resource.StaticResourceIcon}" width="25px" height="25px"/> &nbsp;&nbsp;<h1 class="panel-title">Static Resources</h1>
+          </div>
+          <div class="panel-body">
+           
+               <div class="form-group">
+              
+                  <label  class="col-lg-3 control-label">Site Terms and Conditions</label>
+                  <div class="col-lg-3">
+                   <apex:inputField value="{!objeventpre.KEvents__SiteTermsandConditions__c}"  styleClass="form-control"/>
+                  </div>
+                  
+               </div><br/>
+                <div class="form-group">
+              
+                  
+                  <label  class="col-lg-3 control-label">Site Disclimar</label>
+                      <div class="col-lg-3">
+                       <apex:inputField value="{!objeventpre.KEvents__SiteDisclimar__c}" styleClass="form-control"/>
+                      </div>
+               </div><br/>
+               <div class="form-group">
+               
+                       <label  class="col-lg-3 control-label">Site Privacy Policy</label>
+                  <div class="col-lg-3">
+                   <apex:inputField value="{!objeventpre.KEvents__SitePrivacyPolicy__c}" styleClass="form-control" />
+                  </div>
+                 
+                  
+               </div>
+          
+          </div>
+          </div>
+               
+        <center>
+   <apex:commandButton value="Save" action="{!save}" onmouseover="checkMultievent()" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" />
+   <apex:commandButton value="Cancel" action="{!cancel}" styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;"/>
+   </center>
+  
+ 
+   </apex:form>
+   </div>
+   </div>
+  </body>
+  
+</apex:page>

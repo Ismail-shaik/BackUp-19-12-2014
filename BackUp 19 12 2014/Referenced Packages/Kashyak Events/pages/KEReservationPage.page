@@ -1,0 +1,809 @@
+<apex:page sidebar="false" showHeader="false" id="pageId" standardController="KEvents__Event__c" extensions="KEvents.KERegistrationCntr">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <apex:composition template="{!$Site.Template}"> 
+        <apex:define name="body">
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"/>
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/css/bootstrap.min.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.KEvents__BootStrapStyles, '/js/bootstrap.min.js')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BSStyles, '/css/bootstrap.min.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BSStyles, '/css/bootstrap.css')}"/>
+            <apex:stylesheet value="{!URLFOR($Resource.KEvents__BSStyles, '/css/Strap.css')}"/>
+
+            
+            
+            
+         <!--   ==================== >>>>>>>>>>>>>>>>  Java Script <<<<<<<<<<<<<<<<< ======================= -->         
+             <script>
+             function closeLookupPopup()
+                 {
+                      if (null!=newWin)
+                      {
+                         newWin.close();
+                      }
+                 }
+              function openpopup(updateId)
+              {
+                // alert('Hi');
+                var myWindow;
+                var url="/events/KEvents__KEUploadFilePage?id="+updateId;
+                  myWindow = window.open(url, 'Popup','height=450,width=650,left=500,top=200,resizable=no,scrollbars=no,toolbar=no,status=no');
+               // myWindow = window.open('/events/KEUploadFile?id='+updateId,height=400,width=100,left=100,top=100);
+              }
+              function showError()
+               {
+                        var regtext=/^[a-zA-Z ]+$/;
+                        var regphone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;  
+                        var regemail= /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+                        
+                var fName=document.getElementById('pageId:SiteTemplate:formId:fNameId').value;
+                var lName=document.getElementById('pageId:SiteTemplate:formId:lNameId').value;
+                var Phone=document.getElementById('pageId:SiteTemplate:formId:mPhoneId').value;
+                var Email=document.getElementById('pageId:SiteTemplate:formId:emailId').value;
+               
+               
+               if(regtext.test(fName) ==false && fName !=null)
+                {
+                 alert('Please Enter Valid First Name');
+                 fName.focus();
+                 return false;
+                }
+               else if(regtext.test(lName) == false && lName != null)
+                {
+                 alert('Please Enter Valid Last Name');
+                 lName.focus();
+                 return false;
+                }
+               else if(regphone.test(Phone) ==false && Phone != null)
+                {
+                 alert('Please Enter Valid Phone Number');
+                 Phone.focus();
+                 return false;
+                } 
+               else if(regemail.test(Email) == false && Email != null)
+                {
+                 alert('Please Enter Valid Email');
+                 Email.focus();
+                 return false;
+                }
+                 
+               
+                 goToPaymentPage();
+               } 
+                function show()
+               {
+                        var regtext=/^[a-zA-Z ]+$/;
+                        var regphone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;  
+                        var regemail= /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+                var fName=document.getElementById('pageId:SiteTemplate:formId:fNameId').value;
+                var lName=document.getElementById('pageId:SiteTemplate:formId:lNameId').value;
+                var Phone=document.getElementById('pageId:SiteTemplate:formId:mPhoneId').value;
+                var Email=document.getElementById('pageId:SiteTemplate:formId:emailId').value;
+              
+               
+               if(regtext.test(fName) ==false && fName !=null)
+                {
+                 alert('Please Enter Valid First Name');
+                 fName.focus();
+                 return false;
+                }
+               else if(regtext.test(lName) == false && lName != null)
+                {
+                 alert('Please Enter Valid Last Name');
+                 lName.focus();
+                 return false;
+                }
+               else if(regphone.test(Phone) ==false && Phone != null)
+                {
+                 alert('Please Enter Valid Phone Number');
+                 Phone.focus();
+                 return false;
+                } 
+               else if(regemail.test(Email) == false && Email != null)
+                {
+                 alert('Please Enter Valid Email');
+                 Email.focus();
+                 return false;
+                }
+                
+              
+               } 
+               
+                 function calculate()
+                 { 
+                    pricecalculate();
+                 }
+                  function validateEmail(emailField)
+                  {
+                    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            
+                    if (reg.test(emailField.value) == false) 
+                    {
+                        alert('Invalid Email Address');
+                        return false;
+                    }
+            
+                    return true;
+            
+                  }
+                  
+           <!--   ==================== >>>>>>>>>>>>>>>> Regular expressions with Java Script <<<<<<<<<<<<<<<<< ======================= -->         
+                        var regtext=/^[a-zA-Z ]+$/;
+                        var regphone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;  
+                        var regemail= /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+                        var zipCodePattern = /^\d{10}$|^\d{10}-\d{9}$/;
+                        function textvalidation(textfnameonly) 
+                        {
+                        var OOK=regtext.exec(textfnameonly.value);
+                        if (!OOK)  
+                        alert("Please enter Valid First Name");
+                     
+                        }
+                        
+                        function textlnamevalidation(textlnameonly) 
+                        {
+                        var OK=regtext.exec(textlnameonly.value);
+                        if (!OK)  
+                        alert("Please enter Valid Last Name");
+                        
+                        }
+                        
+                        function PhoneValidation(phoneNumber)
+                        {  
+                        var OKK = regphone.exec(phoneNumber.value);  
+                        if (!OKK)  
+                        window.alert("Please Enter Valid Phone Number ");  
+                         
+                        }
+                        
+                        function EmailValidation(email)
+                        {  
+                        var OKKK = regemail.exec(email.value);  
+                        if (!OKKK)  
+                        window.alert("Please Enter Valid Email Address");  
+                          
+                        } 
+                        
+                        
+                        function alterPhoneValidation(alterphoneNumber)
+                        {  
+                        var APV = regphone.exec(alterphoneNumber.value);  
+                        if (!APV)  
+                        window.alert("Please Enter valid Alternative Phone Number");  
+                         
+                        }
+                        
+                        function zipValidation(zipvalid)
+                        {  
+                           var zi=zipCodePattern.exec(zipvalid.value);
+                           if(!zi)
+                            alert('Please Enter Valid Zip Code');
+                        }
+                        
+                        function cityValidation(cityOnly) 
+                        {
+                        var CV=regtext.exec(cityOnly.value);
+                        if (!CV)  
+                        alert("Please enter Valid City");
+                        }
+                        
+                        function StateValidation(stateOnly) 
+                        {
+                        var SV=regtext.exec(stateOnly.value);
+                        if (!SV)  
+                        alert("Please enter Valid State");
+                        }
+                        
+                        function schoolNameValidation(schoolOnly) 
+                        {
+                        var SNV=regtext.exec(schoolOnly.value);
+                        if (!SNV)
+                        alert("Please enter Valid School/group Name");
+                        }
+                        
+                        function teacherNameValidation(teacherOnly) 
+                        {
+                            var TNV=regtext.exec(teacherOnly.value);
+                            if (!TNV)
+                            alert("Please enter Valid Teacher/Organizer Name");
+                        }
+                        
+                        
+                         
+                  
+                  
+                  </script>   
+       <!--  ====================== >>>>>>>>>>>>>>>>>>>>>>> Java Script End <<<<<<<<<<<<<<<<< =================== -->
+             <style>
+                /* This is for the full screen DIV */
+                .popupBackground {
+                    /* Background color */
+                    background-color:#542D78;
+                    opacity: 0.20;
+                    filter: alpha(opacity = 20);
+                
+                    /* Dimensions */
+                    width: 100%;
+                    height: 200%;
+                    top: 0;
+                    left: 0;
+                    z-index: 998;
+                    position: absolute;
+                    
+                    /* Mouse */
+                    cursor:wait;
+                }
+             
+                /* This is for the message DIV */
+                .PopupPanel {
+                    /* Background color 
+                    border: solid 2px Gray;
+                    background-color: white;*/
+             
+                    /* Dimensions */
+                    left: 50%;
+                    width: 60px;
+                    margin-left: -100px;
+                    top: 70%;
+                    height: 40px;
+                    margin-top: -25px;
+                    z-index: 999;
+                    position: fixed;
+                    
+                    /* Mouse */
+                    cursor:pointer;
+                }
+                 
+             </style>
+               
+             <apex:actionStatus id="statusSaveTrip" stopText="">
+                   <apex:facet name="start">
+                        <div>
+                            <div class="popupBackground" />
+                            <div class="PopupPanel">
+                                <table border="0" width="100%" height="100%">
+                                    <tr>
+                                        <td align="center"><img src="{!$Resource.KEvents__Processing}"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </apex:facet>
+             </apex:actionStatus>
+             <br/>
+ <apex:form id="formId">
+    
+     <apex:actionFunction action="{!pricecalculate}"  reRender="amountId,amountId1,PageMessages"  name="calculate"/>
+     <form >
+  <fieldset>
+          <table align="right">
+            <tr>
+              <td>
+                 
+                   <c:KETooltipComp text="Calendar View"> <a  href="{!calendarPage}"  target="_self"><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconCalendarView.png')}"/></a></c:KETooltipComp>   
+                 
+                   <c:KETooltipComp text="List View"><a href="{!EventsListDisplayPage}"  target="_self" ><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconListView.png')}"/></a></c:KETooltipComp>
+              
+                   <c:KETooltipComp text="Detail View"><a href="{!EventDetailPage}"  target="_self" ><apex:image url="{!URLFOR($Resource.KEvents__IConCalendars,'iConCalendars/iconThumbNailView.png')}"/></a></c:KETooltipComp>
+               
+              </td>
+            </tr>   
+        </table>
+        <br/><br/>
+        <div>
+         <label> <h2 class="title">{!curEvent.Name__c}</h2> </label>
+        </div>
+        
+  <div class="panelNew panel-Purple">
+           <div class="panel-heading">
+             <span class="glyphicon glyphicon-list-alt"/>&nbsp;&nbsp;  <h3 class="panel-title">{!EventName} Details</h3>
+           </div>
+           <div class="panel-body">
+              <div class="form-group">
+              <label  class="col-lg-4 control-label">Start Date :</label>
+              <div class="col-lg-2">
+                <apex:outputText id="stdateId" value="{0,date,MM/dd/yyyy}" >
+                     <apex:param value="{!curEvent.KEvents__EventStartDate__c}" />
+                     </apex:outputText>
+              </div>
+               <label for="inputEmail" class="col-lg-4 control-label">End Date :</label>
+              <div class="col-lg-2">
+                 <apex:outputText value="{0,date,MM/dd/yyyy}" >
+                      <apex:param value="{!curEvent.KEvents__EventEndDate__c}" />
+                 </apex:outputText>
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-lg-4 control-label">Start Time :</label>
+              <div class="col-lg-2">
+                <apex:outputText value="{!curEvent.KEvents__StartTime__c}"/>
+              </div>
+               <label for="inputEmail" class="col-lg-4 control-label">End Time :</label>
+              <div class="col-lg-2">
+                 <apex:outputText value="{!curEvent.KEvents__EndTime__c}"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label  class="col-lg-4 control-label">Capcity Of Event :</label>
+              <div class="col-lg-2">
+                <apex:outputText value="{!curEvent.KEvents__Capacity__c}" />  
+              </div>
+               <label for="inputEmail" class="col-lg-4 control-label">Spots Left? </label>
+              <div class="col-lg-2">
+                 <apex:outputText value="{!curEvent.KEvents__AvailableSeats__c}"/>
+              </div>
+            </div>
+            
+             <apex:outputPanel rendered="{!isfreeHide}">
+            <div class="form-group"> 
+               <label for="inputEmail" class="col-lg-4 control-label">Reservation Fee :</label>
+              <div class="col-lg-2">
+                 <apex:outputText value="$ {!curEvent.KEvents__EventFees__c}" /> 
+              </div>
+            </div>
+           
+            <apex:outputPanel id="resverId"  rendered="{!(eventType =='Reservation')}">
+           <apex:outputPanel rendered="{!SchShip}">
+            <div class="form-group">
+              <label  class="col-lg-4 control-label">Scholarship :</label>
+              <div class="col-lg-2">
+                <apex:outputText value=" {!KEvents__Event__c.Program__r.KEvents__Scholarship__c}" />  
+              </div>
+              </div>
+             </apex:outputPanel>
+             
+            <div class="form-group">
+              <label  class="col-lg-4 control-label"># Attendees Allowed with Reservation Fee :</label>
+              <div class="col-lg-2">
+                <apex:outputText value=" {!curEvent.KEvents__StudentsAllowedwithEventFees__c}" />  
+              </div>
+               <label for="inputEmail" class="col-lg-4 control-label">Additional Fee per Attendee : </label>
+              <div class="col-lg-2">
+                 <apex:outputText value="$ {!curEvent.KEvents__ExtraFeesAdditionalStudent__c}" />  
+              </div>
+            </div>
+            </apex:outputPanel>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!(eventType =='Event' ||eventType =='Training')}">
+            
+               <div class="form-group">
+               <apex:outputPanel rendered="{!PriceHide}">
+                  <label  class="col-lg-4 control-label">Price :</label>
+                  <div class="col-lg-2">
+                    <apex:outputText value="$ {!curEvent.KEvents__NonMemberPrice__c}" /> 
+                  </div>
+            </apex:outputPanel>      
+               <apex:outputPanel id="evntHideId" rendered="{!ismemhide}">
+                 <apex:outputPanel rendered="{!ismemberHide}">
+                   <label for="inputEmail" class="col-lg-4 control-label">Member-Price :</label>
+                  <div class="col-lg-2">
+                     <apex:outputText value="$ {!curEvent.KEvents__MemberPrice__c}" />   
+                  </div>
+                </apex:outputPanel>  
+                </apex:outputPanel> 
+                
+                     <apex:outputPanel rendered="{!payDoorHide}">  
+                        <apex:outputPanel rendered="{!eventType =='Event'}">
+                            <div class="form-group">    
+                                   <label for="inputEmail" class="col-lg-4 control-label">Pay at Door Price :</label>
+                                  <div class="col-lg-2">
+                                     <apex:outputText value="$ {!NonMemberPayAtDoorPrice}.00" />
+                                  </div>
+                                </div>
+                           </apex:outputPanel>
+                       </apex:outputPanel>
+                    </div>
+                  
+                 
+                    <apex:outputPanel rendered="{!eventType =='Event'}"> 
+                       <apex:outputPanel rendered="{!ismemhide}"> 
+                         <apex:outputPanel rendered="{!ismemberHide}">
+                          <label for="inputEmail" class="col-lg-4 control-label">Member-Pay At Door Price :</label>
+                              <div class="col-lg-2">
+                                 <apex:outputText value="$ {!MemberPayAtDoorPrice}.00" />   
+                              </div>
+                          </apex:outputPanel>    
+                       </apex:outputPanel>
+                    </apex:outputPanel> 
+                    
+                    
+                    
+            <apex:outputPanel rendered="{!eventType =='Event'}">
+              <apex:outputPanel rendered="{!GroupHide}"> 
+                <div class="form-group">
+                   <label for="inputEmail" class="col-lg-4 control-label">Group Discount Eligibility :</label>
+                  <div class="col-lg-2">
+                     Minimum<apex:outputText value=" {!curEvent.Program__r.KEvents__GroupDiscountAligability__c} "/>attendees
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label  class="col-lg-4 control-label">Group Discount Price :</label>
+                  <div class="col-lg-2">
+                     <apex:outputText value="$ {!curEvent.Program__r.KEvents__GroupDiscountAmount__c}" />  
+                  </div>
+                </div>
+              </apex:outputPanel>   
+            </apex:outputPanel>
+         </apex:outputPanel>  
+         <apex:outputPanel rendered="{!TextHide1}">
+           <div class="form-group">
+           <label class="col-lg-4 control-label fontcolor-green"> <h2>This Event is Free </h2></label>
+           </div>
+         </apex:outputPanel> 
+            
+    </div>
+  </div>
+    <div class="form-group">
+              <div class="col-lg-4">
+                <apex:outputLink id="linid" value="{!URLFOR($Resource.KEvents__EventGuidelines )}" style="color:blue;">Download Guidelines File</apex:outputLink><br/>
+              </div><br/>
+            </div>
+            <apex:pageMessages id="PageMessages"></apex:pageMessages> 
+    <apex:outputPanel >
+       <div class="panelNew panel-Purple">
+           <div class="panel-heading">
+             <span class="glyphicon glyphicon-pencil"/>&nbsp;&nbsp; <h3 class="panel-title">{!ContactName} Information </h3>
+           </div>
+           <div class="panel-body">
+             
+               <div class="form-group">
+                  <label  class="col-lg-4 control-label">First Name &nbsp;&nbsp;<font color="red">*</font></label>
+                  <div class="col-lg-2">
+                     <apex:inputText value="{!firstName}" html-placeholder="First Name" id="fNameId" styleClass="form-control" onchange="textvalidation(this);"/>
+                  </div>
+                   <label for="inputEmail" class="col-lg-4 control-label">Last Name &nbsp;&nbsp;<font color="red">*</font></label>
+                  <div class="col-lg-2">
+                     <apex:inputText value="{!lastName}" id="lNameId" html-placeholder="Last Name" styleClass="form-control" onchange="textlnamevalidation(this);"/>
+                  </div>
+                 
+                  <label for="inputEmail" class="col-lg-4 control-label">Phone &nbsp;&nbsp;<font color="red">*</font></label>
+                  <div class="col-lg-2">
+                     <apex:inputText value="{!mobilePhone}" id="mPhoneId" html-placeholder="Phone" styleClass="form-control" onchange="PhoneValidation(this);"/>
+                  </div>
+                  <label for="inputEmail" class="col-lg-4 control-label">Email &nbsp;&nbsp;<font color="red">*</font></label>
+                  <div class="col-lg-2">
+                     <apex:inputText value="{!email}" id="emailId" html-placeholder="Email" styleClass="form-control" onchange="EmailValidation(this);"/>
+                  </div>
+                  <apex:outputPanel rendered="{!(eventType =='Reservation')}">
+                    <apex:outputpanel id="pbsMember1" rendered="{!title}">  
+
+                  <label for="inputEmail" class="col-lg-4 control-label"><apex:outputLabel value="Title I" /></label>
+                      <div class="col-lg-2">
+                         <div class="checkbox">
+                           <apex:inputfield value="{!curRegistration.KEvents__Title1__c}">
+                              <apex:actionSupport event="onclick" action="{!TitleCheck}" reRender="uploadId,pbsPtypeId,amountId,formId"/>
+                           </apex:inputfield>
+                         </div>
+                      </div>
+                 </apex:outputPanel>
+                 </apex:outputPanel>
+                  <apex:outputPanel rendered="{!(eventType =='Event' || eventType =='Training')}">
+                  <apex:outputpanel id="pbsMember" rendered="{!ismemhide}">  
+                    <apex:outputPanel rendered="{!ismemberHide}">
+                      <label for="inputEmail" class="col-lg-4 control-label">Is Member</label>
+                      <div class="col-lg-2">
+                        <div class="checkbox">
+                           <apex:inputCheckbox value="{!ismember}" onkeyup="calculate()" required="false" id="isMemberId">
+                               <apex:actionSupport event="onclick" action="{!Checkboxhide}" reRender="Checkboxid,atendeeID,formId" status="statusSaveTrip"/>
+                           </apex:inputCheckbox>
+                        </div>
+                      </div>
+                    </apex:outputPanel>  
+                 </apex:outputPanel> 
+                  </apex:outputpanel>
+                  <br/>
+                 <apex:outputPanel rendered="{!HidePaymenttype}">
+                  <apex:outputPanel id="pbsPtypeId" rendered="{!(eventType =='Event' || eventType =='Training' || eventType =='Reservation')}">
+                    
+                      <label for="inputEmail" class="col-lg-4 control-label">Payment Type  &nbsp;&nbsp;<font color="red">*</font></label>
+                      <div class="col-lg-2">
+                         <apex:selectList size="1" value="{!picVakue}" styleClass="form-control"  tabindex="9" id="Pid">
+                                 <apex:actionSupport event="onchange" action="{!payment}" reRender="filecheck,formId,payId1,uploadId,amountId" status="statusSaveTrip" id="PaytId"/>
+                              <apex:selectOptions value="{!PaymentTpe}" id="PaymentId"/> 
+                         </apex:selectList><br/>     
+                      </div>     
+                    </apex:outputPanel>
+                  </apex:outputPanel> 
+                <apex:outputPanel rendered="{!hideAttendee}">  
+                  <div>
+                  <label for="inputEmail" class="col-lg-4 control-label">Number of Attendees &nbsp;&nbsp;<font color="red">*</font></label>
+                  <div class="col-lg-2">
+                     <apex:inputText value="{!noOfAtendees}" onkeyup="calculate()"  html-placeholder="No Of Attendees" id="atendeeID" styleClass="form-control" >
+                     <apex:actionSupport event="onkeyup" status="statusSaveTrip"/>
+                     </apex:inputText>
+                  </div>
+                  </div>
+                </apex:outputPanel>   
+                  <apex:outputPanel rendered="{!(eventType =='Event' || eventType =='Training' || eventType =='Reservation')}">
+                   <apex:outputpanel rendered="{!cHide}"> 
+                      <label for="inputEmail" class="col-lg-4 control-label">Donation Amount</label>
+                      <div class="col-lg-2">
+                         <apex:inputfield value="{!curRegistration.KEvents__DonationAmount__c}" onkeyup="calculate()"  html-placeholder="Donation Amount"  styleClass="form-control"/>
+                     </div>
+                 </apex:outputpanel> 
+                 </apex:outputPanel> 
+                 <apex:outputPanel rendered="{!amounHide}">
+                  <apex:outputPanel styleClass="col-lg-8 control-label" rendered="{!(eventType =='Event' || eventType =='Training' || eventType =='Reservation')}">
+                  
+                  <div class="form-group">
+                      <font color="Green"><b> <label for="inputEmail" class="col-lg-4 control-label">Total Amount</label>
+                          <div class="col-lg-3">
+                             <apex:outputText value="${!pay.KEvents__Amount__c}" id="amountId"/>
+                          </div></b><br/>
+                      </font>
+                 </div>
+                 <apex:outputPanel rendered="{!messageHide}" id="messageid">
+                          <label> <font color="red">Please select "Payment Type" to continue</font> </label>
+                      </apex:outputPanel> 
+                  </apex:outputPanel>
+                  </apex:outputPanel>    
+                </div>
+              </div>  
+          </div>
+          
+          <apex:outputPanel rendered="{!(eventType =='Event')||(eventType =='Training')||(eventType =='Reservation')||(eventType == 'Internal')}" id="Checkboxid"> 
+               
+                     <apex:outputPanel rendered="{!CheckHide}">
+                         <div class="panelNew panel-Purple">
+                              <div class="panel-heading">
+                                <span class="glyphicon glyphicon-plus"/>&nbsp;&nbsp;<h3 class="panel-title">Additional Attendee</h3>
+                              </div>
+                          <div class="panel-body">  
+                          <div class="form-group">
+                            <div class="col-lg-8">
+                              <label for="inputEmail" class="col-lg-4 control-label">
+                                  <apex:commandLink value="Upload Attendee List (File)" onclick="openpopup('{!updateId}')" reRender="formId"/>
+                              </label>
+                              <div class="col-lg-2">
+                                <div class="checkbox">
+                                 
+                               <!-- <apex:inputcheckbox value="{!AttachmentVar}" id="AttchId"  onclick="openpopup('{!updateId}')">
+                                    <apex:actionSupport event="onclick" action="{!Upload}" status="statusLink"/>
+                                 </apex:inputCheckbox> -->
+                                </div>
+                              </div>
+                             </div> 
+                           </div>
+                           <div class="form-group">
+                           <div class="col-lg-8">
+                              <label for="inputEmail" class="col-lg-6 control-label">Enter Attendee List</label>
+                              <div class="col-lg-4">
+                                <div class="checkbox">
+                                 <apex:inputcheckbox value="{!antendeeTextArea}" id="textId">
+                                    <apex:actionSupport event="onclick" action="{!textArea}" reRender="addAtendeeId,ATAId,AddLinkId,AttchId,uploadId,linkId,textId" status="statusLink" />
+                                 </apex:inputCheckbox>
+                                </div>
+                              </div>
+                             </div> 
+                           </div>
+                           
+                           <div class="form-group">
+                             <div class="col-lg-8">
+                              <label for="inputEmail" class="col-lg-6 control-label">Add Attendee Complete Info</label>
+                              <div class="col-lg-4">
+                                <div class="checkbox">
+                                 <apex:inputcheckbox value="{!addLinkHide}" id="linkId">
+                                     <apex:actionSupport event="onclick" action="{!AddLink}" reRender="addAtendeeId,AddLinkId,AttchId,uploadId,linkId,textId,ATAId,payId" status="statusLink" />
+                                 </apex:inputCheckbox>
+                                </div>
+                              </div>
+                           </div>
+                          </div>
+                          <br/><br/><br/><br/><br/>
+           <apex:outputPanel id="AddLinkId">
+                 <div class="form-group">
+                  <apex:actionStatus id="statusLink" startText="Processing.....">
+                    <apex:facet name="start">
+                        <apex:image url="{!$Resource.KEvents__Processing}" height="20" width="20"/>
+                    </apex:facet><br/>
+                     <apex:facet name="stop">
+                            <apex:outputPanel rendered="{!addLinkHide}">
+                                <div align="right">
+                                    <apex:outputLabel value="Add Attendee " />
+                                    <apex:image url="{!$Resource.KEvents__Plus}" height="20" width="20"  >
+                                    <apex:actionSupport event="onclick" action="{!repeatRow}" reRender="addAtendeeId" status="status"/>
+                                    </apex:image>
+                                </div>
+                            </apex:outputPanel>
+                    </apex:facet>
+                </apex:actionStatus><br/>
+                </div>
+             </apex:outputPanel>
+             
+            <apex:outputPanel id="addAtendeeId">
+                  <apex:actionStatus id="status" startText="Processing....."><br/>
+                        <apex:facet name="start">
+                            <apex:image url="{!$Resource.KEvents__Processing}" height="20" width="20"/>
+                        </apex:facet>
+                        
+                        <apex:facet name="stop">
+                           <apex:outputPanel rendered="{!showRow}">
+                           <apex:repeat value="{!listvalueOfTextBox}" var="item" rendered="{!IF(listvalueOfTextBox.size > 0 , true , false)}" >
+                                   <table cellspacing="8" align="center" >
+                                      <tr>
+                                          <td>
+                                             <div class="form-group">
+                                                  <label for="inputEmail" class="col-lg-5 control-label">First Name &nbsp;<font color="red">*</font></label>
+                                                    <div class="col-lg-6">
+                                                      <apex:inputText value="{!item.attfirstName}"  id="itemFnameId"  styleClass="form-control"/>
+                                                    </div>
+                                             </div>
+                                          </td>
+                                          <td>
+                                             <div class="form-group">
+                                                  <label for="inputEmail" class="col-lg-5 control-label">Last Name &nbsp;<font color="red">*</font></label>
+                                                    <div class="col-lg-6">
+                                                      <apex:inputText value="{!item.attlastName}"  id="itemLnameId"  styleClass="form-control"/>
+                                                    </div>
+                                             </div>
+                                          </td> 
+                                          <td>
+                                              <div class="form-group">
+                                                  <label for="inputEmail" class="col-lg-5 control-label">Phone</label>
+                                                    <div class="col-lg-6">
+                                                      <apex:inputText value="{!item.attmobilePhone}"   styleClass="form-control"/>
+                                                    </div>
+                                              </div>
+                                          </td> 
+                                          <td>
+                                              <div class="form-group">
+                                                  <label for="inputEmail" class="col-lg-5 control-label">Email &nbsp;<font color="red">*</font></label>
+                                                    <div class="col-lg-6">
+                                                      <apex:inputText value="{!item.attemail}"   styleClass="form-control"/>
+                                                    </div>
+                                              </div>
+                                          </td>
+                                          <td>
+                                              <!-- <apex:outputLabel value="Remove"/> -->
+                                              
+                                                   <apex:image url="{!$Resource.KEvents__Remove}" id="removeId" height="20" width="20" >
+                                                       <apex:actionSupport event="onclick" action="{!DeleteRow}" reRender="addAtendeeId" status="status">
+                                                           <apex:param value="{!item.Lable}" assignTo="{!rowLable }" name="n1"/>
+                                                       </apex:actionSupport>
+                                                   </apex:image>
+                                          </td>  
+                                         </tr>
+                                   </table> 
+                               </apex:repeat>
+                           </apex:outputPanel>
+                        </apex:facet>       
+                  </apex:actionStatus>
+            </apex:outputPanel>
+          
+            <apex:outputPanel id="ATAId" layout="block" styleClass="col-md-12">
+                <apex:actionStatus id="statusText" startText="Processing.....">
+                    <apex:facet name="start">
+                         <apex:image url="{!$Resource.KEvents__Processing}" height="20" width="20"/><br/>
+                    </apex:facet>
+                    <apex:facet name="stop">
+                       <apex:outputPanel rendered="{!TextDisplay}">
+                           <div class="col-md-12">
+                           <center> <apex:inputTextarea value="{!curRegistration.KEvents__AtendeeList__c}" html-placeholder="Enter Attendee Names" rows="10" cols="20"/></center>
+                           <!--<center> <apex:inputField value="{!curRegistration.KEvents__AtendeeList__c}" style="height:10;"/></center>-->
+                          </div>
+                       </apex:outputPanel>
+                    </apex:facet>
+                </apex:actionStatus>
+            </apex:outputPanel>    
+                          
+                   
+                 </div>
+                </div>  
+             </apex:outputPanel> 
+             
+          </apex:outputPanel>
+          
+       <apex:outputPanel rendered="{!eventType =='Reservation'}">
+         <div class="panelNew panel-Purple">
+              <div class="panel-heading">
+                <span class="glyphicon glyphicon-envelope"/>&nbsp;&nbsp;<h3 class="panel-title">Address Information</h3>
+              </div>
+              <div class="panel-body">
+              
+               <div class="form-group">
+                   <label class="col-lg-4 control-label">Alternate Phone</label>
+                    <div class="col-lg-2">
+                      <apex:inputField value="{!objContact.Phone}" html-placeholder="Alternate Phone" styleClass="form-control" onchange="alterPhoneValidation(this);"/>
+                    </div>
+               <label class="col-lg-6 control-label"></label><br/><br/>
+               
+                  <label for="inputEmail" class="col-lg-4 control-label">City</label>
+                  <div class="col-lg-2">
+                     <apex:inputField value="{!objContact.MailingCity}" html-placeholder="City" styleClass="form-control" onchange="cityValidation(this);"/>
+                  </div>
+               
+                  <label for="inputEmail" class="col-lg-4 control-label">Street Address</label>
+                  <div class="col-lg-2">
+                     <apex:inputField value="{!objContact.MailingStreet}" html-placeholder="Street Address" styleClass="form-control"/>
+                  </div>
+                 <label for="inputEmail" class="col-lg-4 control-label">State</label>
+                  <div class="col-lg-2">
+                     <apex:inputField value="{!objContact.MailingState}" html-placeholder="State" styleClass="form-control" onchange="StateValidation(this);"/>
+                  </div>
+                  <label for="inputEmail" class="col-lg-4 control-label">Zip</label>
+                  <div class="col-lg-2">
+                     <apex:inputField value="{!objContact.MailingPostalCode}" html-placeholder="Zip" styleClass="form-control" onchange="zipValidation(this);"/>
+                  </div>
+               </div>
+          </div>
+       </div>  
+    
+       <div class="panelNew panel-Purple">
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-plus"/>&nbsp;&nbsp;<h3 class="panel-title">Additional Information</h3>
+          </div>
+          <div class="panel-body">
+               <div class="form-group">
+                      <label for="inputEmail" class="col-lg-4 control-label">School/Group Name</label>
+                          <div class="col-lg-2">
+                             <apex:inputField value="{!curRegistration.KEvents__GroupName__c}" html-placeholder="School/Group Name" styleClass="form-control" onchange="schoolNameValidation(this);" />
+                          </div>
+                      <label for="inputEmail" class="col-lg-4 control-label">Teacher's/Organizer's Name, If Different than Registrant</label>
+                          <div class="col-lg-2">
+                             <apex:inputField value="{!curRegistration.KEvents__TeacherName__c}" html-placeholder="Teachers Organizers Name" styleClass="form-control" onchange="teacherNameValidation(this);"/>
+                          </div>
+                      <label for="inputEmail" class="col-lg-4 control-label">Have You/Your Group Ever Attended a Program With Us Before? </label>
+                          <div class="col-lg-2">
+                            <div class="checkbox">
+                             <apex:inputcheckbox value="{!fieldTrip}" /></div>
+                          </div>
+                       <br/><br/><br/><br/><br/>
+                      <label for="inputEmail" class="col-lg-4 control-label">How Did You Hear About Our Programs?</label>
+                          <div class="col-lg-8">
+                             <apex:inputField value="{!curRegistration.KEvents__HowDidYouHearAboutOurPrograms__c}" html-placeholder="How Did You Hear About Our Programs"  styleClass="form-control"/>
+                          </div>
+                          <br/><br/>
+                      <label for="inputEmail" class="col-lg-4 control-label">Comments/Questions</label>
+                          <div class="col-lg-8">
+                             <apex:inputField value="{!curRegistration.KEvents__Comments__c}" html-placeholder="Comments/Question"   styleClass="form-control"/>
+                          </div>
+               </div>
+               <div class="col-lg-2"> 
+               </div> 
+               </div> 
+         </div>   
+      </apex:outputPanel>    
+          
+           
+     </apex:outputPanel>
+             
+            
+       
+            <apex:outputPanel id="payId">
+                <apex:outputPanel rendered="{!HideCheck}">
+                
+                     
+                   <!--<center><apex:commandButton value="Check Out" onClick="showError()" style="background:#446e9b;font-size:12px;color:White;" styleClass="btn btn-primary" reRender="formId,payId,captchid,pageId"/></center><br/>
+                         <apex:actionFunction action="{!goToPaymentPage}"   name="goToPaymentPage">
+                            <apex:param assignTo="{!firstName}" name="firstName" value=""/>
+                            <apex:param assignTo="{!lastName}" name="lastName" value=""/> 
+                        </apex:actionFunction>-->
+                  
+                </apex:outputPanel>
+                     <apex:outputPanel rendered="{!Hide}">
+                        <br/> <p class="text-center"><apex:commandButton value="Register" id="RegId2" StyleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" action="{!register}" onClick="show()" reRender="formId"/></p>
+                         <br/>
+                    </apex:outputPanel>
+            </apex:outputPanel>    
+             
+
+   
+
+                   
+                               <br/>
+                                     <center><apex:commandButton value="Register"  styleClass="btnNew btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" action="{!register}" onClick="show()" reRender="formId" rendered="{!(HideReg) || eventType == 'Internal'}" /></center>
+                                       <br/>
+                                       <!--<center><apex:commandButton value="Checkout" onClick="alert({!listvalueOfTextBox.size});" id="filecheck"  styleClass=" btnNew  btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" reRender="formId"  rendered="{!HideCheckout}" /></center>-->
+                                       <center><apex:commandButton value="Checkout" onClick="showError()" id="filecheck"  styleClass=" btnNew  btn-Gray" style="background-image: linear-gradient(#6d7070, #474949 50%, #3d3f3f);background-repeat: no-repeat;color:#ffffff; padding: 3px 12px; font-size:16px;border: 1px solid #222222; font-family: Calibri;" reRender="formId"  rendered="{!HideCheckout}" /></center>
+                                       <br/>
+                                       <apex:actionFunction action="{!goToPaymentPage}" name="goToPaymentPage">
+                                        
+                                        </apex:actionFunction>                                     
+                             </fieldset>
+          </form>
+                        </apex:form>        
+                       
+              </apex:define>                                        
+   </apex:composition>      
+</apex:page>

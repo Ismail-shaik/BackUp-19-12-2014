@@ -1,0 +1,276 @@
+<apex:page standardcontroller="student__c" extensions="branchclass" >
+<apex:form >
+<apex:pageBlock title="student branch details">
+<apex:pageblockSection title="main section" columns="1" >
+<apex:selectList label="studentname" value="{!studentname}" size="1" multiselect="false" >
+<apex:selectOptions value="{!studentlist}"/> 
+<apex:actionSupport event="onchange" action="{!Pickliststudent}"/>
+                     <apex:actionStatus startText="Applying value........">
+                     </apex:actionStatus>
+</apex:selectList>
+
+<!--st1 Output Pannel-->
+<apex:outputPanel id="pd1" rendered="{!studentname1}">
+<apex:pageBlock title="stt1 details">
+<apex:pageBlockSection columns="1" title="st1 section">
+
+<apex:selectList label="branch name" value="{!branchname}" size="1" multiselect="false">
+<apex:selectOptions value="{!branchlist}">
+</apex:selectOptions>
+<apex:actionSupport event="onchange" action="{!picklistbranch}"/>
+<apex:actionStatus startText="applying value......">
+</apex:actionStatus>
+</apex:selectList>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st1 ECE Output Pannel-->
+<apex:outputPanel rendered="{!branchname11}">
+<apex:pageBlock title="st1 ECE details">
+<apex:pageBlockSection columns="1" title="st1 ECE section">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st1 CSE Output Pannel-->
+<apex:outputPanel rendered="{!branchname12}">
+<apex:pageBlock title="st1 CSE details">
+<apex:pageBlockSection columns="1" title="st1 CSE section">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st1 EEE Output Pannel-->
+<apex:outputPanel rendered="{!branchname13}">
+<apex:pageBlock title="st1 EEE details">
+<apex:pageBlockSection columns="1" title="st1 EEE section">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st2 Output Pannel-->
+<apex:outputPanel id="pd2" rendered="{!studentname2}">
+<apex:pageBlock title="st2 details">
+<apex:pageBlockSection columns="1" title="st2 section">
+
+<apex:selectList label="branch name" value="{!branchname}" size="1" multiselect="false">
+<apex:selectOptions value="{!branchlist}">
+</apex:selectOptions>
+<apex:actionSupport event="onchange" action="{!picklistbranch}"/>
+<apex:actionStatus startText="applying value......">
+</apex:actionStatus>
+</apex:selectList>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st2 ECE Output Pannel-->
+<apex:outputPanel rendered="{!branchname21}">
+<apex:pageBlock title="st2 ECE details">
+<apex:pageBlockSection columns="1" title="st2 ECE section">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st2 CSE Output Pannel-->
+<apex:outputPanel rendered="{!branchname22}">
+<apex:pageBlock title="st2 CSE details">
+<apex:pageBlockSection columns="1" title="st2 CSE section">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st2 EEE Output Pannel-->
+<apex:outputPanel rendered="{!branchname23}">
+<apex:pageBlock title="st2 EEE details">
+<apex:pageBlockSection columns="1" title="st2 EEE section">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st3 Output Pannel-->
+<apex:outputPanel id="pd3" rendered="{!studentname3}">
+<apex:pageBlock title="st3 details">
+<apex:pageBlockSection columns="1" title="st3 section">
+
+<apex:selectList label="branch name" value="{!branchname}" size="1" multiselect="false">
+<apex:selectOptions value="{!branchlist}">
+</apex:selectOptions>
+<apex:actionSupport event="onchange" action="{!picklistbranch}"/>
+<apex:actionStatus startText="applying value......">
+</apex:actionStatus>
+</apex:selectList>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st3 ECE Output Pannel-->
+<apex:outputPanel rendered="{!branchname31}">
+<apex:pageBlock title="st3 ECE details">
+<apex:pageBlockSection columns="1" title="st33 ECE section">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st3 CSE Output Pannel-->
+<apex:outputPanel rendered="{!branchname32}">
+<apex:pageBlock title="st3 CSE details">
+<apex:pageBlockSection columns="1" title="st3 CSE section">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+<!--st3 EEE Output Pannel-->
+<apex:outputPanel rendered="{!branchname33}">
+<apex:pageBlock title="st3 EEE details">
+<apex:pageBlockSection columns="1" title="st3 EEE section">
+
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="fee"></apex:outputLabel>
+<apex:inputField value="{!student__c.fee__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="country"></apex:outputLabel>
+<apex:inputField value="{!student__c.country__c}" required="false"/>
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:outputPanel>
+
+</apex:pageblockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

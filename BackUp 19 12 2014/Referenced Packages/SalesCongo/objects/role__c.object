@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>SALESCONGO:  User role to control security</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>Coach_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Is the COACH module enabled for this role</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is the COACH module enabled for this role</inlineHelpText>
+        <label>Coach Enabled</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Inform_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Is the INFORM module enabled for this role</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is the INFORM module enabled for this role</inlineHelpText>
+        <label>Inform Enabled</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Perform_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Is the PERFORM module enabled for this role</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is the PERFORM module enabled for this role</inlineHelpText>
+        <label>Perform Enabled</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Setup_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Is System Setup enabled for this role</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is System Setup enabled for this role</inlineHelpText>
+        <label>Setup Enabled</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Train_Enabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Is the TRAIN module enabled for this role</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is the TRAIN module enabled for this role</inlineHelpText>
+        <label>Train Enabled</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>Role</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Role Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Roles</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

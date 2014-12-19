@@ -1,0 +1,32 @@
+<apex:page controller="DynamicTableCntrlr" id="pgid">
+ <apex:sectionHeader title="Dynamic Table"/>
+  <apex:form >
+    <apex:pageBlock title="Dynamic Table" id="pgbid">
+      <apex:pageBlockSection collapsible="true" title="enter values from table">
+         <apex:pageBlockTable value="{!conlist}" var="cl" cellspacing="25%25%25%">
+           
+           <apex:column headervalue="Contact First Name">
+             <apex:inputField value="{!cl.FirstName}"/>
+           </apex:column>
+           
+           <apex:column headervalue="Contact Last Name">
+             <apex:inputField value="{!cl.LastName}" required="false"/>
+           </apex:column>
+           
+           <apex:column headervalue="Contact PhoneNumber">
+             <apex:inputField value="{!cl.PhoneNumber__c}"/>
+           </apex:column>
+           
+         </apex:pageBlockTable>
+         <br/>
+        <apex:commandButton value="addRow" action="{!addRow}" title="Add a Row"/>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection >
+        <apex:pageBlockSectionItem >
+           <apex:commandButton value="Save" action="{!Save}"/>
+           <apex:commandButton value="Cancel"/>
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

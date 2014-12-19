@@ -1,0 +1,18 @@
+<apex:page standardController="Position__c" showHeader="true" sidebar="true" recordSetVar="pos">
+ <apex:sectionHeader title="Position Records using standard controller"/>
+  <apex:form >
+  
+    <apex:pageBlock title="Position Records">
+      <apex:pageblocktable value="{!pos}" var="p">
+        <apex:column value="{!p.Name}"/>
+        <apex:column value="{!p.Functional_Area__c}"/>
+        <apex:column value="{!p.Hire_By__c}"/>
+        <apex:column value="{!p.Max_Pay__c}"/>
+        <apex:column value="{!p.Min_Pay__c}"/>
+        <apex:column value="{!p.Responsibilities__c}"/>
+        <apex:column value="{!p.Status__c}"/>
+        <apex:column value="{!p.Job_Level__c}"/>
+      </apex:pageblocktable>
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

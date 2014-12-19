@@ -1,0 +1,26 @@
+<apex:page controller="InterviewOne_Controller" sidebar="true">
+<apex:sectionHeader title="InterviewOne"/>
+  <apex:form >
+ <!--   <apex:pageBlock title=" InterviewOne Visualforce tab detail">
+      <apex:pageblockSection title="All Accounts">
+         <apex:pageblocktable value="{!listacc}" var="lst">
+        <!--    <apex:column headerValue="Account Name" value="{!lst.Name}"/>   -->
+     <!--    </apex:pageblocktable>
+      </apex:pageblockSection>
+    </apex:pageBlock>   -->
+    
+   <apex:pageBlock title="Contact records">
+    <apex:pageBlockSection title="Contact Records">
+      <apex:pageblocktable value="{!Listacc}" var="lst">
+       <apex:column value="{!lst.FirstName}"/>
+       <apex:column value="{!lst.Phone}"/>
+       <apex:column value="{!lst.HomePhone}"/>
+       <apex:column value="{!lst.Fax}"/>
+       <apex:column value="{!lst.Description}"/> 
+       <apex:column value="{!lst.AssistantName}"/> 
+      </apex:pageblocktable>
+    </apex:pageBlockSection>
+   </apex:pageBlock> 
+    
+  </apex:form>
+</apex:page>

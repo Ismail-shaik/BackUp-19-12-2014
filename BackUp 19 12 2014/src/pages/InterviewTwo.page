@@ -1,0 +1,8 @@
+<apex:page controller="InterviewTwoCntrlr">
+  <apex:form >
+     <apex:pageblock >
+        <apex:pageblockSection title="Account records">
+        </apex:pageblockSection>
+     </apex:pageblock>
+  </apex:form>
+</apex:page>

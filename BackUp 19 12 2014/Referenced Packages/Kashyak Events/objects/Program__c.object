@@ -1,0 +1,1329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Object to store the Program information</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Active</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Active</inlineHelpText>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AdditionalFee__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Additional Fee perAttendee</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Additional Fee per Attendee</inlineHelpText>
+        <label>Additional Fee per Attendee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>AllowGroupDiscount__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Allow Group Discount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Allow Group Discount</inlineHelpText>
+        <label>Allow Group Discount?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AllowPayAtDoorPrice__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Allow Pay at Door</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Allow Pay at Door</inlineHelpText>
+        <label>Allow Pay at Door?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Capacity__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Program Capacity</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Program Capacity</inlineHelpText>
+        <label>Capacity</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Description</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Description</inlineHelpText>
+        <label>Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ExtraAmountPayAtDoor__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Pay at Door Additional Price</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Pay at Door Additional Price</inlineHelpText>
+        <label>Pay at Door Additional Price</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FAQ__c</fullName>
+        <deprecated>false</deprecated>
+        <description>FAQ</description>
+        <externalId>false</externalId>
+        <inlineHelpText>FAQ</inlineHelpText>
+        <label>FAQ</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Facebook__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Facebook</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Facebook</inlineHelpText>
+        <label>Facebook</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Fee__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Reservation Fee</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Reservation Fee for a group.
+You should enter # Students Allowed with Event Fees &amp; Additional Fee/Student if you enter this field</inlineHelpText>
+        <label>Reservation Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Google__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Google+</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Google+</inlineHelpText>
+        <label>Google+</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>GradeLevel__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Grade Level</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Grade Level</inlineHelpText>
+        <label>Grade Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Pre k</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>k</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>8</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>9</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>College / Hr Education</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>GroupDiscountAligability__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Group Discount Eligibility</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Group Discount Eligibility</inlineHelpText>
+        <label>Group Discount Eligibility</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GroupDiscountAmount__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Group Discount Amount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Group Discount Amount</inlineHelpText>
+        <label>Group Discount Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Image__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Image to be displayed in the site for this event</description>
+        <externalId>false</externalId>
+        <inlineHelpText>In the site we have restricted the image size to 250px/300px for better visibility.
+Please select the image of size 250px (Height) / 300px) (Width).</inlineHelpText>
+        <label>Image 250px (Height) / 300px) (Width)</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>InstructionsNote__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Instructions / Note</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Instructions / Note</inlineHelpText>
+        <label>Instructions/Note</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IsFree__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Is Free?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is Free?</inlineHelpText>
+        <label>Is Free?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IsSponsorship__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Is this event is a Sponsorship?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this event is a Sponsorship?</inlineHelpText>
+        <label>Is Sponsorship?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Linkedin__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Linkedin</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Linkedin</inlineHelpText>
+        <label>Linkedin</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Location</description>
+        <externalId>false</externalId>
+        <formula>Site__r.Address__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Location</inlineHelpText>
+        <label>Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MemberPrice__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Member Price</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Member Price</inlineHelpText>
+        <label>Member Price</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NonMemberPrice__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Non-Member Price</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Non-Member Price</inlineHelpText>
+        <label>Price</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>OneChaperonesPer__c</fullName>
+        <defaultValue>8</defaultValue>
+        <deprecated>false</deprecated>
+        <description>One Chaperones Per</description>
+        <externalId>false</externalId>
+        <inlineHelpText>One Chaperones Per</inlineHelpText>
+        <label>One Chaperones Per</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PaymentType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>What type of payments are accepted for this program?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>What type of payments are accepted for this program?</inlineHelpText>
+        <label>Accepted Payment Types</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cheque</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Credit Card(online)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pay At The Door</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Scholarship__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Scholarship</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Scholarship</inlineHelpText>
+        <label>Scholarship</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Available</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Possible</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Site__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Location/Site</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Location or Site for this event</inlineHelpText>
+        <label>Location</label>
+        <referenceTo>Location__c</referenceTo>
+        <relationshipLabel>Programs</relationshipLabel>
+        <relationshipName>Programs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sponcer__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Sponcer</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sponcer</inlineHelpText>
+        <label>Sponcer</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>StaffRequired__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <description># Staff Required</description>
+        <externalId>false</externalId>
+        <inlineHelpText># Staff Required</inlineHelpText>
+        <label># Staff Required</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StudentsAllowedwithEventFees__c</fullName>
+        <deprecated>false</deprecated>
+        <description># Attendees Allowed with Reservation Fee</description>
+        <externalId>false</externalId>
+        <inlineHelpText># Attendees Allowed with Reservation Fee</inlineHelpText>
+        <label># Attendees Allowed with Reservation Fee</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Twitter__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Twitter</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Twitter</inlineHelpText>
+        <label>Twitter</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Type of the Program</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Type of the Program</inlineHelpText>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>School Field Trip</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Special Needs Field Trip</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Small Group Program</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Home School</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Adult Classes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Networking</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fund Raising</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VolunteersRequired__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <description># Volunteers Required</description>
+        <externalId>false</externalId>
+        <inlineHelpText># Volunteers Required</inlineHelpText>
+        <label># Volunteers Required</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Website__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Website URL</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Website URL</inlineHelpText>
+        <label>Website</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <label>Program</label>
+    <nameField>
+        <label>Program Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Programs</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Event</fullName>
+        <active>true</active>
+        <description>Program Record Type for Events</description>
+        <label>Event</label>
+        <picklistValues>
+            <picklist>GradeLevel__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College %2F Hr Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>k</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PaymentType__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cheque</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Card%28online%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pay At The Door</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Scholarship__c</picklist>
+            <values>
+                <fullName>Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Possible</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Adult Classes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fund Raising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Networking</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>School Field Trip</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Group Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Needs Field Trip</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Internal</fullName>
+        <active>true</active>
+        <description>Program Record Type for Internal Events</description>
+        <label>Internal</label>
+        <picklistValues>
+            <picklist>GradeLevel__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College %2F Hr Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>k</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PaymentType__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cheque</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Card%28online%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pay At The Door</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Scholarship__c</picklist>
+            <values>
+                <fullName>Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Possible</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Adult Classes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>School Field Trip</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Group Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Needs Field Trip</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Reservation</fullName>
+        <active>true</active>
+        <description>Program Record Type for Reservation</description>
+        <label>Reservation</label>
+        <picklistValues>
+            <picklist>GradeLevel__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College %2F Hr Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>k</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PaymentType__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cheque</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Card%28online%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pay At The Door</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Scholarship__c</picklist>
+            <values>
+                <fullName>Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Possible</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Adult Classes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>School Field Trip</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Group Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Needs Field Trip</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Training</fullName>
+        <active>true</active>
+        <description>Program Record Type for Trainings</description>
+        <label>Training</label>
+        <picklistValues>
+            <picklist>GradeLevel__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>12</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>9</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>College %2F Hr Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre k</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>k</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PaymentType__c</picklist>
+            <values>
+                <fullName>Cash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cheque</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Card%28online%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pay At The Door</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Scholarship__c</picklist>
+            <values>
+                <fullName>Available</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Possible</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Adult Classes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Home School</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>School Field Trip</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small Group Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Special Needs Field Trip</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Site__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Active__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Capacity__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>IsSponsorship__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>IsFree__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>NonMemberPrice__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>MemberPrice__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Fee__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Location__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>RECORDTYPE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Active__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Capacity__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>IsFree__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>MemberPrice__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>NonMemberPrice__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Fee__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>GradeLevel__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>RECORDTYPE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Location__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Active__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Capacity__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>IsFree__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>MemberPrice__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>NonMemberPrice__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Fee__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>GradeLevel__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>RECORDTYPE</searchFilterFields>
+        <searchFilterFields>Location__c</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchFilterFields>Capacity__c</searchFilterFields>
+        <searchFilterFields>GradeLevel__c</searchFilterFields>
+        <searchFilterFields>IsFree__c</searchFilterFields>
+        <searchFilterFields>MemberPrice__c</searchFilterFields>
+        <searchFilterFields>NonMemberPrice__c</searchFilterFields>
+        <searchFilterFields>Fee__c</searchFilterFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Location__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Capacity__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Active__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IsFree__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>MemberPrice__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>NonMemberPrice__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Fee__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Scholarship__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>KEAcceptedPaymentTypes</fullName>
+        <active>true</active>
+        <description>AcceptedPaymentTypes</description>
+        <errorConditionFormula>AND( OR(RecordType.Name =&apos;Event&apos;,RecordType.Name =&apos;Reservation&apos;,RecordType.Name =&apos;Training&apos;) , NOT(OR(INCLUDES( PaymentType__c,&quot;Cash&quot;),INCLUDES( PaymentType__c,&quot;Cheque&quot;),INCLUDES( PaymentType__c,&quot;Credit Card(online)&quot;),INCLUDES(PaymentType__c,&quot;Pay At The Door&quot;))),IsFree__c = False)</errorConditionFormula>
+        <errorDisplayField>PaymentType__c</errorDisplayField>
+        <errorMessage>Please Select Accepted Payment Type when Event is Not Free</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEAllowGroupDiscount</fullName>
+        <active>true</active>
+        <description>Allow Group Discount</description>
+        <errorConditionFormula>IF((AllowGroupDiscount__c = TRUE)
+      ,IF(AND((GroupDiscountAligability__c &lt;&gt;0 ),(GroupDiscountAmount__c &lt;&gt;0)),FALSE,TRUE ),FALSE)</errorConditionFormula>
+        <errorMessage>Please Enter Group Discount  Eligibility and Group Discount Price If Allow Group Discount is Selected</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEAllowGroupDiscountUncheck</fullName>
+        <active>true</active>
+        <description>If we are unchecking the field we should not allow values into group discount price and eligibility field</description>
+        <errorConditionFormula>IF((AllowGroupDiscount__c = False) 
+,IF( OR((GroupDiscountAligability__c &lt;&gt;0 ),(GroupDiscountAmount__c &lt;&gt;0)),True,false),FALSE)</errorConditionFormula>
+        <errorMessage>Please do not enter the data in &quot;Group Discount Price&quot; and &quot;Group Discount Eligibility&quot; if &quot; Allow Group Discount&quot; is not set to True.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEAllowPayattheDoorUncheck</fullName>
+        <active>true</active>
+        <description>AllowPayattheDoorUncheck</description>
+        <errorConditionFormula>IF( AllowPayAtDoorPrice__c=False,  IF( ExtraAmountPayAtDoor__c &gt;0, true, false) , false)</errorConditionFormula>
+        <errorDisplayField>ExtraAmountPayAtDoor__c</errorDisplayField>
+        <errorMessage>Please do not enter any amount for &quot;Pay at Door Additional Price&quot; of the AllowPayAtDoorPrice&quot; is not checked.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEGroupDiscountValidation</fullName>
+        <active>true</active>
+        <description>Group Discount Validation</description>
+        <errorConditionFormula>If(AND(AllowGroupDiscount__c == True, ISBLANK(GroupDiscountAmount__c) ),True,False)</errorConditionFormula>
+        <errorDisplayField>GroupDiscountAmount__c</errorDisplayField>
+        <errorMessage>Please Enter Group Discount Price</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeForReservation</fullName>
+        <active>false</active>
+        <description>Is Free for Reservation</description>
+        <errorConditionFormula>AND(IsFree__c=true,OR(AdditionalFee__c &lt;&gt;0, StudentsAllowedwithEventFees__c &lt;&gt; 0))</errorConditionFormula>
+        <errorMessage>Additional Fee per Attendee ,Attendees Allowed with Reservation Fee and  Accepted Payment Type Should be Null</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeIsFalseWithReservationFee</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF(( RecordType.Name == &apos;Reservation&apos;) &amp;&amp; (IsFree__c = False), IF(Fee__c &gt;0 ,false,true),false)</errorConditionFormula>
+        <errorDisplayField>Fee__c</errorDisplayField>
+        <errorMessage>Please enter a valid &quot;Reservation Fee&quot; or for Free Events select &quot;Is Free&quot; to True (Check)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeTrueAccptedpaymnttypes</fullName>
+        <active>true</active>
+        <description>If Is Free Is true thenAccepted Payment Types  is not requrid</description>
+        <errorConditionFormula>AND(OR(RecordType.Name =&apos;Reservation&apos;,RecordType.Name =&apos;Event&apos;,RecordType.Name =&apos;Training&apos;),(IsFree__c = True),
+
+OR(
+(INCLUDES(PaymentType__c, &quot;Cash&quot;)),(INCLUDES(PaymentType__c, &quot;Cheque&quot;)),(INCLUDES(PaymentType__c, &quot;Credit Card(online)&quot;)),(INCLUDES(PaymentType__c, &quot;Pay At The Door&quot;))))</errorConditionFormula>
+        <errorDisplayField>PaymentType__c</errorDisplayField>
+        <errorMessage>Please Un Select The Accepted Payment Types When Event is Free</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeTrueAdditinalFeeAttndNotreqrd</fullName>
+        <active>true</active>
+        <description>If IsFree true Additional fee per attendee is not Required.</description>
+        <errorConditionFormula>AND((RecordType.Name =&apos;Reservation&apos;),(IsFree__c = True),(AdditionalFee__c &lt;&gt; 0))</errorConditionFormula>
+        <errorDisplayField>AdditionalFee__c</errorDisplayField>
+        <errorMessage>Additional Fee per Attendee should not entered for the free events.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeTrueAttendeesalowdReservationFee</fullName>
+        <active>true</active>
+        <description>If Is Free Is true then Attendies allowed with reservation fee is not requrid</description>
+        <errorConditionFormula>AND((RecordType.Name =&apos;Reservation&apos;),(IsFree__c = True),(StudentsAllowedwithEventFees__c &lt;&gt; 0))</errorConditionFormula>
+        <errorDisplayField>StudentsAllowedwithEventFees__c</errorDisplayField>
+        <errorMessage>Attendees Allowed with Reservation Fee should not entered for the Free event.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeTrueWithNonMemberPrice</fullName>
+        <active>true</active>
+        <description>If Is Free = True &amp;&amp; Type = Event/Class/Internal then 
+the Non Member Price Should be 0</description>
+        <errorConditionFormula>IF(!( RecordType.Id = &apos;Reservation&apos;) &amp;&amp; IsFree__c = true, IF(AND(NonMemberPrice__c ==0,MemberPrice__c ==0 ),false, true),false)</errorConditionFormula>
+        <errorMessage>For Free events the &quot; Price and MemberPrice&quot; should be $0.0
+If this is not a free event please set &quot;Is Free&quot; to False (Uncheck)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeandAllowPayatDoorPrice</fullName>
+        <active>true</active>
+        <description>Is Free and Allow Pay at Door Price</description>
+        <errorConditionFormula>AND( IsFree__c == True , AllowPayAtDoorPrice__c == True)</errorConditionFormula>
+        <errorMessage>Allow Pay at Door Price Should be False When Event Is Free</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeisFalsePriceandMemberPrice</fullName>
+        <active>true</active>
+        <description>IsFreeisFalsePriceandMemberPrice</description>
+        <errorConditionFormula>AND(OR(RecordType.Name =&apos;Event&apos;,RecordType.Name =&apos;Training&apos;), IsFree__c = False,
+OR( NonMemberPrice__c= 0, ISNULL(NonMemberPrice__c)), OR(MemberPrice__c  = 0, ISNULL(MemberPrice__c)))</errorConditionFormula>
+        <errorMessage>Please Enter Valid Price and Member Price when the Event Is Not Free</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeisTrueForInternalEvents</fullName>
+        <active>true</active>
+        <description>For all internal events we need to set the Is Free i= True as we are not displaying any fee information</description>
+        <errorConditionFormula>AND((RecordType.Name =&apos;Internal&apos;),(IsFree__c =False))</errorConditionFormula>
+        <errorDisplayField>IsFree__c</errorDisplayField>
+        <errorMessage>Is Free? Should be set to True for Internal Events</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeisTrueThenSchlorshipNotRquir</fullName>
+        <active>true</active>
+        <description>If we set Is Free as True We no need to select scholorship.</description>
+        <errorConditionFormula>AND((RecordType.Name =&apos;Reservation&apos;),(IsFree__c = True), OR( ISPICKVAL(Scholarship__c,&quot;Available&quot;) ,ISPICKVAL(Scholarship__c,&quot;Possible&quot;),ISPICKVAL(Scholarship__c,&quot;No&quot;)))</errorConditionFormula>
+        <errorDisplayField>Scholarship__c</errorDisplayField>
+        <errorMessage>For the Free events &quot;Scholarship&quot; is not required</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEIsFreeisfalseWithReservationFeeAmou</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF((RecordType.Name == &apos;Reservation&apos;) &amp;&amp; IsFree__c = true,if((Fee__c ==0),false,true),false)</errorConditionFormula>
+        <errorDisplayField>Fee__c</errorDisplayField>
+        <errorMessage>&quot;For Free events the &quot;&quot;Reservation Fee&quot;&quot; should be $0.0
+If this is not a free event please set &quot;&quot;Is Free&quot;&quot; to False (Uncheck)
+&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEPayAtDoor</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF( AND(AllowPayAtDoorPrice__c = true  , NOT(INCLUDES( PaymentType__c ,&quot;Pay At The Door&quot;)))  , true, false)</errorConditionFormula>
+        <errorDisplayField>PaymentType__c</errorDisplayField>
+        <errorMessage>Please choose Payment Type as &apos;Pay at the Door&quot; since the &quot;Pay at the Door&quot; check box is selected</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEPayAtDoorPriceValidation</fullName>
+        <active>true</active>
+        <description>Pay At Door Price Validation</description>
+        <errorConditionFormula>And(AllowPayAtDoorPrice__c == True, ISBLANK(ExtraAmountPayAtDoor__c))</errorConditionFormula>
+        <errorDisplayField>ExtraAmountPayAtDoor__c</errorDisplayField>
+        <errorMessage>Please Enter Pay At Door Price</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEPayattheDoorpayment</fullName>
+        <active>true</active>
+        <description>Pay at the Door payment</description>
+        <errorConditionFormula>AND(IF(INCLUDES( PaymentType__c ,&quot;Pay At The Door&quot;),
+				IF(AllowPayAtDoorPrice__c  = TRUE,FALSE,TRUE),
+				FALSE) , (RecordType.Name ==&apos;Event&apos;))</errorConditionFormula>
+        <errorDisplayField>PaymentType__c</errorDisplayField>
+        <errorMessage>Please do not choose Payment Type as &quot;Pay at the Door&quot; since the &quot;Allow Pay at Door&quot; check box is not selected.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KEPaymentTypesRecordTypeisReservation</fullName>
+        <active>true</active>
+        <description>Payment Types Record Type is Reservation</description>
+        <errorConditionFormula>IF(INCLUDES(PaymentType__c,&quot;Pay At The Door&quot;),OR(RecordType.Name ==&apos;Training&apos;,RecordType.Name == &apos;Reservation&apos;),FALSE)</errorConditionFormula>
+        <errorDisplayField>PaymentType__c</errorDisplayField>
+        <errorMessage>Please do not select Payment type as Pay at The Door for Reservation and Training</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>KESponsorshipchecked</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( IsSponsorship__c , OR( IsFree__c , AllowPayAtDoorPrice__c , AllowGroupDiscount__c ) )</errorConditionFormula>
+        <errorMessage>For sponsorship events   &quot;Is Free&quot; &quot;Allow Pay at the Door Price&quot;
+   &quot;Allow Group Discount &quot;not set to True</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>MemberPricesholudnotbegreaterprice</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF(MemberPrice__c &gt; NonMemberPrice__c , true, false)</errorConditionFormula>
+        <errorDisplayField>MemberPrice__c</errorDisplayField>
+        <errorMessage>Enter the member price same or less then the Price.</errorMessage>
+    </validationRules>
+</CustomObject>
